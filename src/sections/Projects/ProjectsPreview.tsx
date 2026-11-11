@@ -23,11 +23,11 @@ export function ProjectsPreview() {
           </Reveal>
         </div>
 
-        <ul className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
+        <ul className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((project, i) => (
             <li key={project.slug}>
               <Reveal delay={i * 0.08} className="h-full">
-                <ProjectCard project={project} />
+                <ProjectCard project={project} compact />
               </Reveal>
             </li>
           ))}
