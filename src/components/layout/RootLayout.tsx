@@ -1,11 +1,13 @@
 import { Suspense, useCallback, useState } from 'react'
 import { Outlet, ScrollRestoration } from 'react-router'
+import { useHashScroll } from '@/hooks/useHashScroll'
 import { Footer } from './Footer'
 import { Header } from './Header'
 
 /** Gabarit commun à toutes les pages : header fixe, contenu, footer. */
 export function RootLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
+  useHashScroll()
   const closeMenu = useCallback(() => setMenuOpen(false), [])
   const toggleMenu = useCallback(() => setMenuOpen((o) => !o), [])
 
