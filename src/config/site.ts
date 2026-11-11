@@ -11,6 +11,12 @@
 export const siteConfig = {
   name: 'Cédric Sawadogo',
   tagline: 'Ingénieur informatique… mais pas que.',
+
+  /**
+   * Phrases du titre de l'accueil qui s'écrivent tour à tour après « ingénieur informatique… »
+   * (effet machine à écrire). La première est celle affichée au chargement.
+   */
+  heroRoles: ['mais pas que.', 'designer graphic', 'content creator', 'digital manager'],
   description:
     'Technologie, digital et créativité : je conçois des solutions, accompagne les transformations et donne vie aux idées.',
 
