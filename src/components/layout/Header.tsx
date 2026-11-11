@@ -43,7 +43,7 @@ export function Header({ menuOpen, onToggleMenu, onCloseMenu }: HeaderProps) {
 
           <div className="flex items-center gap-2">
             <div className="hidden md:block">
-              <ButtonLink to={contactItem.to} variant="secondary" className="h-10">
+              <ButtonLink to={contactItem.to} variant="secondary" size="sm">
                 Me contacter
               </ButtonLink>
             </div>
