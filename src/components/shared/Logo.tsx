@@ -1,9 +1,10 @@
 import { cn } from '@/lib/cn'
 
 /*
-  Le logo est toujours affiché depuis les fichiers d'origine, sans le redessiner :
-  seule la hauteur est fixée, la largeur suit automatiquement (proportions préservées).
-  Fichiers sources : public/logo/ (à remplacer par des SVG dès que disponibles).
+  Le logo est affiché depuis les fichiers vectoriels d'origine (public/logo/*.svg),
+  sans être redessiné : seule la zone de cadrage (viewBox) a été resserrée autour du dessin.
+  On fixe uniquement la hauteur ; la largeur suit, donc les proportions sont toujours préservées.
+  Format SVG : net sur tous les écrans, quelle que soit la taille.
 */
 
 interface LogoProps {
@@ -14,10 +15,10 @@ interface LogoProps {
 export function LogoFull({ className }: LogoProps) {
   return (
     <img
-      src="/logo/logoprincipal.png"
+      src="/logo/logo-full.svg"
       alt="Cédric Sawadogo"
-      width={439}
-      height={151}
+      width={438}
+      height={150}
       className={cn('h-9 w-auto', className)}
       decoding="async"
     />
@@ -28,10 +29,10 @@ export function LogoFull({ className }: LogoProps) {
 export function LogoMark({ className, decorative = false }: LogoProps & { decorative?: boolean }) {
   return (
     <img
-      src="/logo/iconelogo.png"
+      src="/logo/logo-mark.svg"
       alt={decorative ? '' : 'Cédric Sawadogo'}
       width={150}
-      height={151}
+      height={150}
       className={cn('size-10', className)}
       decoding="async"
     />

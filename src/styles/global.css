@@ -6,11 +6,11 @@
   (ex. --color-brand-500 → bg-brand-500, text-brand-500, border-brand-500…).
 */
 @theme {
-  /* Bleu de marque — mesuré sur le logo : #204B9B */
+  /* Bleu de marque — issu du logo vectoriel : #2A4B9B */
   --color-brand-200: #c9d6f0; /* survols, focus */
   --color-brand-400: #4a7bd4; /* texte accent sur fond sombre (contraste suffisant) */
-  --color-brand-500: #204b9b; /* couleur du logo : boutons, surfaces pleines */
-  --color-brand-700: #183a7a; /* état pressé */
+  --color-brand-500: #2a4b9b; /* couleur exacte du logo (fichier SVG source) : boutons, surfaces pleines */
+  --color-brand-700: #213c7e; /* état pressé */
 
   /* Fonds et surfaces */
   --color-ink-950: #080808; /* fond principal */
