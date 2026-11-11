@@ -44,8 +44,8 @@ export function HeroPortrait() {
         <LogoMark decorative className="size-14 sm:size-16" />
       </div>
 
-      {/* Étiquette éditoriale */}
-      <p className="absolute top-6 -left-3 rounded-lg border border-line bg-page/90 px-3 py-2 label-mono text-[11px] text-muted backdrop-blur sm:-left-6">
+      {/* Étiquette éditoriale : en bas, à gauche du logo, pour ne pas masquer le visage */}
+      <p className="absolute right-[4.5rem] bottom-2 rounded-lg border border-line bg-page/90 px-3 py-2 label-mono text-[11px] whitespace-nowrap text-muted backdrop-blur sm:right-[5rem] sm:bottom-3">
         Tech <span className="text-accent">·</span> Digital <span className="text-accent">·</span> Création
       </p>
     </div>
