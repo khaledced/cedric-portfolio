@@ -17,6 +17,7 @@ Portfolio personnel : ingénierie informatique, transformation digitale, communi
 | [MDX](https://mdxjs.com) | Articles du blog / Insights |
 | [Fontsource](https://fontsource.org) | Polices auto-hébergées (Space Grotesk, Inter, JetBrains Mono) |
 | [Oxlint](https://oxc.rs) | Analyse du code |
+| [Vitest](https://vitest.dev) | Tests automatisés |
 
 ## Démarrer
 
@@ -25,10 +26,24 @@ Prérequis : Node.js 20.19+ (ou 22.12+).
 ```bash
 npm install      # installe les dépendances
 npm run dev      # lance le site sur http://localhost:5173
-npm run build    # vérifie les types et génère la version de production dans dist/
-npm run preview  # prévisualise la version de production
+npm run build    # vérifie les types, génère la version de production et pré-rend chaque page
+npm run preview  # prévisualise la version de production (http://localhost:4173)
 npm run lint     # analyse le code
+npm test         # lance les tests automatisés
 ```
+
+## Pré-rendu et référencement
+
+Au build, chaque page est générée en HTML complet (`scripts/prerender.mjs`, à partir de `src/entry-server.tsx`) :
+Google et les aperçus de liens (LinkedIn, WhatsApp, Facebook) voient le vrai titre, la description,
+l'image de partage et le contenu, sans exécuter de JavaScript. Le navigateur reprend ensuite la main
+(« réhydratation »). Les nouvelles pages de projets et d'articles sont pré-rendues automatiquement.
+
+- `public/og-image.png` : image de partage (1200×630), source dans `scripts/og-image.html`.
+- `siteConfig.url` (dans `src/config/site.ts`) : **à renseigner après le premier déploiement** ;
+  active les adresses canoniques, l'image de partage en adresse absolue et le `sitemap.xml`.
+- Contenu dépendant de l'adresse (`?categorie=`, `?q=`) : utiliser `useIsClient()` pour que le
+  premier rendu corresponde au HTML pré-rendu.
 
 ## Où modifier quoi
 
@@ -37,7 +52,7 @@ npm run lint     # analyse le code
 | Changer email, réseaux sociaux, disponibilité | `src/config/site.ts` |
 | Publier un article | Ajouter un fichier `.mdx` dans `src/content/articles/` |
 | Changer les couleurs ou polices | `src/styles/global.css` (bloc `@theme`) |
-| Ajouter une page | `src/pages/` + route dans `src/App.tsx` |
+| Ajouter une page | `src/pages/` + route dans `src/routes.tsx` + adresse dans `getStaticPaths` (`src/entry-server.tsx`) |
 
 ### Publier un article
 
@@ -107,4 +122,4 @@ Convention de commits : `feat:`, `fix:`, `style:`, `docs:`, `refactor:`, `chore:
 
 ## Déploiement
 
-Hébergé sur [Vercel](https://vercel.com). `vercel.json` redirige toutes les routes vers `index.html` pour que les URLs comme `/projets` fonctionnent au rechargement.
+Hébergé sur [Vercel](https://vercel.com). `vercel.json` active les adresses propres (`/projets` sert `projets.html`), la vraie page 404, le cache longue durée des fichiers `assets/` et quelques en-têtes de sécurité.

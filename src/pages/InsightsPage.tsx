@@ -1,3 +1,4 @@
+import { useIsClient } from '@/hooks/useIsClient'
 import { Search, X } from 'lucide-react'
 import { useSearchParams } from 'react-router'
 import { Reveal } from '@/components/shared/Reveal'
@@ -16,7 +17,9 @@ const usedCategories = articleCategories.filter((c) => articles.some((a) => a.ca
 
 export default function InsightsPage() {
   // Recherche et filtre stockés dans l'URL : partageables et conservés au retour arrière
-  const [params, setParams] = useSearchParams()
+  const [urlParams, setParams] = useSearchParams()
+  // Pendant la réhydratation, on affiche la version sans filtre (identique au HTML pré-rendu)
+  const params = useIsClient() ? urlParams : new URLSearchParams()
   const query = params.get('q') ?? ''
   const activeSlug = params.get('categorie')
   const activeCategory = usedCategories.find((c) => c.slug === activeSlug)

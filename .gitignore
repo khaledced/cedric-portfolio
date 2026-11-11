@@ -40,3 +40,6 @@ image/
 
 # Fichiers sources du logo (versions web optimisées dans public/logo/)
 SVG/
+
+# Build intermédiaire du pré-rendu
+dist-ssr

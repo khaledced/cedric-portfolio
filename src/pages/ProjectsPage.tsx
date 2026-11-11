@@ -1,3 +1,4 @@
+import { useIsClient } from '@/hooks/useIsClient'
 import { AnimatePresence, m } from 'motion/react'
 import { useSearchParams } from 'react-router'
 import { CtaBand } from '@/components/shared/CtaBand'
@@ -15,7 +16,9 @@ const usedCategories = (Object.keys(projectCategories) as ProjectCategory[]).fil
 
 export default function ProjectsPage() {
   // Le filtre est stocké dans l'URL (?categorie=branding) : il peut être partagé et survit au retour arrière
-  const [params, setParams] = useSearchParams()
+  const [urlParams, setParams] = useSearchParams()
+  // Pendant la réhydratation, on affiche la version sans filtre (identique au HTML pré-rendu)
+  const params = useIsClient() ? urlParams : new URLSearchParams()
   const raw = params.get('categorie')
   const active = raw && raw in projectCategories ? (raw as ProjectCategory) : null
   const visible = active ? projects.filter((p) => p.category === active) : projects
