@@ -17,17 +17,17 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
     <article className={cn('group relative grid h-full gap-6', featured && 'lg:grid-cols-2 lg:items-center lg:gap-12')}>
       <Visual
         image={article.cover ? { src: article.cover, alt: article.coverAlt ?? '' } : undefined}
-        className="aspect-[16/9] transition-colors duration-300 group-hover:border-brand-400/40 [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03]"
+        className="aspect-[16/9] transition-colors duration-300 group-hover:border-accent/40 [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03]"
       />
       <div>
         <p className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-subtle">
-          <span className="text-brand-400">{article.category}</span>
+          <span className="text-accent">{article.category}</span>
           <span aria-hidden="true">·</span>
           <time dateTime={article.date}>{formatDate(article.date)}</time>
           <span aria-hidden="true">·</span>
           <span>{article.readingTime} min</span>
           {article.draft && (
-            <span className="rounded-md border border-dashed border-amber-400/40 px-1.5 py-0.5 text-[10px] tracking-wider text-amber-300/80 uppercase">
+            <span className="rounded-md border border-dashed border-warn/40 px-1.5 py-0.5 text-[10px] tracking-wider text-warn uppercase">
               Brouillon
             </span>
           )}
@@ -43,7 +43,7 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
           </Link>
           <ArrowUpRight
             aria-hidden="true"
-            className="mt-1 size-4 shrink-0 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-400"
+            className="mt-1 size-4 shrink-0 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
           />
         </h3>
         <p className={cn('mt-3 leading-relaxed text-muted', featured ? 'text-base' : 'text-sm')}>{article.description}</p>

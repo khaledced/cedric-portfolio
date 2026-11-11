@@ -17,7 +17,7 @@ interface VisualProps {
 /** Visuel (projet, article…), avec un cadre neutre tant qu'aucune image n'est fournie. */
 export function Visual({ image, className, priority = false }: VisualProps) {
   return (
-    <div className={cn('relative overflow-hidden rounded-2xl border border-line bg-ink-900', className)}>
+    <div className={cn('relative overflow-hidden rounded-2xl border border-line bg-card', className)}>
       {image ? (
         <img
           src={image.src}

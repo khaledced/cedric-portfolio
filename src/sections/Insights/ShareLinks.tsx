@@ -24,7 +24,7 @@ export function ShareLinks({ title }: ShareLinksProps) {
   }
 
   const linkClass =
-    'inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 text-sm text-muted transition-colors hover:border-brand-400/50 hover:text-fg'
+    'inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 text-sm text-muted transition-colors hover:border-accent/50 hover:text-fg'
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -46,7 +46,7 @@ export function ShareLinks({ title }: ShareLinksProps) {
         WhatsApp<span className="sr-only"> (nouvel onglet)</span>
       </a>
       <button type="button" onClick={copy} className={linkClass}>
-        {copied ? <Check aria-hidden="true" className="size-4 text-emerald-400" /> : <Link2 aria-hidden="true" className="size-4" />}
+        {copied ? <Check aria-hidden="true" className="size-4 text-success" /> : <Link2 aria-hidden="true" className="size-4" />}
         <span aria-live="polite">{copied ? 'Lien copié' : 'Copier le lien'}</span>
       </button>
     </div>

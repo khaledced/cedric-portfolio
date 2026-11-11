@@ -42,7 +42,7 @@ export default function ProjectDetailPage() {
             <p className="flex flex-wrap items-center gap-3 font-mono text-xs text-subtle">
               <Link
                 to={`/projets?categorie=${project.category}`}
-                className="text-brand-400 transition-colors hover:text-brand-200"
+                className="text-accent transition-colors hover:text-accent-strong"
               >
                 {projectCategories[project.category]}
               </Link>
@@ -89,7 +89,7 @@ export default function ProjectDetailPage() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-brand-200 transition-colors hover:text-fg"
+                      className="inline-flex items-center gap-1 text-sm text-accent-strong transition-colors hover:text-fg"
                     >
                       Voir le projet en ligne
                       <ArrowUpRight aria-hidden="true" className="size-4" />
@@ -106,8 +106,8 @@ export default function ProjectDetailPage() {
             {story.map((block) => (
               <Reveal key={block.label}>
                 <section>
-                  <h2 className="flex items-center gap-2 font-mono text-xs text-brand-400">
-                    <span aria-hidden="true" className="size-1.5 rounded-full bg-brand-400" />
+                  <h2 className="flex items-center gap-2 font-mono text-xs text-accent">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
                     {block.label}
                   </h2>
                   <p className="mt-4 text-lg leading-relaxed text-muted">{block.text}</p>
@@ -118,14 +118,14 @@ export default function ProjectDetailPage() {
             {project.results && project.results.length > 0 && (
               <Reveal>
                 <section>
-                  <h2 className="flex items-center gap-2 font-mono text-xs text-brand-400">
-                    <span aria-hidden="true" className="size-1.5 rounded-full bg-brand-400" />
+                  <h2 className="flex items-center gap-2 font-mono text-xs text-accent">
+                    <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
                     Résultats
                   </h2>
                   <ul className="mt-4 space-y-3">
                     {project.results.map((r) => (
                       <li key={r} className="flex gap-3 text-lg leading-relaxed text-muted">
-                        <span aria-hidden="true" className="mt-3 size-1.5 shrink-0 rounded-full bg-brand-400" />
+                        <span aria-hidden="true" className="mt-3 size-1.5 shrink-0 rounded-full bg-accent" />
                         {r}
                       </li>
                     ))}
@@ -155,13 +155,13 @@ export default function ProjectDetailPage() {
           >
             <span>
               <span className="font-mono text-xs text-subtle">Projet suivant</span>
-              <span className="mt-2 block font-display text-2xl font-medium tracking-tight transition-colors group-hover:text-brand-200 sm:text-3xl">
+              <span className="mt-2 block font-display text-2xl font-medium tracking-tight transition-colors group-hover:text-accent-strong sm:text-3xl">
                 {next.name}
               </span>
             </span>
             <ArrowRight
               aria-hidden="true"
-              className="size-6 shrink-0 text-subtle transition-all group-hover:translate-x-1 group-hover:text-brand-400"
+              className="size-6 shrink-0 text-subtle transition-all group-hover:translate-x-1 group-hover:text-accent"
             />
           </Link>
         </nav>

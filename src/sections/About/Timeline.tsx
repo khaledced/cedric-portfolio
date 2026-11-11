@@ -20,11 +20,11 @@ export function Timeline({ title, entries }: TimelineProps) {
           <li key={`${e.title}-${i}`} className="relative pb-10 pl-8 last:pb-0">
             <span
               aria-hidden="true"
-              className="absolute top-1.5 -left-[7px] size-[13px] rounded-full border-[3px] border-brand-400 bg-ink-950"
+              className="absolute top-1.5 -left-[7px] size-[13px] rounded-full border-[3px] border-accent bg-page"
             />
             <Reveal delay={i * 0.06}>
               <div className="flex flex-wrap items-center gap-2">
-                <p className="font-mono text-xs text-brand-400">{e.period}</p>
+                <p className="font-mono text-xs text-accent">{e.period}</p>
                 <PlaceholderBadge show={e.placeholder} />
               </div>
               <p className="mt-2 text-lg font-medium text-fg">{e.title}</p>

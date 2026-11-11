@@ -11,7 +11,7 @@ interface CtaBandProps {
 /** Bandeau d'appel à l'action en fin de page. */
 export function CtaBand({ title, text, hideProjectsLink = false }: CtaBandProps) {
   return (
-    <section className="border-t border-line">
+    <section className="band border-t border-line">
       <Reveal className="container-page flex flex-col gap-8 py-20 md:flex-row md:items-end md:justify-between md:py-24">
         <div className="max-w-2xl">
           <h2 className="font-display text-3xl leading-tight font-medium tracking-tight text-balance sm:text-4xl">

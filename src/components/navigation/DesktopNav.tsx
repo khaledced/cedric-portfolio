@@ -27,7 +27,7 @@ export function DesktopNav() {
                   <span
                     aria-hidden="true"
                     className={cn(
-                      'absolute -bottom-0.5 size-1 rounded-full bg-brand-400 transition-all duration-300',
+                      'absolute -bottom-0.5 size-1 rounded-full bg-accent transition-all duration-300',
                       isActive ? 'scale-100 opacity-100' : 'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-50',
                     )}
                   />

@@ -6,7 +6,7 @@ import { expertisePoles } from '@/data/expertise'
 /** Bandeau des quatre pôles d'expertise, juste sous le Hero. */
 export function ExpertiseStrip() {
   return (
-    <section aria-labelledby="expertise-title" className="border-y border-line">
+    <section aria-labelledby="expertise-title" className="band border-y border-line">
       <h2 id="expertise-title" className="sr-only">
         Domaines d'expertise
       </h2>
@@ -22,13 +22,13 @@ export function ExpertiseStrip() {
                 className="group flex h-full flex-col gap-5 px-1 py-8 transition-colors duration-300 sm:px-6 lg:py-10"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-brand-400">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
                   <ArrowUpRight
                     aria-hidden="true"
-                    className="size-4 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-400"
+                    className="size-4 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
                   />
                 </div>
-                <h3 className="font-display text-xl font-medium tracking-tight transition-colors group-hover:text-brand-200">
+                <h3 className="font-display text-xl font-medium tracking-tight transition-colors group-hover:text-accent-strong">
                   {pole.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-subtle">{pole.domains.join(' · ')}</p>

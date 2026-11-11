@@ -18,8 +18,8 @@ interface ButtonLinkProps {
 }
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-brand-500 text-white hover:bg-brand-700',
-  secondary: 'border border-line text-fg hover:border-brand-400/60 hover:bg-ink-900',
+  primary: 'bg-primary text-on-primary hover:bg-primary-hover',
+  secondary: 'border border-line text-fg hover:border-accent/60 hover:bg-card',
 }
 
 /*

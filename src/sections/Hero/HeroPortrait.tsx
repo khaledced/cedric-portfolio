@@ -15,7 +15,7 @@ export function HeroPortrait() {
         className="absolute inset-8 -z-10 rounded-full bg-brand-500/30 blur-3xl"
       />
 
-      <div className="relative aspect-[4/5] overflow-hidden rounded-logo border border-line bg-ink-900">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-logo border border-line bg-card">
         {photo.src ? (
           <img
             src={photo.src}
@@ -35,17 +35,17 @@ export function HeroPortrait() {
             <span className="text-sm text-muted">Photo professionnelle à venir</span>
           </div>
         )}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-logo ring-1 ring-white/5 ring-inset" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-logo ring-1 ring-fg/5 ring-inset" />
       </div>
 
       {/* Symbole du logo en surimpression */}
-      <div className="absolute -right-3 -bottom-4 rounded-[1.1rem] bg-ink-950 p-1.5 sm:-right-5">
+      <div className="absolute -right-3 -bottom-4 rounded-[1.1rem] bg-page p-1.5 sm:-right-5">
         <LogoMark decorative className="size-14 sm:size-16" />
       </div>
 
       {/* Étiquette éditoriale */}
-      <p className="absolute top-6 -left-3 rounded-lg border border-line bg-ink-950/90 px-3 py-2 font-mono text-[11px] text-muted backdrop-blur sm:-left-6">
-        Tech <span className="text-brand-400">·</span> Digital <span className="text-brand-400">·</span> Création
+      <p className="absolute top-6 -left-3 rounded-lg border border-line bg-page/90 px-3 py-2 font-mono text-[11px] text-muted backdrop-blur sm:-left-6">
+        Tech <span className="text-accent">·</span> Digital <span className="text-accent">·</span> Création
       </p>
     </div>
   )

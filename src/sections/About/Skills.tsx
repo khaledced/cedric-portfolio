@@ -16,12 +16,12 @@ export function Skills() {
         <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group, i) => (
             <Reveal key={group.title} delay={i * 0.08}>
-              <article className="flex h-full flex-col rounded-2xl border border-line bg-ink-900/60 p-6 transition-colors duration-300 hover:border-brand-400/40 sm:p-8">
+              <article className="flex h-full flex-col rounded-2xl border border-line bg-card/60 p-6 transition-colors duration-300 hover:border-accent/40 sm:p-8">
                 <h3 className="font-display text-xl font-medium tracking-tight">{group.title}</h3>
                 <ul className="mt-6 space-y-3">
                   {group.items.map((item) => (
                     <li key={item} className="flex gap-3 text-sm text-muted">
-                      <Check aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-400" />
+                      <Check aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
                       {item}
                     </li>
                   ))}

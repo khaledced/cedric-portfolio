@@ -16,8 +16,8 @@ interface SectionHeadingProps {
 export function SectionHeading({ label, title, id, as: Tag = 'h2', className, children }: SectionHeadingProps) {
   return (
     <div className={cn('max-w-3xl', className)}>
-      <p className="flex items-center gap-2 font-mono text-xs text-brand-400">
-        <span aria-hidden="true" className="size-1.5 rounded-full bg-brand-400" />
+      <p className="flex items-center gap-2 font-mono text-xs text-accent">
+        <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
         {label}
       </p>
       <Tag

@@ -36,7 +36,7 @@ export default function ArticlePage() {
             </Link>
 
             {article.draft && (
-              <p className="mt-8 rounded-xl border border-dashed border-amber-400/40 px-4 py-3 text-sm text-amber-200/90">
+              <p className="mt-8 rounded-xl border border-dashed border-warn/40 px-4 py-3 text-sm text-warn">
                 Brouillon : cet article n’est visible qu’en développement. Il ne sera pas publié tant que
                 <code className="mx-1 font-mono text-xs">draft: true</code>
                 figure dans son en-tête.
@@ -47,7 +47,7 @@ export default function ArticlePage() {
               <p className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-subtle">
                 <Link
                   to={catSlug ? `/insights?categorie=${catSlug}` : '/insights'}
-                  className="text-brand-400 transition-colors hover:text-brand-200"
+                  className="text-accent transition-colors hover:text-accent-strong"
                 >
                   {article.category}
                 </Link>
