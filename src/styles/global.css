@@ -1,0 +1,69 @@
+@import 'tailwindcss';
+
+/*
+  Tailwind v4 : la configuration du thème se fait ici, directement en CSS.
+  Chaque variable déclarée dans @theme génère les classes utilitaires correspondantes
+  (ex. --color-brand-500 → bg-brand-500, text-brand-500, border-brand-500…).
+*/
+@theme {
+  /* Bleu de marque — mesuré sur le logo : #204B9B */
+  --color-brand-200: #c9d6f0; /* survols, focus */
+  --color-brand-400: #4a7bd4; /* texte accent sur fond sombre (contraste suffisant) */
+  --color-brand-500: #204b9b; /* couleur du logo : boutons, surfaces pleines */
+  --color-brand-700: #183a7a; /* état pressé */
+
+  /* Fonds et surfaces */
+  --color-ink-950: #080808; /* fond principal */
+  --color-ink-900: #111318; /* cartes, surfaces */
+  --color-ink-800: #1a1d24; /* surfaces surélevées */
+  --color-line: #23262e; /* bordures, séparateurs */
+
+  /* Textes */
+  --color-fg: #f5f7fb; /* texte principal */
+  --color-muted: #9aa1ae; /* texte secondaire */
+  --color-subtle: #6e7584; /* métadonnées, texte discret */
+
+  /* Typographies (chargées localement via Fontsource, voir main.tsx) */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Inter Variable', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+
+  /* Rayon inspiré du carré arrondi du logo */
+  --radius-logo: 1.75rem;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-500);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-400);
+    outline-offset: 3px;
+  }
+
+  /* Respect des préférences d'accessibilité : pas d'animations si l'utilisateur les a désactivées */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
