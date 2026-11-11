@@ -89,7 +89,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
         <button
           type="button"
           onClick={reset}
-          className="mt-8 inline-flex h-11 items-center rounded-xl border border-line px-5 text-sm transition-colors hover:bg-elevated"
+          className="mt-8 inline-flex h-11 items-center rounded-xl border border-line px-5 label-mono text-xs transition-colors hover:bg-elevated"
         >
           Envoyer un autre message
         </button>
@@ -136,7 +136,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
 
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor={fieldId('name')} className="mb-2 block text-sm font-medium">
+          <label htmlFor={fieldId('name')} className="mb-2 block label-mono text-xs text-muted">
             Nom
           </label>
           <input
@@ -156,7 +156,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
         </div>
 
         <div>
-          <label htmlFor={fieldId('email')} className="mb-2 block text-sm font-medium">
+          <label htmlFor={fieldId('email')} className="mb-2 block label-mono text-xs text-muted">
             Adresse email
           </label>
           <input
@@ -178,7 +178,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
       </div>
 
       <div className="mt-6">
-        <label htmlFor={fieldId('subject')} className="mb-2 block text-sm font-medium">
+        <label htmlFor={fieldId('subject')} className="mb-2 block label-mono text-xs text-muted">
           Objet
         </label>
         <input
@@ -198,10 +198,10 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
 
       <div className="mt-6">
         <div className="mb-2 flex items-baseline justify-between gap-4">
-          <label htmlFor={fieldId('message')} className="block text-sm font-medium">
+          <label htmlFor={fieldId('message')} className="block label-mono text-xs text-muted">
             Message
           </label>
-          <span className="font-mono text-xs text-subtle" aria-hidden="true">
+          <span className="label-mono text-xs text-subtle" aria-hidden="true">
             {values.message.trim().length} / {LIMITS.message.max}
           </span>
         </div>
@@ -249,7 +249,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-medium text-on-primary transition-colors hover:bg-primary-hover disabled:cursor-wait disabled:opacity-70"
+          className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-6 label-mono text-xs text-on-primary transition-colors hover:bg-primary-hover disabled:cursor-wait disabled:opacity-70"
         >
           {submitting ? (
             <>

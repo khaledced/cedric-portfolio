@@ -67,14 +67,14 @@ export function MobileMenu({ id, open, onClose, returnFocusRef }: MobileMenuProp
                     onClick={onClose}
                     className={({ isActive }) =>
                       cn(
-                        'flex items-baseline gap-4 py-4 font-display text-3xl tracking-tight transition-colors',
+                        'flex items-baseline gap-4 py-3 font-display text-[2.6rem] leading-none font-black tracking-[-0.05em] transition-colors',
                         isActive ? 'text-fg' : 'text-muted active:text-fg',
                       )
                     }
                   >
                     {({ isActive }) => (
                       <>
-                        <span className={cn('font-mono text-xs', isActive ? 'text-accent' : 'text-subtle')}>
+                        <span className={cn('label-mono text-xs', isActive ? 'text-accent' : 'text-subtle')}>
                           {String(i + 1).padStart(2, '0')}
                         </span>
                         {item.label}

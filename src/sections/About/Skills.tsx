@@ -28,11 +28,11 @@ export function Skills() {
                 </ul>
                 <div className="flex-1" />
                 <div className="mt-8 border-t border-line pt-5">
-                  <p className="font-mono text-[11px] tracking-wider text-subtle uppercase">Outils</p>
+                  <p className="label-mono text-[11px] text-subtle">Outils</p>
                   {group.tools.length > 0 ? (
                     <ul className="mt-3 flex flex-wrap gap-2">
                       {group.tools.map((tool) => (
-                        <li key={tool} className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">
+                        <li key={tool} className="rounded-md border border-line px-2 py-1 label-mono text-xs text-muted">
                           {tool}
                         </li>
                       ))}

@@ -127,6 +127,20 @@
   }
 }
 
+/*
+  SYSTÈME TYPOGRAPHIQUE (dans l'esprit de la référence)
+  - Titres : Archivo très gras (font-display + font-extrabold / font-black)
+  - Texte courant : Geist (font-sans)
+  - Étiquettes : JetBrains Mono en MAJUSCULES espacées → classe label-mono
+    (menu, boutons, filtres, dates, catégories, petites légendes…). La taille se règle à part (text-xs…).
+*/
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 /* Fines lignes de grille en arrière-plan, estompées vers les bords */
 @utility bg-grid {
   background-image:

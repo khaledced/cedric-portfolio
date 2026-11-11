@@ -14,7 +14,7 @@ interface TimelineProps {
 export function Timeline({ title, entries }: TimelineProps) {
   return (
     <div>
-      <h3 className="font-mono text-xs tracking-wider text-subtle uppercase">{title}</h3>
+      <h3 className="label-mono text-xs text-subtle">{title}</h3>
       <ol className="mt-8 border-l border-line">
         {entries.map((e, i) => (
           <li key={`${e.title}-${i}`} className="relative pb-10 pl-8 last:pb-0">
@@ -24,10 +24,10 @@ export function Timeline({ title, entries }: TimelineProps) {
             />
             <Reveal delay={i * 0.06}>
               <div className="flex flex-wrap items-center gap-2">
-                <p className="font-mono text-xs text-accent">{e.period}</p>
+                <p className="label-mono text-xs text-accent">{e.period}</p>
                 <PlaceholderBadge show={e.placeholder} />
               </div>
-              <p className="mt-2 text-lg font-medium text-fg">{e.title}</p>
+              <p className="mt-2 text-lg font-semibold text-fg">{e.title}</p>
               <p className="mt-1 text-sm text-muted">
                 {e.organization}
                 {e.location && <span className="text-subtle"> · {e.location}</span>}

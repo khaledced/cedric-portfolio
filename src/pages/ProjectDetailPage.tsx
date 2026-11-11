@@ -32,14 +32,14 @@ export default function ProjectDetailPage() {
         <header className="container-page pt-32 md:pt-40">
           <Link
             to="/projets"
-            className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
+            className="group inline-flex items-center gap-2 label-mono text-xs text-muted transition-colors hover:text-fg"
           >
             <ArrowLeft aria-hidden="true" className="size-4 transition-transform group-hover:-translate-x-0.5" />
             Tous les projets
           </Link>
 
           <Reveal className="mt-10 max-w-4xl">
-            <p className="flex flex-wrap items-center gap-3 font-mono text-xs text-subtle">
+            <p className="flex flex-wrap items-center gap-3 label-mono text-xs text-subtle">
               <Link
                 to={`/projets?categorie=${project.category}`}
                 className="text-accent transition-colors hover:text-accent-strong"
@@ -66,15 +66,15 @@ export default function ProjectDetailPage() {
           <aside className="lg:col-span-4">
             <dl className="divide-y divide-line border-y border-line lg:sticky lg:top-28">
               <div className="py-5">
-                <dt className="font-mono text-xs tracking-wider text-subtle uppercase">Mon rôle</dt>
+                <dt className="label-mono text-xs text-subtle">Mon rôle</dt>
                 <dd className="mt-2 text-sm leading-relaxed text-muted">{project.role}</dd>
               </div>
               <div className="py-5">
-                <dt className="font-mono text-xs tracking-wider text-subtle uppercase">Outils</dt>
+                <dt className="label-mono text-xs text-subtle">Outils</dt>
                 <dd className="mt-3">
                   <ul className="flex flex-wrap gap-1.5">
                     {project.tools.map((tool) => (
-                      <li key={tool} className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">
+                      <li key={tool} className="rounded-md border border-line px-2 py-1 label-mono text-xs text-muted">
                         {tool}
                       </li>
                     ))}
@@ -83,7 +83,7 @@ export default function ProjectDetailPage() {
               </div>
               {project.url && (
                 <div className="py-5">
-                  <dt className="font-mono text-xs tracking-wider text-subtle uppercase">Lien</dt>
+                  <dt className="label-mono text-xs text-subtle">Lien</dt>
                   <dd className="mt-2">
                     <a
                       href={project.url}
@@ -106,7 +106,7 @@ export default function ProjectDetailPage() {
             {story.map((block) => (
               <Reveal key={block.label}>
                 <section>
-                  <h2 className="flex items-center gap-2 font-mono text-xs text-accent">
+                  <h2 className="flex items-center gap-2 label-mono text-xs text-accent">
                     <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
                     {block.label}
                   </h2>
@@ -118,7 +118,7 @@ export default function ProjectDetailPage() {
             {project.results && project.results.length > 0 && (
               <Reveal>
                 <section>
-                  <h2 className="flex items-center gap-2 font-mono text-xs text-accent">
+                  <h2 className="flex items-center gap-2 label-mono text-xs text-accent">
                     <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
                     Résultats
                   </h2>
@@ -154,7 +154,7 @@ export default function ProjectDetailPage() {
             className="group container-page flex items-center justify-between gap-6 py-12 md:py-16"
           >
             <span>
-              <span className="font-mono text-xs text-subtle">Projet suivant</span>
+              <span className="label-mono text-xs text-subtle">Projet suivant</span>
               <span className="mt-2 block font-display text-2xl font-extrabold tracking-tight transition-colors group-hover:text-accent-strong sm:text-3xl">
                 {next.name}
               </span>
