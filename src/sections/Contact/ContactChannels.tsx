@@ -48,7 +48,7 @@ export function ContactChannels() {
                 <span className="flex items-center gap-3">
                   <Mail aria-hidden="true" className="size-5 text-accent" strokeWidth={1.75} />
                   <span>
-                    <span className="block font-mono text-xs text-subtle">Email</span>
+                    <span className="block label-mono text-xs text-subtle">Email</span>
                     <span className="break-all text-fg">{email}</span>
                   </span>
                 </span>
@@ -62,7 +62,7 @@ export function ContactChannels() {
                 <span className="flex items-center gap-3">
                   <MessageCircle aria-hidden="true" className="size-5 text-accent" strokeWidth={1.75} />
                   <span>
-                    <span className="block font-mono text-xs text-subtle">WhatsApp</span>
+                    <span className="block label-mono text-xs text-subtle">WhatsApp</span>
                     <span className="text-fg">Écrire sur WhatsApp</span>
                   </span>
                 </span>
@@ -76,7 +76,7 @@ export function ContactChannels() {
 
       {socials.length > 0 && (
         <div>
-          <h2 className="font-mono text-xs tracking-wider text-subtle uppercase">Réseaux</h2>
+          <h2 className="label-mono text-xs text-subtle">Réseaux</h2>
           <ul className="mt-3 divide-y divide-line border-y border-line">
             {socials.map((s) => (
               <li key={s.label}>

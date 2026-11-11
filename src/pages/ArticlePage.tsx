@@ -29,7 +29,7 @@ export default function ArticlePage() {
           <div className="mx-auto max-w-3xl">
             <Link
               to="/insights"
-              className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
+              className="group inline-flex items-center gap-2 label-mono text-xs text-muted transition-colors hover:text-fg"
             >
               <ArrowLeft aria-hidden="true" className="size-4 transition-transform group-hover:-translate-x-0.5" />
               Tous les articles
@@ -44,7 +44,7 @@ export default function ArticlePage() {
             )}
 
             <Reveal className="mt-10">
-              <p className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-subtle">
+              <p className="flex flex-wrap items-center gap-x-3 gap-y-2 label-mono text-xs text-subtle">
                 <Link
                   to={catSlug ? `/insights?categorie=${catSlug}` : '/insights'}
                   className="text-accent transition-colors hover:text-accent-strong"

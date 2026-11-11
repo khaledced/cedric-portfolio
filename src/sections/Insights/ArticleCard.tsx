@@ -20,7 +20,7 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
         className="aspect-[16/9] transition-colors duration-300 group-hover:border-accent/40 [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03]"
       />
       <div>
-        <p className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-subtle">
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-2 label-mono text-xs text-subtle">
           <span className="text-accent">{article.category}</span>
           <span aria-hidden="true">·</span>
           <time dateTime={article.date}>{formatDate(article.date)}</time>
@@ -34,8 +34,8 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
         </p>
         <h3
           className={cn(
-            'mt-3 flex items-start justify-between gap-4 font-medium tracking-tight text-balance',
-            featured ? 'font-display text-2xl sm:text-3xl' : 'text-xl',
+            'mt-3 flex items-start justify-between gap-4 font-display leading-tight font-extrabold tracking-[-0.03em] text-balance',
+            featured ? 'text-3xl sm:text-4xl' : 'text-2xl',
           )}
         >
           <Link to={`/insights/${article.slug}`} className="after:absolute after:inset-0 after:content-['']">

@@ -40,7 +40,7 @@ export function ServicesPreview() {
                         className="size-4 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
                       />
                     </div>
-                    <h3 className="mt-8 text-lg font-medium tracking-tight">{s.title}</h3>
+                    <h3 className="mt-8 font-display text-xl leading-tight font-extrabold tracking-[-0.03em]">{s.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-subtle">{s.summary}</p>
                   </Link>
                 </Reveal>

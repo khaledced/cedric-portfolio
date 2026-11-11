@@ -8,7 +8,7 @@ export function Vision() {
     <section aria-labelledby="vision-title" className="border-t border-line bg-card/40">
       <div className="container-page py-20 md:py-28">
         <Reveal>
-          <p className="flex items-center gap-2 font-mono text-xs text-accent">
+          <p className="flex items-center gap-2 label-mono text-xs text-accent">
             <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
             Vision
             <PlaceholderBadge show={vision.placeholder} className="ml-2" />
@@ -27,8 +27,8 @@ export function Vision() {
           {vision.principles.map((p, i) => (
             <li key={p.title} className="bg-page">
               <Reveal delay={i * 0.08} className="h-full p-6 sm:p-8">
-                <span className="font-mono text-xs text-subtle">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="mt-4 text-lg font-medium">{p.title}</h3>
+                <span className="label-mono text-xs text-subtle">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-4 text-lg font-semibold">{p.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{p.text}</p>
               </Reveal>
             </li>

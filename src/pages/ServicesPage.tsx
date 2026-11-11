@@ -36,7 +36,7 @@ export default function ServicesPage() {
               <li key={s.slug}>
                 <Link
                   to={`#${s.slug}`}
-                  className="inline-flex rounded-full border border-line px-4 py-2 text-sm text-muted transition-colors hover:border-accent/50 hover:text-fg"
+                  className="inline-flex rounded-full border border-line px-4 py-2 label-mono text-xs text-muted transition-colors hover:border-accent/50 hover:text-fg"
                 >
                   {s.title}
                 </Link>

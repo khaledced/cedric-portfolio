@@ -63,14 +63,14 @@ export default function ProjectsPage() {
                   aria-pressed={isActive}
                   onClick={() => select(f.value)}
                   className={cn(
-                    'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors',
+                    'inline-flex items-center gap-2 rounded-full border px-4 py-2 label-mono text-xs transition-colors',
                     isActive
                       ? 'border-primary bg-primary text-on-primary'
                       : 'border-line text-muted hover:border-accent/50 hover:text-fg',
                   )}
                 >
                   {f.label}
-                  <span className={cn('font-mono text-xs', isActive ? 'text-on-primary/75' : 'text-subtle')}>{f.count}</span>
+                  <span className={cn('label-mono text-xs', isActive ? 'text-on-primary/75' : 'text-subtle')}>{f.count}</span>
                 </button>
               )
             })}

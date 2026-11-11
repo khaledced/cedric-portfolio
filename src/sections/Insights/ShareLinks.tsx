@@ -24,11 +24,11 @@ export function ShareLinks({ title }: ShareLinksProps) {
   }
 
   const linkClass =
-    'inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 text-sm text-muted transition-colors hover:border-accent/50 hover:text-fg'
+    'inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 label-mono text-xs text-muted transition-colors hover:border-accent/50 hover:text-fg'
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="mr-2 font-mono text-xs text-subtle">Partager</span>
+      <span className="mr-2 label-mono text-xs text-subtle">Partager</span>
       <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`}
         target="_blank"

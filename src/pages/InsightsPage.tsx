@@ -77,7 +77,7 @@ export default function InsightsPage() {
                         aria-pressed={isActive}
                         onClick={() => update({ categorie: c.slug })}
                         className={cn(
-                          'rounded-full border px-4 py-2 text-sm transition-colors',
+                          'rounded-full border px-4 py-2 label-mono text-xs transition-colors',
                           isActive
                             ? 'border-primary bg-primary text-on-primary'
                             : 'border-line text-muted hover:border-accent/50 hover:text-fg',
@@ -126,7 +126,7 @@ export default function InsightsPage() {
                 <button
                   type="button"
                   onClick={() => update({ q: null, categorie: null })}
-                  className="mt-4 text-sm text-accent-strong underline-offset-4 hover:underline"
+                  className="mt-4 label-mono text-xs text-accent-strong underline-offset-4 hover:underline"
                 >
                   Réinitialiser les filtres
                 </button>

@@ -30,7 +30,7 @@ export function Visual({ image, className, priority = false }: VisualProps) {
       ) : (
         <div className="bg-grid flex size-full flex-col items-center justify-center gap-3 text-subtle">
           <ImageOff aria-hidden="true" className="size-6" strokeWidth={1.5} />
-          <span className="font-mono text-[11px] tracking-wider uppercase">Visuel à venir</span>
+          <span className="label-mono text-[11px]">Visuel à venir</span>
         </div>
       )}
     </div>

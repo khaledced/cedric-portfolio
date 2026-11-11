@@ -16,7 +16,7 @@ export function DesktopNav() {
               to={item.to}
               className={({ isActive }) =>
                 cn(
-                  'group relative flex flex-col items-center px-3.5 py-2 text-sm transition-colors duration-200',
+                  'group relative flex flex-col items-center px-3 py-2 label-mono text-xs transition-colors duration-200',
                   isActive ? 'text-fg' : 'text-muted hover:text-fg',
                 )
               }
