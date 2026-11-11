@@ -18,7 +18,7 @@ export default function ErrorPage() {
     <main className="container-page pt-36 pb-32 md:pt-44">
       <Seo title="Erreur" />
       <p className="font-mono text-sm text-accent">Erreur inattendue</p>
-      <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
+      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
         Quelque chose s'est mal passé.
       </h1>
       <p className="mt-6 max-w-prose text-muted">Recharge la page ou reviens à l'accueil.</p>

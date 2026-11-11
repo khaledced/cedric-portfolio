@@ -56,7 +56,7 @@ export default function ArticlePage() {
                 <span aria-hidden="true">·</span>
                 <span>{article.readingTime} min de lecture</span>
               </p>
-              <h1 className="mt-5 font-display text-4xl leading-[1.08] font-semibold tracking-tight text-balance sm:text-5xl">
+              <h1 className="mt-5 font-display text-4xl leading-[1.08] font-extrabold tracking-tight text-balance sm:text-5xl">
                 {article.title}
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-muted">{article.description}</p>
@@ -88,7 +88,7 @@ export default function ArticlePage() {
       {related.length > 0 && (
         <section aria-labelledby="related-title" className="border-t border-line">
           <div className="container-page py-20">
-            <h2 id="related-title" className="font-display text-2xl font-semibold tracking-tight">
+            <h2 id="related-title" className="font-display text-2xl font-extrabold tracking-tight">
               À lire aussi
             </h2>
             <ul className="mt-10 grid gap-x-8 gap-y-14 md:grid-cols-2">

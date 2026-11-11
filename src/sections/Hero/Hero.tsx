@@ -46,19 +46,19 @@ export function Hero() {
           {/*
             Titre en trois lignes. Tailles en « cqi » (% de la largeur de la colonne, via @container) :
             chaque ligne s'adapte à la place disponible et ne passe jamais à la ligne.
-            Largeurs réelles mesurées en Geist : « Cédric Sawadogo, » ≈ 8,6 em ; « ingénieur informatique… » ≈ 11,2 em (marge de 3 %).
+            Largeurs réelles mesurées en Archivo : « Cédric Sawadogo, » ≈ 8,9 em ; « ingénieur informatique… » ≈ 12 em (marge de 3 %).
           */}
-          <h1 id="hero-title" className="@container mt-7 font-display font-semibold tracking-[-0.04em]">
+          <h1 id="hero-title" className="@container mt-7 font-display font-extrabold tracking-[-0.035em]">
             {/* Version lue par les lecteurs d'écran et les moteurs de recherche */}
             <span className="sr-only">
               {siteConfig.name}, ingénieur informatique… {siteConfig.heroRoles[0]} {siteConfig.heroRoles.slice(1).join(', ')}.
             </span>
 
-            <RiseText text={`${siteConfig.name},`} className="block text-[11.2cqi] leading-[1.08] whitespace-nowrap" />
+            <RiseText text={`${siteConfig.name},`} className="block text-[10.8cqi] leading-[1.02] font-black tracking-[-0.05em] whitespace-nowrap" />
 
             <span
               aria-hidden="true"
-              className="animate-enter mt-[0.15em] block text-[8.6cqi] leading-[1.15] whitespace-nowrap"
+              className="animate-enter mt-[0.15em] block text-[8cqi] leading-[1.15] whitespace-nowrap"
               style={enter(0.6)}
             >
               ingénieur informatique
@@ -68,7 +68,7 @@ export function Hero() {
             <span className="animate-enter block" style={enter(0.85)}>
               <TypeRotator
                 phrases={siteConfig.heroRoles}
-                className="text-[8.6cqi] leading-[1.15] whitespace-nowrap text-accent"
+                className="text-[8cqi] leading-[1.15] whitespace-nowrap text-accent"
               />
             </span>
           </h1>

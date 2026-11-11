@@ -14,7 +14,7 @@ export function CtaBand({ title, text, hideProjectsLink = false }: CtaBandProps)
     <section className="band border-t border-line">
       <Reveal className="container-page flex flex-col gap-8 py-20 md:flex-row md:items-end md:justify-between md:py-24">
         <div className="max-w-2xl">
-          <h2 className="font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl">
+          <h2 className="font-display text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
             {title}
           </h2>
           {text && <p className="mt-4 text-muted">{text}</p>}

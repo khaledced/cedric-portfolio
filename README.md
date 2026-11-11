@@ -15,7 +15,7 @@ Portfolio personnel : ingénierie informatique, transformation digitale, communi
 | [Motion](https://motion.dev) | Animations |
 | [Lucide](https://lucide.dev) | Icônes |
 | [MDX](https://mdxjs.com) | Articles du blog / Insights |
-| [Fontsource](https://fontsource.org) | Polices auto-hébergées : Geist (titres et texte), JetBrains Mono (étiquettes) |
+| [Fontsource](https://fontsource.org) | Polices auto-hébergées : Archivo (titres), Geist (texte), JetBrains Mono (étiquettes) |
 | [Oxlint](https://oxc.rs) | Analyse du code |
 | [Vitest](https://vitest.dev) | Tests automatisés |
 
