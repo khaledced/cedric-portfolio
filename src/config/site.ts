@@ -18,10 +18,17 @@ export const siteConfig = {
   url: '',
 
   /**
-   * Photo professionnelle du Hero, placée dans public/images/ (ex. '/images/cedric.webp').
-   * Laisser vide pour afficher le cadre provisoire.
+   * Photo du Hero et de la page À propos (format 4:5), dans public/images/.
+   * Générée avec : npm run image -- image/identite.PNG public/images/cedric-sawadogo --crop 380,60,904,1130 --widths 600,904
+   * Mettre src: '' pour afficher le cadre provisoire.
    */
-  photo: '',
+  photo: {
+    src: '/images/cedric-sawadogo-904.webp',
+    srcSet: '/images/cedric-sawadogo-600.webp 600w, /images/cedric-sawadogo-904.webp 904w',
+    width: 904,
+    height: 1130,
+    alt: 'Cédric Sawadogo prenant la parole, micro en main, lors d’un événement',
+  },
 
   /** Indicateur de disponibilité affiché dans le Hero. À CONFIRMER par Cédric. */
   availability: {
