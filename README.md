@@ -62,6 +62,17 @@ Un modèle montrant toutes les mises en forme se trouve dans `src/content/articl
 Un article avec `draft: true` n'est visible qu'en développement : son contenu est entièrement
 retiré de la version de production (plugin `build/vite-plugin-drafts.ts`).
 
+## Formulaire de contact
+
+Les messages sont envoyés via [Web3Forms](https://web3forms.com) (gratuit, sans serveur).
+
+1. Sur web3forms.com, saisir l'adresse email qui doit recevoir les messages : la clé d'accès arrive par email.
+2. En local : copier `.env.example` en `.env` et y coller la clé (`VITE_WEB3FORMS_ACCESS_KEY=...`), puis relancer `npm run dev`.
+3. Sur Vercel : Project → Settings → Environment Variables → ajouter `VITE_WEB3FORMS_ACCESS_KEY`, puis redéployer.
+
+Sans clé, le formulaire l'indique clairement et renvoie vers les autres coordonnées : aucun envoi n'est simulé.
+Le fichier `.env` est exclu de Git.
+
 ## Structure
 
 ```
