@@ -33,7 +33,13 @@ export function RootLayout() {
         <Footer />
       </div>
 
-      <ScrollRestoration />
+      {/*
+        Mémorise la position de défilement de chaque entrée de l'historique (bouton retour).
+        Au chargement complet d'une page, React Router utilise toujours la clé « default » :
+        on la remplace par l'adresse de la page, pour qu'un rechargement garde la position
+        mais qu'une autre adresse ouverte dans le même onglet s'affiche bien en haut.
+      */}
+      <ScrollRestoration getKey={(location) => (location.key === 'default' ? location.pathname : location.key)} />
     </div>
   )
 }

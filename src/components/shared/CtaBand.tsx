@@ -4,10 +4,12 @@ import { ButtonLink } from '@/components/ui/ButtonLink'
 interface CtaBandProps {
   title: string
   text?: string
+  /** Masquer le bouton « Voir mes projets » (inutile sur les pages Projets) */
+  hideProjectsLink?: boolean
 }
 
 /** Bandeau d'appel à l'action en fin de page. */
-export function CtaBand({ title, text }: CtaBandProps) {
+export function CtaBand({ title, text, hideProjectsLink = false }: CtaBandProps) {
   return (
     <section className="border-t border-line">
       <Reveal className="container-page flex flex-col gap-8 py-20 md:flex-row md:items-end md:justify-between md:py-24">
@@ -21,9 +23,11 @@ export function CtaBand({ title, text }: CtaBandProps) {
           <ButtonLink to="/contact" arrow>
             Me contacter
           </ButtonLink>
-          <ButtonLink to="/projets" variant="secondary">
-            Voir mes projets
-          </ButtonLink>
+          {!hideProjectsLink && (
+            <ButtonLink to="/projets" variant="secondary">
+              Voir mes projets
+            </ButtonLink>
+          )}
         </div>
       </Reveal>
     </section>
