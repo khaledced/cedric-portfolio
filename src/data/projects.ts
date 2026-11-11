@@ -79,18 +79,54 @@ export const projects: Project[] = [
     url: 'https://udigit.vercel.app/',
   },
   {
-    placeholder: true,
+    // Rédigé à partir du dossier de présentation du logo (19 planches) et des précisions de Cédric.
     featured: true,
-    slug: 'exemple-identite-visuelle',
-    name: '[Projet exemple — Identité visuelle]',
+    slug: 'identite-visuelle-digilab',
+    name: 'Identité visuelle de Digilab',
     category: 'branding',
-    year: '[Année]',
-    summary: '[Une phrase qui résume le projet et son intérêt.]',
-    context: '[Pour qui ? Dans quelle situation ?]',
-    problem: '[Quel était le besoin ?]',
-    solution: '[Qu’as-tu conçu ?]',
-    role: '[Ton rôle exact.]',
-    tools: ['[Outil 1]', '[Outil 2]'],
+    year: '2026',
+    summary:
+      'De l’écoute du client à une marque prête pour son lancement : logo, déclinaisons et supports de communication pour Digilab, agence informatique au Burkina Faso.',
+    context:
+      'Digilab est une agence informatique qui préparait son lancement au Burkina Faso. Elle avait besoin d’une identité de marque et de supports de communication pour annoncer son arrivée.',
+    problem:
+      'Créer une marque à partir de zéro pour une jeune agence : traduire son ambition d’innovation dans une identité simple, mémorable et facile à décliner, puis la rendre visible dès le lancement.',
+    solution:
+      'Le projet a commencé par une réunion d’écoute du client, pour comprendre son activité, ses ambitions et ses attentes ; la suite du projet a été proposée sur cette base. Plusieurs pistes de logo ont été explorées avant d’aboutir au symbole final : un « D » traversé d’une flèche montante, accompagné de la signature « Pensé pour innover ». Le logo a été construit sur une grille, puis décliné en versions horizontale et verticale, sur fond clair et sur fond bleu, avec un motif graphique tiré du symbole. Des supports de communication ont ensuite été réalisés pour le lancement de l’agence.',
+    role:
+      'Écoute et cadrage du besoin avec le client, conception de l’identité visuelle (logo, déclinaisons, motif) et création des supports de communication du lancement.',
+    tools: ['Adobe Illustrator', 'Adobe Photoshop', 'Canva'],
+    cover: {
+      src: '/images/projects/digilab/cover-1600.webp',
+      srcSet: '/images/projects/digilab/cover-960.webp 960w, /images/projects/digilab/cover-1600.webp 1600w',
+      alt: 'Logo Digilab en blanc sur un fond dégradé bleu',
+    },
+    gallery: [
+      {
+        src: '/images/projects/digilab/exploration-1000.webp',
+        alt: 'Piste de logo explorée : un « D » dans un carré, à côté du mot Digilab',
+      },
+      {
+        src: '/images/projects/digilab/construction-horizontale-1000.webp',
+        alt: 'Grille de construction du logo Digilab en version horizontale',
+      },
+      {
+        src: '/images/projects/digilab/logo-signature-1000.webp',
+        alt: 'Logo Digilab en version verticale avec la signature « Pensé pour innover »',
+      },
+      {
+        src: '/images/projects/digilab/construction-verticale-1000.webp',
+        alt: 'Grille de construction du logo Digilab en version verticale',
+      },
+      {
+        src: '/images/projects/digilab/motif-1000.webp',
+        alt: 'Motif graphique répétant le symbole Digilab en bleu',
+      },
+      {
+        src: '/images/projects/digilab/declinaison-1000.webp',
+        alt: 'Déclinaisons du logo Digilab : symbole bleu sur fond clair et logo blanc sur fond bleu',
+      },
+    ],
   },
   {
     placeholder: true,
