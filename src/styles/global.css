@@ -260,6 +260,19 @@
 }
 
 @layer base {
+  /*
+    Grille fine (carreaux de 64 px) en fond de TOUT le site, dans les deux thèmes.
+    Posée sur <body> : elle défile avec la page et reste alignée d'une section à l'autre.
+    Les éléments à fond plein (bandeaux bleus, cartes, menu) la masquent naturellement.
+  */
+  body {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
+  }
+
   html {
     background-color: var(--page);
     color: var(--fg);
