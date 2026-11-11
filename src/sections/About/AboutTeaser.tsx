@@ -13,7 +13,7 @@ export function AboutTeaser() {
           <SectionHeading id="about-teaser-title" label="À propos" title={story.title} />
         </Reveal>
         <Reveal delay={0.1} className="lg:col-span-7 lg:pt-10">
-          <PlaceholderBadge show={story.placeholder || vision.placeholder} />
+          <PlaceholderBadge show={Boolean(story.placeholder || vision.placeholder)} />
           <p className="mt-4 text-lg leading-relaxed text-muted">{story.paragraphs[0]}</p>
           <p className="mt-6 border-l-2 border-accent pl-5 font-display text-xl leading-snug text-fg">
             {vision.statement}

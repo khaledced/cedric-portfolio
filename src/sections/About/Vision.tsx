@@ -11,7 +11,7 @@ export function Vision() {
           <p className="flex items-center gap-2 label-mono text-xs text-accent">
             <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
             Vision
-            <PlaceholderBadge show={vision.placeholder} className="ml-2" />
+            <PlaceholderBadge show={Boolean(vision.placeholder)} className="ml-2" />
           </p>
           <h2
             id="vision-title"
