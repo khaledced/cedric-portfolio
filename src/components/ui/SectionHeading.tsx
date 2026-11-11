@@ -22,7 +22,7 @@ export function SectionHeading({ label, title, id, as: Tag = 'h2', className, ch
       </p>
       <Tag
         id={id}
-        className="mt-4 font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl"
+        className="mt-4 font-display text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl lg:text-5xl"
       >
         {title}
       </Tag>

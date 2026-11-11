@@ -15,7 +15,7 @@ export function Vision() {
           </p>
           <h2
             id="vision-title"
-            className="mt-6 max-w-4xl font-display text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl lg:text-[3.25rem]"
+            className="mt-6 max-w-4xl font-display text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl lg:text-[3.25rem]"
           >
             <span aria-hidden="true" className="text-accent">« </span>
             {vision.statement}

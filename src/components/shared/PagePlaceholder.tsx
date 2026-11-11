@@ -12,7 +12,7 @@ export function PagePlaceholder({ index, title, phase }: PagePlaceholderProps) {
     <section className="container-page pt-32 pb-24 md:pt-40">
       <Seo title={title} />
       <p className="font-mono text-sm text-accent">{index}</p>
-      <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{title}</h1>
+      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-6xl">{title}</h1>
       <p className="mt-6 max-w-prose text-muted">
         Page en construction — contenu prévu en {phase}.
       </p>
