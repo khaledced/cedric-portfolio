@@ -7,8 +7,9 @@ import { siteConfig } from '@/config/site'
  */
 export function HeroPortrait() {
   const { photo } = siteConfig
+  // Largeur plafonnée (format 4:5 conservé) : 320 px sur mobile, 384 px sur tablette, 400 px sur ordinateur
   return (
-    <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
+    <div className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:mr-0 lg:max-w-[400px]">
       {/* Unique halo bleu, très diffus, derrière la photo */}
       <div
         aria-hidden="true"
@@ -21,7 +22,7 @@ export function HeroPortrait() {
             src={photo.src}
             srcSet={photo.srcSet}
             // Largeur affichée : ~384 px sur mobile, ~460 px au-delà → le navigateur choisit le bon fichier
-            sizes="(min-width: 640px) 460px, 384px"
+            sizes="(min-width: 1024px) 400px, (min-width: 640px) 384px, 320px"
             width={photo.width}
             height={photo.height}
             alt={photo.alt}
