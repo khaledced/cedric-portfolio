@@ -73,7 +73,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
+    /* Pas de scroll-behavior: smooth global : le changement de page doit remonter instantanément.
+       Le défilement doux est appliqué uniquement aux ancres internes (voir useHashScroll). */
   }
 
   ::selection {
@@ -88,9 +89,6 @@
 
   /* Respect des préférences d'accessibilité : pas d'animations si l'utilisateur les a désactivées */
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
     *,
     *::before,
     *::after {
