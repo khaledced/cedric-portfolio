@@ -37,3 +37,6 @@ image/
 
 # Configuration locale de Claude Code
 .claude/
+
+# Fichiers sources du logo (versions web optimisées dans public/logo/)
+SVG/
