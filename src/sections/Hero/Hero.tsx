@@ -34,7 +34,6 @@ function Ellipsis() {
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden pt-28 pb-16 md:pt-40 md:pb-24">
-      <div aria-hidden="true" className="bg-grid pointer-events-none absolute inset-0" />
       <HeroHalos />
 
       <div className="container-page relative grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
