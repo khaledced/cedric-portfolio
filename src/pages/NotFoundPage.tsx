@@ -7,7 +7,7 @@ export default function NotFoundPage() {
       <Seo title="Page introuvable" />
       <meta name="robots" content="noindex" />
       <p className="font-mono text-sm text-accent">Erreur 404</p>
-      <h1 className="mt-3 font-display text-4xl font-medium tracking-tight sm:text-6xl">
+      <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
         Cette page n'existe pas… ou plus.
       </h1>
       <Link

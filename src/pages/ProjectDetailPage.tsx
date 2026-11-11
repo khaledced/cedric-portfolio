@@ -50,7 +50,7 @@ export default function ProjectDetailPage() {
               <span>{project.year}</span>
               <PlaceholderBadge show={project.placeholder} />
             </p>
-            <h1 className="mt-5 font-display text-4xl leading-[1.05] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 font-display text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
               {project.name}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{project.summary}</p>
@@ -155,7 +155,7 @@ export default function ProjectDetailPage() {
           >
             <span>
               <span className="font-mono text-xs text-subtle">Projet suivant</span>
-              <span className="mt-2 block font-display text-2xl font-medium tracking-tight transition-colors group-hover:text-accent-strong sm:text-3xl">
+              <span className="mt-2 block font-display text-2xl font-semibold tracking-tight transition-colors group-hover:text-accent-strong sm:text-3xl">
                 {next.name}
               </span>
             </span>

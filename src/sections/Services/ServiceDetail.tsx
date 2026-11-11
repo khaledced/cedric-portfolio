@@ -28,7 +28,7 @@ export function ServiceDetail({ service, index }: ServiceDetailProps) {
             </span>
             <span className="font-mono text-xs text-subtle">{String(index + 1).padStart(2, '0')} / 06</span>
           </div>
-          <h2 id={headingId} className="mt-6 font-display text-2xl leading-tight font-medium tracking-tight sm:text-3xl">
+          <h2 id={headingId} className="mt-6 font-display text-2xl leading-tight font-semibold tracking-tight sm:text-3xl">
             {service.title}
           </h2>
           <PlaceholderBadge show={service.placeholder} className="mt-4" />

@@ -81,7 +81,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
     return (
       <div role="status" className="rounded-3xl border border-line bg-card/60 p-8 sm:p-10">
         <CheckCircle2 aria-hidden="true" className="size-8 text-success" />
-        <h2 className="mt-6 font-display text-2xl font-medium tracking-tight">Message envoyé</h2>
+        <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight">Message envoyé</h2>
         <p className="mt-3 leading-relaxed text-muted">
           Merci {values.name.trim()}, votre message a bien été transmis. Une réponse vous sera adressée à{' '}
           <span className="text-fg">{values.email.trim()}</span>.
