@@ -5,7 +5,7 @@ import { Reveal } from '@/components/shared/Reveal'
 import { Seo } from '@/components/shared/Seo'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
 import { getProject, projectCategories, projects } from '@/data/projects'
-import { ProjectVisual } from '@/sections/Projects/ProjectVisual'
+import { Visual } from '@/components/shared/Visual'
 import NotFoundPage from './NotFoundPage'
 
 /** Étude de cas d'un projet : contexte, problème, solution, rôle, outils, visuels. */
@@ -58,7 +58,7 @@ export default function ProjectDetailPage() {
         </header>
 
         <Reveal delay={0.1} className="container-page mt-14">
-          <ProjectVisual image={project.cover} priority className="aspect-[16/9]" />
+          <Visual image={project.cover} priority className="aspect-[16/9]" />
         </Reveal>
 
         <div className="container-page grid gap-14 py-16 md:py-24 lg:grid-cols-12 lg:gap-16">
@@ -140,7 +140,7 @@ export default function ProjectDetailPage() {
           <section aria-label="Galerie" className="container-page grid gap-6 pb-24 md:grid-cols-2">
             {project.gallery.map((img, i) => (
               <Reveal key={img.src} delay={(i % 2) * 0.08}>
-                <ProjectVisual image={img} className="aspect-[4/3]" />
+                <Visual image={img} className="aspect-[4/3]" />
               </Reveal>
             ))}
           </section>

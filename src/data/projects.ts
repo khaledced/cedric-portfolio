@@ -12,6 +12,8 @@
  * `placeholder: true` sont des exemples de structure, à remplacer ou supprimer.
  */
 
+import type { VisualImage } from '@/components/shared/Visual'
+
 /** Catégories = mêmes identifiants que les services (src/data/services.ts) */
 export const projectCategories = {
   'digitalisation': 'Digitalisation',
@@ -24,11 +26,8 @@ export const projectCategories = {
 
 export type ProjectCategory = keyof typeof projectCategories
 
-export interface ProjectImage {
-  src: string
-  /** Description de l'image pour l'accessibilité et le référencement */
-  alt: string
-}
+/** Image d'un projet (même format que les autres visuels du site) */
+export type ProjectImage = VisualImage
 
 export interface Project {
   /** Identifiant dans l'URL : lettres minuscules, chiffres et tirets */

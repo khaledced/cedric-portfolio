@@ -2,13 +2,13 @@ import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
 import { projectCategories, type Project } from '@/data/projects'
-import { ProjectVisual } from './ProjectVisual'
+import { Visual } from '@/components/shared/Visual'
 
 /** Carte projet : visuel, catégorie, année, titre, résumé et outils. */
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="group relative flex h-full flex-col">
-      <ProjectVisual
+      <Visual
         image={project.cover}
         className="aspect-[16/10] transition-colors duration-300 group-hover:border-brand-400/40 [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03]"
       />
