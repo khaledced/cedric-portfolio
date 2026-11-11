@@ -6,7 +6,7 @@ import { getArticles } from '@/lib/articles'
 export default function InsightsPage() {
   const articles = getArticles()
   return (
-    <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+    <section className="container-page pt-32 pb-24 md:pt-40">
       <Seo title="Insights" description="Réflexions sur la technologie, l'IA, le business et le digital." />
       <p className="font-mono text-sm text-brand-400">05</p>
       <h1 className="mt-3 font-display text-4xl font-medium tracking-tight sm:text-6xl">Insights</h1>

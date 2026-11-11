@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import { domAnimation, LazyMotion, MotionConfig } from 'motion/react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { RootLayout } from '@/components/layout/RootLayout'
 import ErrorPage from '@/pages/ErrorPage'
@@ -38,5 +39,16 @@ const router = createBrowserRouter([
 ])
 
 export default function App() {
-  return <RouterProvider router={router} />
+  return (
+    /*
+      LazyMotion + `m` : on ne charge que les fonctions d'animation utilisées (~15 ko au lieu de ~35 ko).
+      reducedMotion="user" : si le visiteur a activé « réduire les animations » sur son appareil,
+      les déplacements sont supprimés et seuls les fondus sont conservés.
+    */
+    <LazyMotion features={domAnimation} strict>
+      <MotionConfig reducedMotion="user">
+        <RouterProvider router={router} />
+      </MotionConfig>
+    </LazyMotion>
+  )
 }

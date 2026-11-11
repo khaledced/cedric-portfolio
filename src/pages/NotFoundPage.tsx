@@ -3,7 +3,7 @@ import { Seo } from '@/components/shared/Seo'
 
 export default function NotFoundPage() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-32 sm:px-6">
+    <section className="container-page pt-36 pb-32 md:pt-44">
       <Seo title="Page introuvable" />
       <meta name="robots" content="noindex" />
       <p className="font-mono text-sm text-brand-400">Erreur 404</p>
