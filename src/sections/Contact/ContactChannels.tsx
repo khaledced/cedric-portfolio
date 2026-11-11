@@ -1,6 +1,7 @@
 import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
 import { siteConfig, type SocialKey } from '@/config/site'
+import { prettyUrl } from '@/lib/url'
 
 const socialLabels: Record<Exclude<SocialKey, 'whatsapp'>, string> = {
   linkedin: 'LinkedIn',
@@ -8,16 +9,6 @@ const socialLabels: Record<Exclude<SocialKey, 'whatsapp'>, string> = {
   facebook: 'Facebook',
   instagram: 'Instagram',
   tiktok: 'TikTok',
-}
-
-/** Affiche une adresse lisible : « linkedin.com/in/nom » plutôt que l'URL complète */
-function prettyUrl(url: string): string {
-  try {
-    const { hostname, pathname } = new URL(url)
-    return `${hostname.replace(/^www\./, '')}${pathname.replace(/\/$/, '')}`
-  } catch {
-    return url
-  }
 }
 
 /**

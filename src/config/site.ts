@@ -30,24 +30,24 @@ export const siteConfig = {
     label: 'Disponible pour de nouvelles missions',
   },
 
-  /** Coordonnées — À COMPLÉTER */
+  /** Coordonnées */
   contact: {
-    email: '',
+    email: 'cedricl.saw@gmail.com',
     /** Localisation affichée (optionnelle), ex. 'Ouagadougou, Burkina Faso' */
     location: '',
   },
 
   /**
-   * Réseaux sociaux — À COMPLÉTER avec les URLs complètes.
-   * WhatsApp : utiliser le format https://wa.me/226XXXXXXXX (sans +, ni espaces).
+   * Réseaux sociaux — URLs complètes, sans paramètres de suivi (?utm_…, ?_t=…).
+   * WhatsApp : format https://wa.me/226XXXXXXXX (indicatif + numéro, sans +, ni espaces).
    */
   socials: {
-    linkedin: '',
-    github: '',
-    facebook: '',
-    instagram: '',
-    tiktok: '',
-    whatsapp: '',
+    linkedin: 'https://www.linkedin.com/in/cédric-sawadogo-b24084218',
+    github: 'https://github.com/khaledced',
+    facebook: 'https://www.facebook.com/profile.php?id=100073336573249',
+    instagram: 'https://www.instagram.com/cedricsw_',
+    tiktok: 'https://www.tiktok.com/@cedricsw',
+    whatsapp: 'https://wa.me/22675851691',
   },
 } as const
 
