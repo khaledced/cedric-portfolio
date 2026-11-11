@@ -48,7 +48,7 @@ export default function ProjectDetailPage() {
               </Link>
               <span aria-hidden="true">·</span>
               <span>{project.year}</span>
-              <PlaceholderBadge show={project.placeholder} />
+              <PlaceholderBadge show={Boolean(project.placeholder)} />
             </p>
             <h1 className="mt-5 font-display text-4xl leading-[1.05] font-extrabold tracking-tight text-balance sm:text-5xl lg:text-6xl">
               {project.name}
@@ -58,7 +58,7 @@ export default function ProjectDetailPage() {
         </header>
 
         <Reveal delay={0.1} className="container-page mt-14">
-          <Visual image={project.cover} priority className="aspect-[16/9]" />
+          <Visual image={project.cover} priority sizes="100vw" className="aspect-[16/9]" />
         </Reveal>
 
         <div className="container-page grid gap-14 py-16 md:py-24 lg:grid-cols-12 lg:gap-16">

@@ -23,7 +23,7 @@ export function Certifications() {
                 <div className="flex-1">
                   <p className="flex flex-wrap items-center gap-2 font-semibold">
                     {c.name}
-                    <PlaceholderBadge show={c.placeholder} />
+                    <PlaceholderBadge show={Boolean(c.placeholder)} />
                   </p>
                   <p className="mt-1 text-sm text-subtle">{c.issuer}</p>
                 </div>
