@@ -28,7 +28,7 @@ export function ExpertiseStrip() {
                     className="size-4 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
                   />
                 </div>
-                <h3 className="font-display text-xl font-medium tracking-tight transition-colors group-hover:text-accent-strong">
+                <h3 className="font-display text-xl font-semibold tracking-tight transition-colors group-hover:text-accent-strong">
                   {pole.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-subtle">{pole.domains.join(' · ')}</p>

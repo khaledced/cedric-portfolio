@@ -11,7 +11,7 @@ export function KeyFigures() {
         {keyFigures.map((f, i) => (
           <Reveal key={f.label} delay={i * 0.06} className="border-line py-8 not-first:border-l max-lg:nth-3:border-l-0 max-lg:nth-[n+3]:border-t sm:px-6">
             <dt className="text-sm text-subtle">{f.label}</dt>
-            <dd className="mt-2 font-display text-4xl font-medium tracking-tight">{f.value}</dd>
+            <dd className="mt-2 font-display text-4xl font-semibold tracking-tight">{f.value}</dd>
           </Reveal>
         ))}
       </dl>

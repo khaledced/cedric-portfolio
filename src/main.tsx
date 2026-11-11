@@ -2,8 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 
 // Polices auto-hébergées : aucune requête vers Google Fonts, meilleure performance et confidentialité.
-import '@fontsource-variable/inter'
-import '@fontsource-variable/space-grotesk'
+import '@fontsource-variable/geist'
 import '@fontsource-variable/jetbrains-mono'
 import '@/styles/global.css'
 

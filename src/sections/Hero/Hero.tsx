@@ -46,9 +46,9 @@ export function Hero() {
           {/*
             Titre en trois lignes. Tailles en « cqi » (% de la largeur de la colonne, via @container) :
             chaque ligne s'adapte à la place disponible et ne passe jamais à la ligne.
-            Largeurs réelles mesurées à l'écran : « Cédric Sawadogo, » ≈ 8,6 em ; « ingénieur informatique… » ≈ 11,6 em (marge de 3 %).
+            Largeurs réelles mesurées en Geist : « Cédric Sawadogo, » ≈ 8,6 em ; « ingénieur informatique… » ≈ 11,2 em (marge de 3 %).
           */}
-          <h1 id="hero-title" className="@container mt-7 font-display font-medium tracking-[-0.035em]">
+          <h1 id="hero-title" className="@container mt-7 font-display font-semibold tracking-[-0.04em]">
             {/* Version lue par les lecteurs d'écran et les moteurs de recherche */}
             <span className="sr-only">
               {siteConfig.name}, ingénieur informatique… {siteConfig.heroRoles[0]} {siteConfig.heroRoles.slice(1).join(', ')}.
@@ -58,7 +58,7 @@ export function Hero() {
 
             <span
               aria-hidden="true"
-              className="animate-enter mt-[0.15em] block text-[8.3cqi] leading-[1.15] whitespace-nowrap"
+              className="animate-enter mt-[0.15em] block text-[8.6cqi] leading-[1.15] whitespace-nowrap"
               style={enter(0.6)}
             >
               ingénieur informatique
@@ -68,7 +68,7 @@ export function Hero() {
             <span className="animate-enter block" style={enter(0.85)}>
               <TypeRotator
                 phrases={siteConfig.heroRoles}
-                className="text-[8.3cqi] leading-[1.15] whitespace-nowrap text-accent"
+                className="text-[8.6cqi] leading-[1.15] whitespace-nowrap text-accent"
               />
             </span>
           </h1>
