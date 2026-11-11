@@ -8,7 +8,7 @@
 @theme {
   /* Bleu de marque — issu du logo vectoriel : #2A4B9B */
   --color-brand-200: #c9d6f0; /* survols, focus */
-  --color-brand-400: #4a7bd4; /* texte accent sur fond sombre (contraste suffisant) */
+  --color-brand-400: #5283da; /* texte accent sur fond sombre — contraste AA ≥ 4.5:1 sur tous les fonds */
   --color-brand-500: #2a4b9b; /* couleur exacte du logo (fichier SVG source) : boutons, surfaces pleines */
   --color-brand-700: #213c7e; /* état pressé */
 
@@ -21,7 +21,7 @@
   /* Textes */
   --color-fg: #f5f7fb; /* texte principal */
   --color-muted: #9aa1ae; /* texte secondaire */
-  --color-subtle: #6e7584; /* métadonnées, texte discret */
+  --color-subtle: #7d8494; /* métadonnées, texte discret — contraste AA ≥ 4.5:1 sur tous les fonds */
 
   /* Typographies (chargées localement via Fontsource, voir main.tsx) */
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
@@ -63,6 +63,22 @@
   to {
     opacity: 1;
   }
+}
+
+/* Apparition en fondu + léger glissement, en CSS pur (démarre sans attendre le JavaScript) */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-enter {
+  animation: enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @layer base {

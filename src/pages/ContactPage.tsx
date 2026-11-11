@@ -1,3 +1,4 @@
+import { useIsClient } from '@/hooks/useIsClient'
 import { useSearchParams } from 'react-router'
 import { Reveal } from '@/components/shared/Reveal'
 import { Seo } from '@/components/shared/Seo'
@@ -9,7 +10,9 @@ import { ContactForm } from '@/sections/Contact/ContactForm'
 
 export default function ContactPage() {
   // Lien depuis un service (/contact?sujet=branding) : l'objet est prérempli
-  const [params] = useSearchParams()
+  const [urlParams] = useSearchParams()
+  // Pendant la réhydratation : version sans objet prérempli (identique au HTML pré-rendu)
+  const params = useIsClient() ? urlParams : new URLSearchParams()
   const service = services.find((s) => s.slug === params.get('sujet'))
   const initialSubject = service ? `Demande : ${service.title}` : ''
 
