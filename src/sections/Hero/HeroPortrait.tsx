@@ -3,9 +3,10 @@ import { siteConfig } from '@/config/site'
 
 /**
  * Cadre photo du Hero. Ses angles reprennent le carré arrondi du logo.
- * Tant que siteConfig.photo est vide, un cadre provisoire clairement identifié est affiché.
+ * Tant que siteConfig.photo.src est vide, un cadre provisoire clairement identifié est affiché.
  */
 export function HeroPortrait() {
+  const { photo } = siteConfig
   return (
     <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
       {/* Unique halo bleu, très diffus, derrière la photo */}
@@ -15,12 +16,18 @@ export function HeroPortrait() {
       />
 
       <div className="relative aspect-[4/5] overflow-hidden rounded-logo border border-line bg-ink-900">
-        {siteConfig.photo ? (
+        {photo.src ? (
           <img
-            src={siteConfig.photo}
-            alt={`Portrait de ${siteConfig.name}`}
-            className="size-full object-cover"
+            src={photo.src}
+            srcSet={photo.srcSet}
+            // Largeur affichée : ~384 px sur mobile, ~460 px au-delà → le navigateur choisit le bon fichier
+            sizes="(min-width: 640px) 460px, 384px"
+            width={photo.width}
+            height={photo.height}
+            alt={photo.alt}
+            className="size-full object-cover object-top"
             fetchPriority="high"
+            decoding="async"
           />
         ) : (
           <div className="flex size-full flex-col items-center justify-center gap-3 p-8 text-center">
