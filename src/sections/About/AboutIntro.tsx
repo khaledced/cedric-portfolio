@@ -11,7 +11,7 @@ export function AboutIntro() {
       <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-7">
           <SectionHeading as="h1" id="about-title" label="À propos" title={story.title} />
-          <PlaceholderBadge show={story.placeholder} className="mt-6" />
+          <PlaceholderBadge show={Boolean(story.placeholder)} className="mt-6" />
           <div className="mt-8 max-w-2xl space-y-5 text-lg leading-relaxed text-muted">
             {story.paragraphs.map((p) => (
               <p key={p}>{p}</p>

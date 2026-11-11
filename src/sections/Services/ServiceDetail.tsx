@@ -31,7 +31,7 @@ export function ServiceDetail({ service, index }: ServiceDetailProps) {
           <h2 id={headingId} className="mt-6 font-display text-2xl leading-tight font-extrabold tracking-tight sm:text-3xl">
             {service.title}
           </h2>
-          <PlaceholderBadge show={service.placeholder} className="mt-4" />
+          <PlaceholderBadge show={Boolean(service.placeholder)} className="mt-4" />
           <p className="mt-4 max-w-md leading-relaxed text-muted">{service.summary}</p>
           <Link
             to={`/contact?sujet=${service.slug}`}

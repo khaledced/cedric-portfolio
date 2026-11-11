@@ -16,7 +16,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <span className="text-accent">{projectCategories[project.category]}</span>
         <span aria-hidden="true">·</span>
         <span>{project.year}</span>
-        <PlaceholderBadge show={project.placeholder} />
+        <PlaceholderBadge show={Boolean(project.placeholder)} />
       </div>
       <h3 className="mt-3 flex items-start justify-between gap-4 font-display text-2xl leading-tight font-extrabold tracking-[-0.03em]">
         {/* Le lien couvre toute la carte (pseudo-élément) tout en gardant un intitulé clair */}

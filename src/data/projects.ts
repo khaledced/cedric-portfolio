@@ -55,18 +55,28 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    placeholder: true,
+    // Synthèse rédigée à partir du contenu public du site (udigit.vercel.app) ; rôle et année confirmés par Cédric.
     featured: true,
-    slug: 'exemple-site-web',
-    name: '[Projet exemple — Site web]',
+    slug: 'site-agence-udigit',
+    name: 'Site web de l’agence Udigit',
     category: 'developpement-web',
-    year: '[Année]',
-    summary: '[Une phrase qui résume le projet et son intérêt.]',
-    context: '[Pour qui ? Dans quelle situation ? Quel était l’enjeu ?]',
-    problem: '[Quel problème concret fallait-il résoudre ?]',
-    solution: '[Qu’as-tu proposé et réalisé ? Quels choix as-tu faits et pourquoi ?]',
-    role: '[Ton rôle exact : conception, développement, gestion de projet…]',
-    tools: ['[Outil 1]', '[Outil 2]', '[Outil 3]'],
+    year: '2025',
+    summary:
+      'Le site vitrine d’une agence créative burkinabè : présenter ses expertises et ses réalisations, et transformer les visiteurs en demandes de projet.',
+    context:
+      'Udigit est une agence créative basée à Ouagadougou (Burkina Faso), fondée en 2021. Elle intervient en marketing digital et gestion des réseaux sociaux, en développement web et maintenance informatique, et en branding et communication visuelle. Son site devait porter son positionnement : « des designs ambassadeurs de votre marque ».',
+    problem:
+      'Présenter clairement une offre large, qui va du design graphique à la maintenance informatique ; montrer des réalisations de natures très différentes (identités visuelles, contenus vidéo, sites web) ; et offrir aux visiteurs un chemin simple vers la prise de contact.',
+    solution:
+      'Un site multipage — accueil, services, à propos, projets, blog, contact et pages légales. Les quatre pôles de services sont détaillés avec leurs prestations et un processus en quatre étapes (découverte, conception, développement, lancement). Le portfolio est organisé en trois sections : conceptions graphiques, créations de contenus et sites web. Des appels à l’action « Démarrer votre projet » jalonnent les pages, et les réseaux sociaux de l’agence sont mis en avant.',
+    role: 'Conception et développement du site.',
+    tools: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+    cover: {
+      src: '/images/projects/udigit/cover-1355.webp',
+      srcSet: '/images/projects/udigit/cover-800.webp 800w, /images/projects/udigit/cover-1355.webp 1355w',
+      alt: 'Page d’accueil du site Udigit, avec le titre « Nous créons des designs ambassadeurs de votre marque »',
+    },
+    url: 'https://udigit.vercel.app/',
   },
   {
     placeholder: true,

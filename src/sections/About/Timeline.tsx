@@ -25,7 +25,7 @@ export function Timeline({ title, entries }: TimelineProps) {
             <Reveal delay={i * 0.06}>
               <div className="flex flex-wrap items-center gap-2">
                 <p className="label-mono text-xs text-accent">{e.period}</p>
-                <PlaceholderBadge show={e.placeholder} />
+                <PlaceholderBadge show={Boolean(e.placeholder)} />
               </div>
               <p className="mt-2 text-lg font-semibold text-fg">{e.title}</p>
               <p className="mt-1 text-sm text-muted">
