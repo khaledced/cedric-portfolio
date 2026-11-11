@@ -6,11 +6,11 @@
   (ex. --color-brand-500 → bg-brand-500, text-brand-500, border-brand-500…).
 */
 @theme {
-  /* Bleu de marque — mesuré sur le logo : #204B9B */
+  /* Bleu de marque — issu du logo vectoriel : #2A4B9B */
   --color-brand-200: #c9d6f0; /* survols, focus */
-  --color-brand-400: #4a7bd4; /* texte accent sur fond sombre (contraste suffisant) */
-  --color-brand-500: #204b9b; /* couleur du logo : boutons, surfaces pleines */
-  --color-brand-700: #183a7a; /* état pressé */
+  --color-brand-400: #5283da; /* texte accent sur fond sombre — contraste AA ≥ 4.5:1 sur tous les fonds */
+  --color-brand-500: #2a4b9b; /* couleur exacte du logo (fichier SVG source) : boutons, surfaces pleines */
+  --color-brand-700: #213c7e; /* état pressé */
 
   /* Fonds et surfaces */
   --color-ink-950: #080808; /* fond principal */
@@ -21,7 +21,7 @@
   /* Textes */
   --color-fg: #f5f7fb; /* texte principal */
   --color-muted: #9aa1ae; /* texte secondaire */
-  --color-subtle: #6e7584; /* métadonnées, texte discret */
+  --color-subtle: #7d8494; /* métadonnées, texte discret — contraste AA ≥ 4.5:1 sur tous les fonds */
 
   /* Typographies (chargées localement via Fontsource, voir main.tsx) */
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
@@ -32,6 +32,55 @@
   --radius-logo: 1.75rem;
 }
 
+/* Conteneur de page : largeur max + marges latérales cohérentes partout (16px sur mobile) */
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Fines lignes de grille en arrière-plan, estompées vers les bords */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 30%, transparent 75%);
+}
+
+/* Points de suspension signature : les trois points apparaissent l'un après l'autre */
+@keyframes dot-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apparition en fondu + léger glissement, en CSS pur (démarre sans attendre le JavaScript) */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-enter {
+  animation: enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @layer base {
   html {
     background-color: var(--color-ink-950);
@@ -40,7 +89,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
+    /* Pas de scroll-behavior: smooth global : le changement de page doit remonter instantanément.
+       Le défilement doux est appliqué uniquement aux ancres internes (voir useHashScroll). */
   }
 
   ::selection {
@@ -55,15 +105,119 @@
 
   /* Respect des préférences d'accessibilité : pas d'animations si l'utilisateur les a désactivées */
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
     *,
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/*
+  Typographie des articles (contenu MDX).
+  Écrite à la main plutôt qu'avec le plugin @tailwindcss/typography :
+  quelques règles suffisent et restent alignées sur la charte du site.
+*/
+@layer components {
+  .prose-article {
+    color: var(--color-muted);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+
+    & > * + * {
+      margin-top: 1.25em;
+    }
+    & h2 {
+      margin-top: 2.2em;
+      color: var(--color-fg);
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    & h3 {
+      margin-top: 1.8em;
+      color: var(--color-fg);
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    & h2 + *,
+    & h3 + * {
+      margin-top: 0.75em;
+    }
+    & strong {
+      color: var(--color-fg);
+      font-weight: 600;
+    }
+    & a {
+      color: var(--color-brand-200);
+      text-decoration: underline;
+      text-decoration-color: color-mix(in srgb, var(--color-brand-400) 50%, transparent);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s;
+    }
+    & a:hover {
+      text-decoration-color: var(--color-brand-200);
+    }
+    & ul,
+    & ol {
+      padding-left: 1.4em;
+    }
+    & ul {
+      list-style: disc;
+    }
+    & ol {
+      list-style: decimal;
+    }
+    & li + li {
+      margin-top: 0.5em;
+    }
+    & li::marker {
+      color: var(--color-brand-400);
+    }
+    & blockquote {
+      border-left: 2px solid var(--color-brand-400);
+      padding-left: 1.25em;
+      color: var(--color-fg);
+      font-family: var(--font-display);
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+    & blockquote p {
+      margin: 0;
+    }
+    & :not(pre) > code {
+      border: 1px solid var(--color-line);
+      border-radius: 0.375rem;
+      background: var(--color-ink-900);
+      padding: 0.1em 0.35em;
+      color: var(--color-fg);
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+    }
+    & pre {
+      overflow-x: auto;
+      border: 1px solid var(--color-line);
+      border-radius: 0.75rem;
+      background: var(--color-ink-900);
+      padding: 1.1em 1.25em;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+    & img {
+      border: 1px solid var(--color-line);
+      border-radius: 1rem;
+      width: 100%;
+      height: auto;
+    }
+    & hr {
+      margin-block: 3em;
+      border-color: var(--color-line);
     }
   }
 }

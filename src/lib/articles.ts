@@ -1,5 +1,10 @@
 import type { ComponentType } from 'react'
-import type { Article } from '@/types/content'
+import {
+  articleCategories,
+  type Article,
+  type ArticleCategory,
+  type ArticleCategorySlug,
+} from '@/types/content'
 
 /**
  * Chargement automatique des articles.
@@ -36,4 +41,18 @@ export function getArticles(): Article[] {
 
 export function getArticle(slug: string): ArticleEntry | undefined {
   return allArticles.find((a) => a.slug === slug)
+}
+
+/** Identifiant d'URL d'une catégorie à partir de son libellé */
+export function categorySlug(label: ArticleCategory): ArticleCategorySlug | undefined {
+  return articleCategories.find((c) => c.label === label)?.slug
+}
+
+/** Autres articles à suggérer : même catégorie d'abord, puis les plus récents */
+export function getRelatedArticles(article: Article, count = 2): Article[] {
+  const others = getArticles().filter((a) => a.slug !== article.slug)
+  return [
+    ...others.filter((a) => a.category === article.category),
+    ...others.filter((a) => a.category !== article.category),
+  ].slice(0, count)
 }

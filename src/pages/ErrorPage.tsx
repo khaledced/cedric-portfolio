@@ -15,7 +15,7 @@ export default function ErrorPage() {
   if (import.meta.env.DEV) console.error(error)
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-32 sm:px-6">
+    <main className="container-page pt-36 pb-32 md:pt-44">
       <Seo title="Erreur" />
       <p className="font-mono text-sm text-brand-400">Erreur inattendue</p>
       <h1 className="mt-3 font-display text-4xl font-medium tracking-tight sm:text-6xl">
