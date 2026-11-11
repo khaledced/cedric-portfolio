@@ -79,8 +79,8 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
 
   if (status === 'success') {
     return (
-      <div role="status" className="rounded-3xl border border-line bg-ink-900/60 p-8 sm:p-10">
-        <CheckCircle2 aria-hidden="true" className="size-8 text-emerald-400" />
+      <div role="status" className="rounded-3xl border border-line bg-card/60 p-8 sm:p-10">
+        <CheckCircle2 aria-hidden="true" className="size-8 text-success" />
         <h2 className="mt-6 font-display text-2xl font-medium tracking-tight">Message envoyé</h2>
         <p className="mt-3 leading-relaxed text-muted">
           Merci {values.name.trim()}, votre message a bien été transmis. Une réponse vous sera adressée à{' '}
@@ -89,7 +89,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
         <button
           type="button"
           onClick={reset}
-          className="mt-8 inline-flex h-11 items-center rounded-xl border border-line px-5 text-sm transition-colors hover:bg-ink-800"
+          className="mt-8 inline-flex h-11 items-center rounded-xl border border-line px-5 text-sm transition-colors hover:bg-elevated"
         >
           Envoyer un autre message
         </button>
@@ -99,14 +99,14 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
 
   const inputClass = (name: FieldName) =>
     cn(
-      'w-full rounded-xl border bg-ink-950 px-4 text-fg transition-colors placeholder:text-subtle focus:outline-none',
-      visibleError(name) ? 'border-red-400/70 focus:border-red-400' : 'border-line hover:border-ink-800 focus:border-brand-400',
+      'w-full rounded-xl border bg-page px-4 text-fg transition-colors placeholder:text-subtle focus:outline-none',
+      visibleError(name) ? 'border-danger/70 focus:border-danger' : 'border-line hover:border-elevated focus:border-accent',
     )
 
   const renderError = (name: FieldName) => {
     const message = visibleError(name)
     return message ? (
-      <p id={`${fieldId(name)}-error`} className="mt-2 flex items-center gap-1.5 text-sm text-red-300">
+      <p id={`${fieldId(name)}-error`} className="mt-2 flex items-center gap-1.5 text-sm text-danger">
         <AlertCircle aria-hidden="true" className="size-4 shrink-0" />
         {message}
       </p>
@@ -122,11 +122,11 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
       onSubmit={onSubmit}
       noValidate
       aria-busy={submitting}
-      className="rounded-3xl border border-line bg-ink-900/60 p-6 sm:p-10"
+      className="rounded-3xl border border-line bg-card/60 p-6 sm:p-10"
     >
       {!isContactConfigured && (
-        <div className="mb-8 flex gap-3 rounded-xl border border-dashed border-amber-400/40 p-4 text-sm leading-relaxed text-amber-100/90">
-          <Info aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-amber-300" />
+        <div className="mb-8 flex gap-3 rounded-xl border border-dashed border-warn/40 p-4 text-sm leading-relaxed text-warn">
+          <Info aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-warn" />
           <p>
             <strong className="font-medium">Formulaire en cours de configuration.</strong> Le service d’envoi n’est
             pas encore connecté : en attendant, utilisez les coordonnées indiquées sur cette page.
@@ -234,7 +234,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
       />
 
       {status === 'error' && (
-        <div role="alert" className="mt-6 flex gap-3 rounded-xl border border-red-400/40 bg-red-400/5 p-4 text-sm text-red-200">
+        <div role="alert" className="mt-6 flex gap-3 rounded-xl border border-danger/40 bg-danger/5 p-4 text-sm text-danger">
           <AlertCircle aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
           <p>
             {sendError} Vous pouvez aussi utiliser les coordonnées indiquées sur cette page.
@@ -249,7 +249,7 @@ export function ContactForm({ initialSubject = '' }: ContactFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 text-sm font-medium text-white transition-colors hover:bg-brand-700 disabled:cursor-wait disabled:opacity-70"
+          className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-medium text-on-primary transition-colors hover:bg-primary-hover disabled:cursor-wait disabled:opacity-70"
         >
           {submitting ? (
             <>

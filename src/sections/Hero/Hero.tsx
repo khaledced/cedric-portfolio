@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
+import { DigitalNetwork } from './DigitalNetwork'
 import { HeroPortrait } from './HeroPortrait'
 
 /*
@@ -13,7 +14,7 @@ const enter = (delay: number): CSSProperties => ({ animationDelay: `${delay}s` }
 /** Les trois points de suspension apparaissent l'un après l'autre (élément signature). */
 function Ellipsis() {
   return (
-    <span className="text-brand-400" aria-hidden="true">
+    <span className="text-accent" aria-hidden="true">
       {[0, 1, 2].map((i) => (
         <span
           key={i}
@@ -31,6 +32,7 @@ export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden pt-28 pb-16 md:pt-40 md:pb-24">
       <div aria-hidden="true" className="bg-grid pointer-events-none absolute inset-0" />
+      <DigitalNetwork />
 
       <div className="container-page relative grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-7">

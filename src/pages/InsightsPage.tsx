@@ -79,8 +79,8 @@ export default function InsightsPage() {
                         className={cn(
                           'rounded-full border px-4 py-2 text-sm transition-colors',
                           isActive
-                            ? 'border-brand-500 bg-brand-500 text-white'
-                            : 'border-line text-muted hover:border-brand-400/50 hover:text-fg',
+                            ? 'border-primary bg-primary text-on-primary'
+                            : 'border-line text-muted hover:border-accent/50 hover:text-fg',
                         )}
                       >
                         {c.label}
@@ -101,7 +101,7 @@ export default function InsightsPage() {
                   value={query}
                   onChange={(e) => update({ q: e.target.value })}
                   placeholder="Rechercher un article…"
-                  className="h-11 w-full rounded-full border border-line bg-ink-900/60 pr-10 pl-11 text-sm text-fg placeholder:text-subtle focus:border-brand-400/60 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+                  className="h-11 w-full rounded-full border border-line bg-card/60 pr-10 pl-11 text-sm text-fg placeholder:text-subtle focus:border-accent/60 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
                 />
                 {query && (
                   <button
@@ -126,7 +126,7 @@ export default function InsightsPage() {
                 <button
                   type="button"
                   onClick={() => update({ q: null, categorie: null })}
-                  className="mt-4 text-sm text-brand-200 underline-offset-4 hover:underline"
+                  className="mt-4 text-sm text-accent-strong underline-offset-4 hover:underline"
                 >
                   Réinitialiser les filtres
                 </button>

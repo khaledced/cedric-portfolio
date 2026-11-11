@@ -6,6 +6,7 @@ import { MobileMenu } from '@/components/navigation/MobileMenu'
 import { contactItem } from '@/components/navigation/nav-items'
 import { LogoFull } from '@/components/shared/Logo'
 import { ButtonLink } from '@/components/ui/ButtonLink'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useScrolled } from '@/hooks/useScrolled'
 import { cn } from '@/lib/cn'
 
@@ -31,7 +32,7 @@ export function Header({ menuOpen, onToggleMenu, onCloseMenu }: HeaderProps) {
       <div
         className={cn(
           'border-b transition-colors duration-300',
-          solid ? 'border-line bg-ink-950/85 backdrop-blur-md' : 'border-transparent bg-transparent',
+          solid ? 'border-line bg-page/85 backdrop-blur-md' : 'border-transparent bg-transparent',
         )}
       >
         <div className="container-page flex h-16 items-center justify-between gap-6 md:h-20">
@@ -42,6 +43,7 @@ export function Header({ menuOpen, onToggleMenu, onCloseMenu }: HeaderProps) {
           <DesktopNav />
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <div className="hidden md:block">
               <ButtonLink to={contactItem.to} variant="secondary" size="sm">
                 Me contacter
@@ -55,7 +57,7 @@ export function Header({ menuOpen, onToggleMenu, onCloseMenu }: HeaderProps) {
               aria-expanded={menuOpen}
               aria-controls={MENU_ID}
               aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-              className="-mr-2 inline-flex size-11 items-center justify-center rounded-xl text-fg transition-colors hover:bg-ink-900 md:hidden"
+              className="-mr-2 inline-flex size-11 items-center justify-center rounded-xl text-fg transition-colors hover:bg-card md:hidden"
             >
               {menuOpen ? <X aria-hidden="true" className="size-6" /> : <Menu aria-hidden="true" className="size-6" />}
             </button>

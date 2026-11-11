@@ -1,27 +1,107 @@
 @import 'tailwindcss';
 
 /*
-  Tailwind v4 : la configuration du thème se fait ici, directement en CSS.
-  Chaque variable déclarée dans @theme génère les classes utilitaires correspondantes
-  (ex. --color-brand-500 → bg-brand-500, text-brand-500, border-brand-500…).
+  THÈMES — clair (par défaut, aux couleurs du logo) et sombre.
+  ------------------------------------------------------------
+  Les couleurs sont nommées par RÔLE (page, carte, texte, accent…), pas par teinte :
+  chaque rôle prend une valeur différente selon le thème actif.
+  Le thème sombre s'active avec l'attribut data-theme="dark" sur <html> (voir ThemeToggle).
+  Tous les textes respectent le contraste WCAG AA (≥ 4,5:1) sur tous les fonds, dans les deux thèmes.
 */
+:root {
+  color-scheme: light;
+  --page: #ffffff; /* fond principal */
+  --card: #f2f6fd; /* cartes, sections teintées (bleu très pâle) */
+  --elevated: #e6eefa; /* surfaces surélevées, survols */
+  --line: #dce4f2; /* bordures, séparateurs */
+  --fg: #0e1a33; /* texte principal (bleu nuit) */
+  --muted: #3f4c66; /* texte secondaire */
+  --subtle: #566279; /* métadonnées */
+  --accent: #2a4b9b; /* texte et icônes d'accent */
+  --accent-strong: #1e3670; /* liens, survols */
+  --primary: #2a4b9b; /* boutons principaux (bleu du logo) */
+  --primary-hover: #213c7e;
+  --on-primary: #ffffff; /* texte sur bouton principal */
+  --warn: #8a5300;
+  --danger: #b42318;
+  --success: #067647;
+  --grid-line: rgb(42 75 155 / 0.07);
+  /* Animation du Hero : composantes RVB (lues par le canvas) */
+  --net-rgb: 42 75 155;
+  --net-pulse-rgb: 42 75 155;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --page: #080808;
+  --card: #111318;
+  --elevated: #1a1d24;
+  --line: #23262e;
+  --fg: #f5f7fb;
+  --muted: #9aa1ae;
+  --subtle: #7d8494;
+  --accent: #5283da;
+  --accent-strong: #c9d6f0;
+  --primary: #2a4b9b;
+  --primary-hover: #213c7e;
+  --on-primary: #ffffff;
+  --warn: #fcd34d;
+  --danger: #fca5a5;
+  --success: #34d399;
+  --grid-line: rgb(255 255 255 / 0.035);
+  --net-rgb: 82 131 218;
+  --net-pulse-rgb: 201 214 240;
+}
+
+/*
+  Bandeaux bleus (bandeau d'expertise, appel à l'action) : en thème clair, ils redéfinissent
+  localement les rôles de couleur → texte blanc sur le bleu du logo, bouton principal blanc.
+  En thème sombre, ils restent sobres comme le reste de la page.
+*/
+:root:not([data-theme='dark']) .band {
+  --page: #2a4b9b;
+  --card: #213c7e;
+  --line: rgb(255 255 255 / 0.18);
+  --fg: #ffffff;
+  --muted: #d5dff2;
+  --subtle: #b9c8e8;
+  --accent: #ffffff;
+  --accent-strong: #ffffff;
+  --primary: #ffffff;
+  --primary-hover: #e6eefa;
+  --on-primary: #2a4b9b;
+  background-color: var(--page);
+  color: var(--fg);
+}
+
+/* Variante Tailwind « dark: » liée à l'attribut data-theme (et non à la préférence système) */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/*
+  Tailwind v4 : chaque variable de @theme génère des classes (--color-page → bg-page, text-page…).
+  « inline » : les classes pointent directement vers les variables ci-dessus, qui changent selon le thème.
+*/
+@theme inline {
+  --color-page: var(--page);
+  --color-card: var(--card);
+  --color-elevated: var(--elevated);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+}
+
 @theme {
-  /* Bleu de marque — issu du logo vectoriel : #2A4B9B */
-  --color-brand-200: #c9d6f0; /* survols, focus */
-  --color-brand-400: #5283da; /* texte accent sur fond sombre — contraste AA ≥ 4.5:1 sur tous les fonds */
-  --color-brand-500: #2a4b9b; /* couleur exacte du logo (fichier SVG source) : boutons, surfaces pleines */
-  --color-brand-700: #213c7e; /* état pressé */
-
-  /* Fonds et surfaces */
-  --color-ink-950: #080808; /* fond principal */
-  --color-ink-900: #111318; /* cartes, surfaces */
-  --color-ink-800: #1a1d24; /* surfaces surélevées */
-  --color-line: #23262e; /* bordures, séparateurs */
-
-  /* Textes */
-  --color-fg: #f5f7fb; /* texte principal */
-  --color-muted: #9aa1ae; /* texte secondaire */
-  --color-subtle: #7d8494; /* métadonnées, texte discret — contraste AA ≥ 4.5:1 sur tous les fonds */
+  /* Bleu exact du logo (fichier SVG source), identique dans les deux thèmes */
+  --color-brand-500: #2a4b9b;
 
   /* Typographies (chargées localement via Fontsource, voir main.tsx) */
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
@@ -49,8 +129,8 @@
 /* Fines lignes de grille en arrière-plan, estompées vers les bords */
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 30%, transparent 75%);
 }
@@ -83,8 +163,8 @@
 
 @layer base {
   html {
-    background-color: var(--color-ink-950);
-    color: var(--color-fg);
+    background-color: var(--page);
+    color: var(--fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -94,12 +174,12 @@
   }
 
   ::selection {
-    background-color: var(--color-brand-500);
+    background-color: var(--primary);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-brand-400);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
 
@@ -122,7 +202,7 @@
 */
 @layer components {
   .prose-article {
-    color: var(--color-muted);
+    color: var(--muted);
     font-size: 1.0625rem;
     line-height: 1.8;
 
@@ -131,7 +211,7 @@
     }
     & h2 {
       margin-top: 2.2em;
-      color: var(--color-fg);
+      color: var(--fg);
       font-family: var(--font-display);
       font-size: 1.75rem;
       font-weight: 500;
@@ -140,7 +220,7 @@
     }
     & h3 {
       margin-top: 1.8em;
-      color: var(--color-fg);
+      color: var(--fg);
       font-size: 1.25rem;
       font-weight: 500;
       line-height: 1.35;
@@ -150,18 +230,18 @@
       margin-top: 0.75em;
     }
     & strong {
-      color: var(--color-fg);
+      color: var(--fg);
       font-weight: 600;
     }
     & a {
-      color: var(--color-brand-200);
+      color: var(--accent-strong);
       text-decoration: underline;
-      text-decoration-color: color-mix(in srgb, var(--color-brand-400) 50%, transparent);
+      text-decoration-color: color-mix(in srgb, var(--accent) 50%, transparent);
       text-underline-offset: 3px;
       transition: text-decoration-color 0.2s;
     }
     & a:hover {
-      text-decoration-color: var(--color-brand-200);
+      text-decoration-color: var(--accent-strong);
     }
     & ul,
     & ol {
@@ -177,12 +257,12 @@
       margin-top: 0.5em;
     }
     & li::marker {
-      color: var(--color-brand-400);
+      color: var(--accent);
     }
     & blockquote {
-      border-left: 2px solid var(--color-brand-400);
+      border-left: 2px solid var(--accent);
       padding-left: 1.25em;
-      color: var(--color-fg);
+      color: var(--fg);
       font-family: var(--font-display);
       font-size: 1.2em;
       line-height: 1.5;
@@ -191,33 +271,33 @@
       margin: 0;
     }
     & :not(pre) > code {
-      border: 1px solid var(--color-line);
+      border: 1px solid var(--line);
       border-radius: 0.375rem;
-      background: var(--color-ink-900);
+      background: var(--card);
       padding: 0.1em 0.35em;
-      color: var(--color-fg);
+      color: var(--fg);
       font-family: var(--font-mono);
       font-size: 0.85em;
     }
     & pre {
       overflow-x: auto;
-      border: 1px solid var(--color-line);
+      border: 1px solid var(--line);
       border-radius: 0.75rem;
-      background: var(--color-ink-900);
+      background: var(--card);
       padding: 1.1em 1.25em;
       font-family: var(--font-mono);
       font-size: 0.875rem;
       line-height: 1.7;
     }
     & img {
-      border: 1px solid var(--color-line);
+      border: 1px solid var(--line);
       border-radius: 1rem;
       width: 100%;
       height: auto;
     }
     & hr {
       margin-block: 3em;
-      border-color: var(--color-line);
+      border-color: var(--line);
     }
   }
 }

@@ -46,7 +46,7 @@ export function ContactChannels() {
             <li>
               <a href={`mailto:${email}`} className={rowClass}>
                 <span className="flex items-center gap-3">
-                  <Mail aria-hidden="true" className="size-5 text-brand-400" strokeWidth={1.75} />
+                  <Mail aria-hidden="true" className="size-5 text-accent" strokeWidth={1.75} />
                   <span>
                     <span className="block font-mono text-xs text-subtle">Email</span>
                     <span className="break-all text-fg">{email}</span>
@@ -60,7 +60,7 @@ export function ContactChannels() {
             <li>
               <a href={whatsapp} target="_blank" rel="noopener noreferrer" className={rowClass}>
                 <span className="flex items-center gap-3">
-                  <MessageCircle aria-hidden="true" className="size-5 text-brand-400" strokeWidth={1.75} />
+                  <MessageCircle aria-hidden="true" className="size-5 text-accent" strokeWidth={1.75} />
                   <span>
                     <span className="block font-mono text-xs text-subtle">WhatsApp</span>
                     <span className="text-fg">Écrire sur WhatsApp</span>

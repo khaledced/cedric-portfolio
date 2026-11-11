@@ -11,17 +11,21 @@ interface LogoProps {
   className?: string
 }
 
-/** Logo complet (symbole + « Cédric Sawadogo ») — conçu pour fond sombre */
+/**
+ * Logo complet (symbole + « Cédric Sawadogo »), en deux versions selon le thème :
+ * - logo-full-light.svg : lettres bleu nuit, pour fond clair (thème par défaut) ;
+ * - logo-full.svg       : lettres blanches (fichier d'origine), pour fond sombre.
+ * Seule la couleur des lettres change ; le symbole reste blanc dans son carré bleu.
+ * Les deux images sont présentes, le CSS affiche celle qui correspond au thème actif
+ * (pas de clignotement au chargement, même si le thème sombre est mémorisé).
+ */
 export function LogoFull({ className }: LogoProps) {
+  const common = { alt: 'Cédric Sawadogo', width: 438, height: 150, decoding: 'async' as const }
   return (
-    <img
-      src="/logo/logo-full.svg"
-      alt="Cédric Sawadogo"
-      width={438}
-      height={150}
-      className={cn('h-9 w-auto', className)}
-      decoding="async"
-    />
+    <>
+      <img src="/logo/logo-full-light.svg" {...common} className={cn('w-auto dark:hidden', className ?? 'h-9')} />
+      <img src="/logo/logo-full.svg" {...common} className={cn('hidden w-auto dark:block', className ?? 'h-9')} />
+    </>
   )
 }
 
