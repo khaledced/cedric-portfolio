@@ -17,6 +17,12 @@ export const siteConfig = {
   /** URL publique du site, à renseigner après le premier déploiement Vercel (ex. https://xxx.vercel.app) */
   url: '',
 
+  /**
+   * Photo professionnelle du Hero, placée dans public/images/ (ex. '/images/cedric.webp').
+   * Laisser vide pour afficher le cadre provisoire.
+   */
+  photo: '',
+
   /** Indicateur de disponibilité affiché dans le Hero. À CONFIRMER par Cédric. */
   availability: {
     show: true,

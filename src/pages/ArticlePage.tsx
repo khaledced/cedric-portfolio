@@ -13,7 +13,7 @@ export default function ArticlePage() {
   const { Content } = article
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-24 sm:px-6">
+    <article className="mx-auto max-w-3xl px-4 pt-32 pb-24 sm:px-6 md:pt-40">
       <Seo title={article.title} description={article.description} />
       <p className="font-mono text-xs text-subtle">
         {article.category} · {article.date} · {article.readingTime} min de lecture
