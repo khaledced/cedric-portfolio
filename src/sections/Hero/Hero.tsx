@@ -1,6 +1,9 @@
 import type { CSSProperties } from 'react'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
+import { RiseText } from '@/components/ui/RiseText'
+import { TypeRotator } from '@/components/ui/TypeRotator'
+import { siteConfig } from '@/config/site'
 import { DigitalNetwork } from './DigitalNetwork'
 import { HeroPortrait } from './HeroPortrait'
 
@@ -19,7 +22,7 @@ function Ellipsis() {
         <span
           key={i}
           className="opacity-0 [animation:dot-in_0.4s_ease-out_forwards]"
-          style={{ animationDelay: `${0.9 + i * 0.25}s` }}
+          style={{ animationDelay: `${1.2 + i * 0.25}s` }}
         >
           .
         </span>
@@ -40,15 +43,34 @@ export function Hero() {
             <AvailabilityBadge />
           </div>
 
-          <h1
-            id="hero-title"
-            className="animate-enter mt-7 font-display text-[2.6rem] leading-[1.02] font-medium tracking-[-0.035em] text-balance sm:text-6xl lg:text-7xl xl:text-[5.25rem]"
-            style={enter(0.12)}
-          >
-            Cédric Sawadogo, ingénieur informatique
-            <Ellipsis />
-            <span className="sr-only">…</span>{' '}
-            <span className="text-subtle">mais pas que.</span>
+          {/*
+            Titre en trois lignes. Tailles en « cqi » (% de la largeur de la colonne, via @container) :
+            chaque ligne s'adapte à la place disponible et ne passe jamais à la ligne.
+            Largeurs réelles mesurées à l'écran : « Cédric Sawadogo, » ≈ 8,6 em ; « ingénieur informatique… » ≈ 11,6 em (marge de 3 %).
+          */}
+          <h1 id="hero-title" className="@container mt-7 font-display font-medium tracking-[-0.035em]">
+            {/* Version lue par les lecteurs d'écran et les moteurs de recherche */}
+            <span className="sr-only">
+              {siteConfig.name}, ingénieur informatique… {siteConfig.heroRoles[0]} {siteConfig.heroRoles.slice(1).join(', ')}.
+            </span>
+
+            <RiseText text={`${siteConfig.name},`} className="block text-[11.2cqi] leading-[1.08] whitespace-nowrap" />
+
+            <span
+              aria-hidden="true"
+              className="animate-enter mt-[0.15em] block text-[8.3cqi] leading-[1.15] whitespace-nowrap"
+              style={enter(0.6)}
+            >
+              ingénieur informatique
+              <Ellipsis />
+            </span>
+
+            <span className="animate-enter block" style={enter(0.85)}>
+              <TypeRotator
+                phrases={siteConfig.heroRoles}
+                className="text-[8.3cqi] leading-[1.15] whitespace-nowrap text-accent"
+              />
+            </span>
           </h1>
 
           <p
