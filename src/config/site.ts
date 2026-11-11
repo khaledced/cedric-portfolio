@@ -13,10 +13,10 @@ export const siteConfig = {
   tagline: 'Ingénieur informatique… mais pas que.',
 
   /**
-   * Phrases du titre de l'accueil qui s'écrivent tour à tour après « ingénieur informatique… »
+   * Phrases du titre de l'accueil qui s'écrivent tour à tour après « Ingénieur Informatique… »
    * (effet machine à écrire). La première est celle affichée au chargement.
    */
-  heroRoles: ['mais pas que.', 'designer graphic', 'content creator', 'digital manager'],
+  heroRoles: ['mais pas que.', 'Digital Manager', 'Graphic Designer', 'Content Creator'],
   description:
     'Technologie, digital et créativité : je conçois des solutions, accompagne les transformations et donne vie aux idées.',
 
