@@ -29,7 +29,7 @@ export function Footer() {
         </div>
 
         <nav aria-label="Pied de page" className="md:col-span-3">
-          <p className="font-mono text-xs text-subtle">Navigation</p>
+          <p className="label-mono text-xs text-subtle">Navigation</p>
           <ul className="mt-4 space-y-2.5 text-sm">
             {[...navItems, contactItem].map((item) => (
               <li key={item.to}>
@@ -42,7 +42,7 @@ export function Footer() {
         </nav>
 
         <div className="md:col-span-4">
-          <p className="font-mono text-xs text-subtle">Me retrouver</p>
+          <p className="label-mono text-xs text-subtle">Me retrouver</p>
           {socials.length > 0 || siteConfig.contact.email ? (
             <ul className="mt-4 space-y-2.5 text-sm">
               {siteConfig.contact.email && (
@@ -72,7 +72,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-line">
-        <p className="container-page py-6 font-mono text-xs text-subtle">
+        <p className="container-page py-6 label-mono text-xs text-subtle">
           © {CURRENT_YEAR} {siteConfig.name}
         </p>
       </div>

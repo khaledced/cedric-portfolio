@@ -31,7 +31,7 @@ export function HeroPortrait() {
           />
         ) : (
           <div className="flex size-full flex-col items-center justify-center gap-3 p-8 text-center">
-            <span className="font-mono text-xs tracking-wider text-subtle uppercase">Contenu provisoire</span>
+            <span className="label-mono text-xs text-subtle">Contenu provisoire</span>
             <span className="text-sm text-muted">Photo professionnelle à venir</span>
           </div>
         )}
@@ -44,7 +44,7 @@ export function HeroPortrait() {
       </div>
 
       {/* Étiquette éditoriale */}
-      <p className="absolute top-6 -left-3 rounded-lg border border-line bg-page/90 px-3 py-2 font-mono text-[11px] text-muted backdrop-blur sm:-left-6">
+      <p className="absolute top-6 -left-3 rounded-lg border border-line bg-page/90 px-3 py-2 label-mono text-[11px] text-muted backdrop-blur sm:-left-6">
         Tech <span className="text-accent">·</span> Digital <span className="text-accent">·</span> Création
       </p>
     </div>

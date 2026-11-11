@@ -9,7 +9,7 @@ export function AvailabilityBadge({ className }: { className?: string }) {
   return (
     <p
       className={cn(
-        'inline-flex items-center gap-2.5 rounded-full border border-line bg-card/60 px-3.5 py-1.5 font-mono text-xs text-muted',
+        'inline-flex items-center gap-2.5 rounded-full border border-line bg-card/60 px-3.5 py-1.5 label-mono text-xs text-muted',
         className,
       )}
     >

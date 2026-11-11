@@ -22,7 +22,7 @@ export function ExpertiseStrip() {
                 className="group flex h-full flex-col gap-5 px-1 py-8 transition-colors duration-300 sm:px-6 lg:py-10"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="label-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
                   <ArrowUpRight
                     aria-hidden="true"
                     className="size-4 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"

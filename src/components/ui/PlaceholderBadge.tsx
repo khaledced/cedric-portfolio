@@ -9,7 +9,7 @@ export function PlaceholderBadge({ show = true, className }: { show?: boolean; c
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-md border border-dashed border-warn/40 px-1.5 py-0.5 font-mono text-[10px] tracking-wider text-warn uppercase',
+        'inline-flex items-center rounded-md border border-dashed border-warn/40 px-1.5 py-0.5 label-mono text-[10px] text-warn',
         className,
       )}
     >

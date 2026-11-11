@@ -37,7 +37,7 @@ export function ButtonLink({ to, children, variant = 'primary', size = 'md', arr
     <Link
       to={to}
       className={cn(
-        'group inline-flex items-center justify-center gap-2 rounded-xl text-sm font-medium transition-colors duration-200',
+        'group inline-flex items-center justify-center gap-2 rounded-xl label-mono text-xs transition-colors duration-200',
         sizes[size],
         variants[variant],
         className,
