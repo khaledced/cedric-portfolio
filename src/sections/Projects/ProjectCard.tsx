@@ -10,10 +10,10 @@ export function ProjectCard({ project }: { project: Project }) {
     <article className="group relative flex h-full flex-col">
       <Visual
         image={project.cover}
-        className="aspect-[16/10] transition-colors duration-300 group-hover:border-brand-400/40 [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03]"
+        className="aspect-[16/10] transition-colors duration-300 group-hover:border-accent/40 [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03]"
       />
       <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-subtle">
-        <span className="text-brand-400">{projectCategories[project.category]}</span>
+        <span className="text-accent">{projectCategories[project.category]}</span>
         <span aria-hidden="true">·</span>
         <span>{project.year}</span>
         <PlaceholderBadge show={project.placeholder} />
@@ -25,7 +25,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </Link>
         <ArrowUpRight
           aria-hidden="true"
-          className="mt-1 size-4 shrink-0 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-400"
+          className="mt-1 size-4 shrink-0 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
         />
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted">{project.summary}</p>

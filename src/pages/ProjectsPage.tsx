@@ -65,12 +65,12 @@ export default function ProjectsPage() {
                   className={cn(
                     'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors',
                     isActive
-                      ? 'border-brand-500 bg-brand-500 text-white'
-                      : 'border-line text-muted hover:border-brand-400/50 hover:text-fg',
+                      ? 'border-primary bg-primary text-on-primary'
+                      : 'border-line text-muted hover:border-accent/50 hover:text-fg',
                   )}
                 >
                   {f.label}
-                  <span className={cn('font-mono text-xs', isActive ? 'text-brand-200' : 'text-subtle')}>{f.count}</span>
+                  <span className={cn('font-mono text-xs', isActive ? 'text-on-primary/75' : 'text-subtle')}>{f.count}</span>
                 </button>
               )
             })}

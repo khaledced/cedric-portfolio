@@ -19,7 +19,7 @@ export function Certifications() {
           {certifications.map((c, i) => (
             <li key={`${c.name}-${i}`}>
               <Reveal delay={i * 0.05} className="flex flex-col gap-2 py-5 sm:flex-row sm:items-center sm:gap-6">
-                <span className="w-16 shrink-0 font-mono text-xs text-brand-400">{c.year}</span>
+                <span className="w-16 shrink-0 font-mono text-xs text-accent">{c.year}</span>
                 <div className="flex-1">
                   <p className="flex flex-wrap items-center gap-2 font-medium">
                     {c.name}

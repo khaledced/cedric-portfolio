@@ -27,17 +27,17 @@ export function ServicesPreview() {
           {services.map((s, i) => {
             const Icon = s.icon
             return (
-              <li key={s.slug} className="bg-ink-950">
+              <li key={s.slug} className="bg-page">
                 <Reveal delay={(i % 3) * 0.06} className="h-full">
                   <Link
                     to={`/services#${s.slug}`}
-                    className="group flex h-full flex-col p-6 transition-colors duration-300 hover:bg-ink-900 sm:p-8"
+                    className="group flex h-full flex-col p-6 transition-colors duration-300 hover:bg-card sm:p-8"
                   >
                     <div className="flex items-start justify-between">
-                      <Icon aria-hidden="true" className="size-6 text-brand-400" strokeWidth={1.75} />
+                      <Icon aria-hidden="true" className="size-6 text-accent" strokeWidth={1.75} />
                       <ArrowUpRight
                         aria-hidden="true"
-                        className="size-4 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-400"
+                        className="size-4 text-subtle transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
                       />
                     </div>
                     <h3 className="mt-8 text-lg font-medium tracking-tight">{s.title}</h3>

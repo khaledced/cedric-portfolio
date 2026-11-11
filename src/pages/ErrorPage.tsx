@@ -17,14 +17,14 @@ export default function ErrorPage() {
   return (
     <main className="container-page pt-36 pb-32 md:pt-44">
       <Seo title="Erreur" />
-      <p className="font-mono text-sm text-brand-400">Erreur inattendue</p>
+      <p className="font-mono text-sm text-accent">Erreur inattendue</p>
       <h1 className="mt-3 font-display text-4xl font-medium tracking-tight sm:text-6xl">
         Quelque chose s'est mal passé.
       </h1>
       <p className="mt-6 max-w-prose text-muted">Recharge la page ou reviens à l'accueil.</p>
       <Link
         to="/"
-        className="mt-10 inline-flex rounded-lg bg-brand-500 px-5 py-3 text-sm text-white transition-colors hover:bg-brand-700"
+        className="mt-10 inline-flex rounded-lg bg-primary px-5 py-3 text-sm text-on-primary transition-colors hover:bg-primary-hover"
       >
         Retour à l'accueil
       </Link>
