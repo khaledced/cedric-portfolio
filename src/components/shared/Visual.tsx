@@ -1,16 +1,21 @@
 import { ImageOff } from 'lucide-react'
-import type { ProjectImage } from '@/data/projects'
 import { cn } from '@/lib/cn'
 
-interface ProjectVisualProps {
-  image?: ProjectImage
+export interface VisualImage {
+  src: string
+  /** Description de l'image pour l'accessibilité et le référencement */
+  alt: string
+}
+
+interface VisualProps {
+  image?: VisualImage
   className?: string
   /** true pour l'image principale d'une page (chargée en priorité) */
   priority?: boolean
 }
 
-/** Visuel d'un projet, avec un cadre neutre tant qu'aucune image n'est fournie. */
-export function ProjectVisual({ image, className, priority = false }: ProjectVisualProps) {
+/** Visuel (projet, article…), avec un cadre neutre tant qu'aucune image n'est fournie. */
+export function Visual({ image, className, priority = false }: VisualProps) {
   return (
     <div className={cn('relative overflow-hidden rounded-2xl border border-line bg-ink-900', className)}>
       {image ? (

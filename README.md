@@ -49,15 +49,18 @@ title: "Titre de l'article"
 description: "Résumé en une phrase."
 date: "2026-11-11"
 category: "Intelligence artificielle"
-cover: "/images/articles/mon-article.jpg"
-draft: false
+cover: "/images/articles/mon-article.webp"
+coverAlt: "Description de l'image de couverture"
 ---
 
 Texte en **Markdown**…
 ```
 
 Catégories disponibles : voir `src/types/content.ts`. Le temps de lecture est calculé automatiquement.
-Un article avec `draft: true` n'est visible qu'en développement.
+Un modèle montrant toutes les mises en forme se trouve dans `src/content/articles/exemple-article.mdx`.
+
+Un article avec `draft: true` n'est visible qu'en développement : son contenu est entièrement
+retiré de la version de production (plugin `build/vite-plugin-drafts.ts`).
 
 ## Structure
 

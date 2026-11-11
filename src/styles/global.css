@@ -98,3 +98,110 @@
     }
   }
 }
+
+/*
+  Typographie des articles (contenu MDX).
+  Écrite à la main plutôt qu'avec le plugin @tailwindcss/typography :
+  quelques règles suffisent et restent alignées sur la charte du site.
+*/
+@layer components {
+  .prose-article {
+    color: var(--color-muted);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+
+    & > * + * {
+      margin-top: 1.25em;
+    }
+    & h2 {
+      margin-top: 2.2em;
+      color: var(--color-fg);
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    & h3 {
+      margin-top: 1.8em;
+      color: var(--color-fg);
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    & h2 + *,
+    & h3 + * {
+      margin-top: 0.75em;
+    }
+    & strong {
+      color: var(--color-fg);
+      font-weight: 600;
+    }
+    & a {
+      color: var(--color-brand-200);
+      text-decoration: underline;
+      text-decoration-color: color-mix(in srgb, var(--color-brand-400) 50%, transparent);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s;
+    }
+    & a:hover {
+      text-decoration-color: var(--color-brand-200);
+    }
+    & ul,
+    & ol {
+      padding-left: 1.4em;
+    }
+    & ul {
+      list-style: disc;
+    }
+    & ol {
+      list-style: decimal;
+    }
+    & li + li {
+      margin-top: 0.5em;
+    }
+    & li::marker {
+      color: var(--color-brand-400);
+    }
+    & blockquote {
+      border-left: 2px solid var(--color-brand-400);
+      padding-left: 1.25em;
+      color: var(--color-fg);
+      font-family: var(--font-display);
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+    & blockquote p {
+      margin: 0;
+    }
+    & :not(pre) > code {
+      border: 1px solid var(--color-line);
+      border-radius: 0.375rem;
+      background: var(--color-ink-900);
+      padding: 0.1em 0.35em;
+      color: var(--color-fg);
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+    }
+    & pre {
+      overflow-x: auto;
+      border: 1px solid var(--color-line);
+      border-radius: 0.75rem;
+      background: var(--color-ink-900);
+      padding: 1.1em 1.25em;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+    & img {
+      border: 1px solid var(--color-line);
+      border-radius: 1rem;
+      width: 100%;
+      height: auto;
+    }
+    & hr {
+      margin-block: 3em;
+      border-color: var(--color-line);
+    }
+  }
+}

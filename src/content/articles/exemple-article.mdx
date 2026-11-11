@@ -1,19 +1,43 @@
 ---
-title: "Article d'exemple (provisoire)"
-description: "Fichier de démonstration du système d'articles. À remplacer par un vrai article."
+title: "Modèle d'article (provisoire)"
+description: "Fichier de démonstration du système d'articles : il montre toutes les mises en forme disponibles. À remplacer par un vrai article."
 date: "2026-11-11"
 category: "Technologie & innovation"
 draft: true
 ---
 
-> **Contenu provisoire.** Ce fichier sert uniquement à vérifier que le système d'articles fonctionne.
-> Il est marqué `draft: true` : il est visible en développement mais **jamais publié en production**.
+> Ce fichier est un **modèle**. Il est marqué `draft: true` : visible en développement, jamais publié en production.
 
 ## Comment publier un article
 
 1. Crée un fichier `mon-article.mdx` dans `src/content/articles/`.
-2. Copie l'en-tête ci-dessus (entre les `---`) et adapte-le.
-3. Écris ton texte en Markdown.
-4. Mets `draft: false` (ou supprime la ligne) pour le publier.
+2. Copie l'en-tête ci-dessus (entre les deux lignes `---`) et adapte-le.
+3. Écris ton texte en Markdown, comme dans ce fichier.
+4. Supprime la ligne `draft: true` pour le publier.
 
-L'adresse de l'article sera automatiquement `/insights/mon-article`.
+L'adresse de l'article sera automatiquement `/insights/mon-article`. Le temps de lecture est calculé tout seul.
+
+## Les mises en forme disponibles
+
+Un paragraphe normal peut contenir du texte en **gras**, en *italique*, du `code en ligne` et [un lien vers un autre site](https://developer.mozilla.org/fr/).
+
+### Un sous-titre
+
+- Une liste à puces
+- Avec plusieurs éléments
+- Facile à lire
+
+Une citation se met en valeur ainsi :
+
+> Une idée forte, mise en avant au milieu du texte.
+
+Et un bloc de code :
+
+```bash
+npm run dev
+```
+
+---
+
+Pour ajouter une image, place-la dans `public/images/articles/` puis écris :
+`![Description de l'image](/images/articles/mon-image.webp)`
