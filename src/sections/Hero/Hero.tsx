@@ -46,12 +46,12 @@ export function Hero() {
           {/*
             Titre en trois lignes. Tailles en « cqi » (% de la largeur de la colonne, via @container) :
             chaque ligne s'adapte à la place disponible et ne passe jamais à la ligne.
-            Largeurs réelles mesurées en Archivo : « Cédric Sawadogo, » ≈ 8,9 em ; « ingénieur informatique… » ≈ 12 em (marge de 3 %).
+            Largeurs réelles mesurées en Archivo : « Cédric Sawadogo, » ≈ 8,9 em ; « Ingénieur Informatique… » ≈ 12 em (marge de 3 %).
           */}
           <h1 id="hero-title" className="@container mt-7 font-display font-extrabold tracking-[-0.035em]">
             {/* Version lue par les lecteurs d'écran et les moteurs de recherche */}
             <span className="sr-only">
-              {siteConfig.name}, ingénieur informatique… {siteConfig.heroRoles[0]} {siteConfig.heroRoles.slice(1).join(', ')}.
+              {siteConfig.name}, Ingénieur Informatique… {siteConfig.heroRoles[0]} {siteConfig.heroRoles.slice(1).join(', ')}.
             </span>
 
             <RiseText text={`${siteConfig.name},`} className="block text-[10.8cqi] leading-[1.02] font-black tracking-[-0.05em] whitespace-nowrap" />
@@ -61,7 +61,7 @@ export function Hero() {
               className="animate-enter mt-[0.15em] block text-[8cqi] leading-[1.15] whitespace-nowrap"
               style={enter(0.6)}
             >
-              ingénieur informatique
+              Ingénieur Informatique
               <Ellipsis />
             </span>
 
