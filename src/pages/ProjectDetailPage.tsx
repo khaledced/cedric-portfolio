@@ -5,6 +5,7 @@ import { Reveal } from '@/components/shared/Reveal'
 import { Seo } from '@/components/shared/Seo'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
 import { getProject, projectCategories, projects } from '@/data/projects'
+import { VideoGallery } from '@/components/shared/VideoGallery'
 import { Visual } from '@/components/shared/Visual'
 import NotFoundPage from './NotFoundPage'
 
@@ -17,6 +18,19 @@ export default function ProjectDetailPage() {
 
   const index = projects.indexOf(project)
   const next = projects[(index + 1) % projects.length]
+
+  const hasVideos = Boolean(project.videos && project.videos.length > 0)
+  const videoSection = hasVideos && (
+    <section aria-labelledby="videos-title">
+      <h2 id="videos-title" className="flex items-center gap-2 label-mono text-xs text-accent">
+        <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+        Vidéos
+      </h2>
+      <div className="mt-6">
+        <VideoGallery videos={project.videos ?? []} />
+      </div>
+    </section>
+  )
 
   const story = [
     { label: 'Contexte', text: project.context },
@@ -57,9 +71,19 @@ export default function ProjectDetailPage() {
           </Reveal>
         </header>
 
-        <Reveal delay={0.1} className="container-page mt-14">
-          <Visual image={project.cover} priority sizes="100vw" className="aspect-[16/9]" />
-        </Reveal>
+        {/* Sans image de couverture, les vidéos du projet prennent la place du visuel principal */}
+        {hasVideos && !project.cover ? (
+          <div className="container-page mt-10 md:mt-12">{videoSection}</div>
+        ) : (
+          <Reveal delay={0.1} className="container-page mt-10 md:mt-12">
+            <Visual
+              image={project.cover}
+              priority
+              sizes="(min-width: 1024px) 768px, 80vw"
+              className="aspect-[16/9] w-4/5 max-w-3xl sm:aspect-[2/1]"
+            />
+          </Reveal>
+        )}
 
         <div className="container-page grid gap-14 py-16 md:py-24 lg:grid-cols-12 lg:gap-16">
           {/* Fiche du projet */}
@@ -135,6 +159,8 @@ export default function ProjectDetailPage() {
             )}
           </div>
         </div>
+
+        {hasVideos && project.cover && <div className="container-page pb-24">{videoSection}</div>}
 
         {project.gallery && project.gallery.length > 0 && (
           <section aria-label="Galerie" className="container-page grid gap-6 pb-24 md:grid-cols-2">

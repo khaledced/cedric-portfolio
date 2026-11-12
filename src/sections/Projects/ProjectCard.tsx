@@ -2,7 +2,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router'
 import { Visual } from '@/components/shared/Visual'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
-import { projectCategories, type Project } from '@/data/projects'
+import { getProjectCover, projectCategories, type Project } from '@/data/projects'
 import { cn } from '@/lib/cn'
 
 interface ProjectCardProps {
@@ -27,7 +27,7 @@ export function ProjectCard({ project, compact = false }: ProjectCardProps) {
         )}
       >
         <Visual
-          image={project.cover}
+          image={getProjectCover(project)}
           sizes={compact ? '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw' : undefined}
           className={cn(
             'transition-colors duration-300 group-hover:border-accent/40',

@@ -8,11 +8,16 @@
  * ex. cover: '/images/projects/mon-projet/cover.webp'
  * Format conseillé : WebP, 1600 px de large maximum.
  *
+ * Vidéos : ne pas les mettre dans le site. Les publier sur YouTube et coller le lien
+ * dans `videos` : seule la miniature est affichée, le clic ouvre la vidéo sur YouTube.
+ *
  * Règle : aucun projet, résultat ou lien inventé. Les projets marqués
  * `placeholder: true` sont des exemples de structure, à remplacer ou supprimer.
  */
 
+import type { ProjectVideo } from '@/components/shared/VideoGallery'
 import type { VisualImage } from '@/components/shared/Visual'
+import { youtubeId, youtubeThumbnail } from '@/lib/url'
 
 /** Catégories = mêmes identifiants que les services (src/data/services.ts) */
 export const projectCategories = {
@@ -46,6 +51,8 @@ export interface Project {
   results?: string[]
   cover?: ProjectImage
   gallery?: ProjectImage[]
+  /** Suite de vidéos hébergées sur YouTube (aperçu sur le site, lecture sur YouTube) */
+  videos?: ProjectVideo[]
   /** Lien public vers le projet, s'il existe */
   url?: string
   /** Mis en avant sur la page d'accueil */
@@ -129,20 +136,53 @@ export const projects: Project[] = [
     ],
   },
   {
+    // Liens et lieux fournis par Cédric. À compléter : année, besoin, réalisation, rôle et outils.
     placeholder: true,
-    slug: 'exemple-digitalisation',
-    name: '[Projet exemple — Digitalisation]',
-    category: 'digitalisation',
+    slug: 'creations-video',
+    name: 'Vidéos publicitaires pour l’hôtellerie et la restauration',
+    category: 'communication-digitale',
     year: '[Année]',
-    summary: '[Une phrase qui résume le projet et son intérêt.]',
-    context: '[Pour qui ? Dans quelle situation ?]',
-    problem: '[Quel était le besoin ?]',
-    solution: '[Qu’as-tu mis en place ?]',
-    role: '[Ton rôle exact.]',
-    tools: ['[Outil 1]', '[Outil 2]'],
+    summary:
+      'Des vidéos courtes au format vertical pour trois établissements de Ouagadougou et de ses environs : un espace détente, un restaurant et un hôtel.',
+    context:
+      'Trois établissements du Burkina Faso : l’espace détente Lagon Lodge à Loumbila, le restaurant Melina Food et l’hôtel Zind Naaba, tous deux à Ouaga 2000. Les vidéos sont publiées au format Shorts sur YouTube.',
+    problem: '[Quel était le besoin de chaque client : faire connaître le lieu, attirer de nouveaux clients, couvrir un événement… ?]',
+    solution: '[Comment as-tu réalisé ces vidéos : préparation, tournage, montage, diffusion ?]',
+    role: '[Ton rôle exact : écriture, tournage, montage…]',
+    tools: ['[Logiciel de montage]', '[Autre outil]'],
+    videos: [
+      {
+        featured: true,
+        title: 'Lagon Lodge',
+        description: 'Espace détente · Loumbila',
+        url: 'https://www.youtube.com/shorts/geLfGMCugsM',
+      },
+      {
+        title: 'Melina Food',
+        description: 'Vidéo publicitaire pour le restaurant · Ouaga 2000',
+        url: 'https://www.youtube.com/shorts/3zRoFtHRGP4',
+      },
+      {
+        title: 'Cocktail dînatoire à l’hôtel Zind Naaba',
+        description: 'Hôtel Zind Naaba · Ouaga 2000',
+        url: 'https://www.youtube.com/shorts/GGuqCGFukpo',
+      },
+    ],
   },
 ]
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug)
+}
+
+/**
+ * Visuel d'aperçu du projet (cartes) : son image de couverture, sinon la miniature
+ * de sa vidéo à la une (ou de sa première vidéo), hébergée par YouTube.
+ */
+export function getProjectCover(project: Project): ProjectImage | undefined {
+  if (project.cover) return project.cover
+  const video = project.videos?.find((v) => v.featured) ?? project.videos?.[0]
+  const id = video && youtubeId(video.url)
+  if (!video || !id) return undefined
+  return { src: youtubeThumbnail(id, 'landscape'), alt: `Aperçu de la vidéo « ${video.title} »` }
 }
