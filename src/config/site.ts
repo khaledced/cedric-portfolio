@@ -36,6 +36,18 @@ export const siteConfig = {
     alt: 'Cédric Sawadogo prenant la parole, micro en main, lors d’un événement',
   },
 
+  /**
+   * Photo principale de la page À propos (format 4:5), dans public/images/.
+   * Générée avec : npm run image -- image/cedric.jpg public/images/cedric-portrait --crop 0,40,960,1200 --widths 600,960
+   */
+  aboutPhoto: {
+    src: '/images/cedric-portrait-960.webp',
+    srcSet: '/images/cedric-portrait-600.webp 600w, /images/cedric-portrait-960.webp 960w',
+    width: 960,
+    height: 1200,
+    alt: 'Portrait de Cédric Sawadogo',
+  },
+
   /** Indicateur de disponibilité affiché dans le Hero. À CONFIRMER par Cédric. */
   availability: {
     show: true,

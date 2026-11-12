@@ -2,7 +2,6 @@ import { Link } from 'react-router'
 import { CtaBand } from '@/components/shared/CtaBand'
 import { Reveal } from '@/components/shared/Reveal'
 import { Seo } from '@/components/shared/Seo'
-import { SectionHeading } from '@/components/ui/SectionHeading'
 import { services } from '@/data/services'
 import { ServiceDetail } from '@/sections/Services/ServiceDetail'
 
@@ -16,17 +15,21 @@ export default function ServicesPage() {
 
       <section aria-labelledby="services-title" className="container-page pt-32 pb-10 md:pt-44 md:pb-14">
         <Reveal>
-          <SectionHeading
-            as="h1"
+          <p className="flex items-center gap-2 label-mono text-xs text-accent">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+            Domaines d’intervention
+          </p>
+          {/* Titre court et très grand : il occupe toute la largeur, comme une affiche */}
+          <h1
             id="services-title"
-            label="Services"
-            title="Six domaines d’intervention, une même logique : des solutions utiles et durables."
+            className="mt-4 font-display text-[clamp(3.25rem,13vw,10.5rem)] leading-[0.9] font-black tracking-[-0.05em] uppercase"
           >
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-              Chaque besoin est différent. Ces domaines peuvent être sollicités séparément ou combinés au sein
-              d’un même projet.
-            </p>
-          </SectionHeading>
+            Services
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">
+            Chaque besoin est différent. Ces domaines peuvent être sollicités séparément ou combinés au sein
+            d’un même projet.
+          </p>
         </Reveal>
 
         {/* Sommaire : accès direct à chaque service */}
