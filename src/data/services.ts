@@ -4,8 +4,9 @@ import { CodeXml, GraduationCap, Megaphone, Network, Palette, Workflow } from 'l
 /**
  * SERVICES
  * --------
- * Les six titres viennent du brief de Cédric. Les descriptions et besoins sont des
- * propositions de texte (placeholder: true) à valider ou réécrire.
+ * Les six titres viennent du brief de Cédric ; les descriptions ont été validées par Cédric.
+ * Seuls le titre et la description (summary) sont affichés sur le site ; `needs` et
+ * `deliverables` sont conservés ici mais ne s'affichent plus.
  *
  * `deliverables` (prestations) : volontairement vides de contenu inventé.
  * Les exemples en commentaire sont seulement des pistes de réflexion — ils ne s'affichent pas.
@@ -31,7 +32,6 @@ export const services: Service[] = [
     slug: 'digitalisation',
     title: 'Digitalisation et transformation numérique',
     icon: Workflow,
-    placeholder: true,
     summary:
       'Aider une organisation à passer de processus manuels à des outils numériques adaptés à sa réalité, sans complexité inutile.',
     needs: [
@@ -46,7 +46,6 @@ export const services: Service[] = [
     slug: 'communication-digitale',
     title: 'Communication digitale',
     icon: Megaphone,
-    placeholder: true,
     summary:
       'Construire une présence en ligne cohérente et régulière, au service d’objectifs clairs.',
     needs: [
@@ -61,7 +60,6 @@ export const services: Service[] = [
     slug: 'branding',
     title: 'Identité visuelle et branding',
     icon: Palette,
-    placeholder: true,
     summary:
       'Donner à une marque, un projet ou une personne une image reconnaissable et cohérente sur tous ses supports.',
     needs: [
@@ -76,7 +74,6 @@ export const services: Service[] = [
     slug: 'developpement-web',
     title: 'Développement web',
     icon: CodeXml,
-    placeholder: true,
     summary:
       'Concevoir des sites et applications web rapides, accessibles et faciles à faire évoluer.',
     needs: [
@@ -91,7 +88,6 @@ export const services: Service[] = [
     slug: 'reseaux-systemes',
     title: 'Réseaux et systèmes informatiques',
     icon: Network,
-    placeholder: true,
     summary:
       'Mettre en place et maintenir une infrastructure informatique fiable, adaptée à la taille de la structure.',
     needs: [
@@ -106,7 +102,6 @@ export const services: Service[] = [
     slug: 'formation',
     title: 'Accompagnement et formation',
     icon: GraduationCap,
-    placeholder: true,
     summary:
       'Transmettre les compétences nécessaires pour que les équipes gagnent en autonomie avec leurs outils.',
     needs: [
