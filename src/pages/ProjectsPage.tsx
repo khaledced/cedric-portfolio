@@ -1,5 +1,5 @@
 import { useIsClient } from '@/hooks/useIsClient'
-import { AnimatePresence, m } from 'motion/react'
+import { AnimatePresence, LazyMotion, m, MotionConfig } from 'motion/react'
 import { useSearchParams } from 'react-router'
 import { CtaBand } from '@/components/shared/CtaBand'
 import { Reveal } from '@/components/shared/Reveal'
@@ -8,6 +8,9 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { projectCategories, projects, type ProjectCategory } from '@/data/projects'
 import { cn } from '@/lib/cn'
 import { ProjectCard } from '@/sections/Projects/ProjectCard'
+
+/** Fonctions d'animation du filtre, téléchargées à part (voir src/lib/motion-features.ts) */
+const loadMotionFeatures = () => import('@/lib/motion-features').then((mod) => mod.default)
 
 /** Seules les catégories qui contiennent au moins un projet apparaissent dans le filtre. */
 const usedCategories = (Object.keys(projectCategories) as ProjectCategory[]).filter((c) =>
@@ -37,7 +40,8 @@ export default function ProjectsPage() {
   ]
 
   return (
-    <>
+    <LazyMotion features={loadMotionFeatures} strict>
+      <MotionConfig reducedMotion="user">
       <Seo
         title="Projets"
         description="Réalisations de Cédric Sawadogo : développement web, identité visuelle, digitalisation, communication et réseaux."
@@ -101,6 +105,7 @@ export default function ProjectsPage() {
       </section>
 
       <CtaBand title="Vous avez un projet similaire ?" text="Parlons de votre contexte et de vos objectifs." hideProjectsLink />
-    </>
+      </MotionConfig>
+    </LazyMotion>
   )
 }

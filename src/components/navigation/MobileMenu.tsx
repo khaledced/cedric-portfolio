@@ -1,5 +1,4 @@
-import { useEffect, useRef, type RefObject } from 'react'
-import { AnimatePresence, m } from 'motion/react'
+import { useEffect, useRef, useState, type RefObject } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { NavLink } from 'react-router'
 import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
@@ -21,9 +20,23 @@ const allItems = [{ to: '/', label: 'Accueil' }, ...navItems, contactItem]
  * Menu plein écran pour mobile et tablette.
  * Accessibilité : fermeture avec Échap, focus placé sur le premier lien à l'ouverture,
  * reste de la page rendu inerte (voir RootLayout) et défilement bloqué.
+ * Animations en CSS pur (voir .menu-* dans global.css) : aucune bibliothèque à charger.
  */
+
+/** Durée du fondu de fermeture (doit correspondre à .menu-closing dans global.css) */
+const CLOSE_DURATION = 180
 export function MobileMenu({ id, open, onClose, returnFocusRef }: MobileMenuProps) {
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
+  // Le menu reste affiché le temps du fondu de fermeture
+  const [shown, setShown] = useState(open)
+  if (open && !shown) setShown(true)
+  const closing = !open && shown
+
+  useEffect(() => {
+    if (!closing) return
+    const timer = window.setTimeout(() => setShown(false), CLOSE_DURATION)
+    return () => window.clearTimeout(timer)
+  }, [closing])
 
   useEffect(() => {
     if (!open) return
@@ -40,26 +53,18 @@ export function MobileMenu({ id, open, onClose, returnFocusRef }: MobileMenuProp
   }, [open, onClose, returnFocusRef])
 
   return (
-    <AnimatePresence>
-      {open && (
-        <m.div
+    shown && (
+        <div
           id={id}
-          key="mobile-menu"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col overflow-y-auto bg-page md:hidden"
+          className={cn(
+            'menu-panel fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col overflow-y-auto bg-page md:hidden',
+            closing && 'menu-closing',
+          )}
         >
           <nav aria-label="Navigation mobile" className="container-page flex-1 pt-6">
             <ul className="divide-y divide-line border-y border-line">
               {allItems.map((item, i) => (
-                <m.li
-                  key={item.to}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: 0.04 * i, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <li key={item.to} className="menu-item" style={{ animationDelay: `${0.04 * i}s` }}>
                   <NavLink
                     ref={i === 0 ? firstLinkRef : undefined}
                     to={item.to}
@@ -81,7 +86,7 @@ export function MobileMenu({ id, open, onClose, returnFocusRef }: MobileMenuProp
                       </>
                     )}
                   </NavLink>
-                </m.li>
+                </li>
               ))}
             </ul>
           </nav>
@@ -98,8 +103,7 @@ export function MobileMenu({ id, open, onClose, returnFocusRef }: MobileMenuProp
               </a>
             )}
           </div>
-        </m.div>
-      )}
-    </AnimatePresence>
+        </div>
+      )
   )
 }
