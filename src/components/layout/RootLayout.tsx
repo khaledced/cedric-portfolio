@@ -15,12 +15,15 @@ export function RootLayout() {
     <div className="flex min-h-dvh flex-col">
       <a
         href="#contenu"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
+        className="sr-only print:hidden focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
       >
         Aller au contenu
       </a>
 
-      <Header menuOpen={menuOpen} onToggleMenu={toggleMenu} onCloseMenu={closeMenu} />
+      {/* En-tête et pied de page masqués à l'impression (PDF des articles) */}
+      <div className="print:hidden">
+        <Header menuOpen={menuOpen} onToggleMenu={toggleMenu} onCloseMenu={closeMenu} />
+      </div>
 
       {/* Quand le menu mobile est ouvert, le reste de la page devient inerte (ni clic, ni focus clavier) */}
       <main id="contenu" className="flex-1" inert={menuOpen}>
@@ -29,7 +32,7 @@ export function RootLayout() {
         </Suspense>
       </main>
 
-      <div inert={menuOpen}>
+      <div inert={menuOpen} className="print:hidden">
         <Footer />
       </div>
 

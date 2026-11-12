@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react'
+import type { MDXContent } from 'mdx/types'
 import {
   articleCategories,
   type Article,
@@ -17,13 +17,24 @@ import {
  */
 
 type MdxModule = {
-  default: ComponentType
+  default: MDXContent
   frontmatter: Omit<Article, 'slug'>
 }
 
 const modules = import.meta.glob<MdxModule>('/src/content/articles/*.mdx', { eager: true })
 
-type ArticleEntry = Article & { Content: ComponentType }
+/*
+  Version PDF des articles (générée avec `npm run pdf`, voir scripts/article-pdf.mjs).
+  Un fichier src/content/articles/pdf/<slug>.pdf est détecté automatiquement :
+  le bouton « Télécharger le PDF » n'apparaît que si le fichier existe.
+*/
+const pdfFiles = import.meta.glob<string>('/src/content/articles/pdf/*.pdf', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
+type ArticleEntry = Article & { Content: MDXContent; pdfUrl?: string }
 
 const allArticles: ArticleEntry[] = Object.entries(modules)
   .map(([path, mod]) => ({
@@ -31,12 +42,16 @@ const allArticles: ArticleEntry[] = Object.entries(modules)
     slug: path.split('/').pop()!.replace(/\.mdx$/, ''),
     Content: mod.default,
   }))
+  .map((a) => {
+    const pdfUrl = pdfFiles[`/src/content/articles/pdf/${a.slug}.pdf`]
+    return { ...a, pdfUrl, hasPdf: Boolean(pdfUrl) }
+  })
   // Les brouillons ne sont visibles qu'en développement, jamais en production
   .filter((a) => !a.draft || import.meta.env.DEV)
   .sort((a, b) => b.date.localeCompare(a.date))
 
 export function getArticles(): Article[] {
-  return allArticles.map(({ Content: _content, ...meta }) => meta)
+  return allArticles.map(({ Content: _content, pdfUrl: _pdf, ...meta }) => meta)
 }
 
 export function getArticle(slug: string): ArticleEntry | undefined {
