@@ -56,7 +56,6 @@ export const story = {
   paragraphs: [
     "Je m'appelle Cédric Sawadogo. Mon socle, c'est l'ingénierie informatique : comprendre les systèmes, les réseaux et la manière dont la technologie peut résoudre des problèmes concrets.",
     "Mais je n'ai jamais voulu m'arrêter à la technique. Au fil de mon parcours, je me suis intéressé à ce qui se passe autour : la communication, l'image, la stratégie digitale et l'accompagnement des personnes qui doivent s'approprier ces outils.",
-    "[À compléter : ton histoire en quelques phrases — ce qui t'a amené ici, ce qui te motive, ce que tu cherches à construire.]",
   ],
 }
 
@@ -64,58 +63,21 @@ export const vision = {
   placeholder: true,
   statement:
     'La technologie n’a de valeur que si elle est comprise, adoptée et utile à ceux qui s’en servent.',
-  principles: [
-    {
-      title: 'Comprendre avant de construire',
-      text: '[À compléter : comment tu abordes un nouveau projet ou une nouvelle organisation.]',
-    },
-    {
-      title: 'Relier la technique et l’humain',
-      text: '[À compléter : ta manière de faire le lien entre solutions techniques, communication et usages.]',
-    },
-    {
-      title: 'Transmettre',
-      text: '[À compléter : ta vision de la formation et de l’accompagnement.]',
-    },
-  ],
+  /** Principes (titre + texte court). Liste vide = bloc masqué. */
+  principles: [] as Array<{ title: string; text: string }>,
 }
 
 /* ------------------------------------------------------------------ */
 /* Parcours                                                           */
 /* ------------------------------------------------------------------ */
 
-export const education: TimelineEntry[] = [
-  {
-    placeholder: true,
-    period: '[Années]',
-    title: '[Diplôme — ex. Diplôme d’ingénieur en informatique]',
-    organization: '[École / Université]',
-    description: '[Spécialité, mention ou projet marquant, en une phrase.]',
-  },
-  {
-    placeholder: true,
-    period: '[Années]',
-    title: '[Diplôme précédent]',
-    organization: '[Établissement]',
-  },
-]
+/*
+  Liste vide = section « Parcours » masquée. Exemple d'entrée :
+  { period: '2019 — 2024', title: 'Diplôme d’ingénieur en informatique', organization: 'École', description: '…' }
+*/
+export const education: TimelineEntry[] = []
 
-export const experience: TimelineEntry[] = [
-  {
-    placeholder: true,
-    period: '[Période]',
-    title: '[Poste]',
-    organization: '[Structure]',
-    description: '[Missions principales et réalisations concrètes, en une ou deux phrases.]',
-  },
-  {
-    placeholder: true,
-    period: '[Période]',
-    title: '[Poste]',
-    organization: '[Structure]',
-    description: '[Missions principales.]',
-  },
-]
+export const experience: TimelineEntry[] = []
 
 /* ------------------------------------------------------------------ */
 /* Compétences (domaines repris tels que définis par Cédric)          */
@@ -152,10 +114,8 @@ export const skillGroups: SkillGroup[] = [
 /* Certifications et formations complémentaires                       */
 /* ------------------------------------------------------------------ */
 
-export const certifications: Certification[] = [
-  { placeholder: true, name: '[Nom de la certification]', issuer: '[Organisme]', year: '[Année]' },
-  { placeholder: true, name: '[Nom de la formation]', issuer: '[Organisme]', year: '[Année]' },
-]
+/* Liste vide = section masquée. Exemple : { name: 'CCNA', issuer: 'Cisco', year: '2024', url: '…' } */
+export const certifications: Certification[] = []
 
 /* ------------------------------------------------------------------ */
 /* Chiffres clés — la section reste masquée tant que la liste est vide */
