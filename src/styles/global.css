@@ -155,6 +155,49 @@
 }
 
 /* Points de suspension signature : les trois points apparaissent l'un après l'autre */
+/*
+  Apparition au défilement (composant Reveal) : fondu + léger glissement, court et discret.
+  Les blocs ne sont masqués qu'après le chargement et seulement s'ils sont sous l'écran.
+*/
+.reveal {
+  transition:
+    opacity 0.45s ease-out,
+    translate 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-hidden {
+  opacity: 0;
+  translate: 0 14px;
+}
+@media print {
+  .reveal-hidden {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+}
+
+/* Menu mobile : fondu du panneau, puis apparition des liens en cascade (CSS pur) */
+.menu-panel {
+  animation: menu-fade-in 0.2s ease-out both;
+}
+.menu-closing {
+  opacity: 0;
+  transition: opacity 0.18s ease-in;
+}
+.menu-item {
+  animation: menu-item-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes menu-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+
 @keyframes dot-in {
   from {
     opacity: 0;

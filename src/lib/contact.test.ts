@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { validateContact, type ContactValues } from './contact'
+import { buildContactRequest, validateContact, type ContactValues } from './contact'
 
 const valid: ContactValues = {
   name: 'Awa Ouédraogo',
@@ -37,5 +37,32 @@ describe('validateContact', () => {
 
   it('refuse un message trop long', () => {
     expect(validateContact({ ...valid, message: 'a'.repeat(4001) }).message).toBeDefined()
+  })
+})
+
+describe('buildContactRequest', () => {
+  it('envoie par défaut à l’adresse du site via FormSubmit', () => {
+    const { url, body } = buildContactRequest(valid, { formsubmitTarget: 'moi@exemple.com' })
+    expect(url).toBe('https://formsubmit.co/ajax/moi%40exemple.com')
+    expect(body._subject).toBe('[Portfolio] Projet de site web')
+    // « Répondre » dans la messagerie répond à l’expéditeur
+    expect(body._replyto).toBe('awa@exemple.com')
+    expect(body.message).toBe(valid.message)
+    expect(body._honey).toBe('')
+  })
+
+  it('accepte l’identifiant aléatoire FormSubmit à la place de l’adresse', () => {
+    expect(buildContactRequest(valid, { formsubmitTarget: 'a1b2c3' }).url).toBe('https://formsubmit.co/ajax/a1b2c3')
+  })
+
+  it('utilise Web3Forms quand une clé est fournie', () => {
+    const { url, body } = buildContactRequest(valid, { web3formsKey: 'cle', formsubmitTarget: 'moi@exemple.com' })
+    expect(url).toBe('https://api.web3forms.com/submit')
+    expect(body.access_key).toBe('cle')
+  })
+
+  it('transmet le champ piège rempli par un robot', () => {
+    const { body } = buildContactRequest({ ...valid, botcheck: 'on' }, { formsubmitTarget: 'moi@exemple.com' })
+    expect(body._honey).toBe('on')
   })
 })
