@@ -83,7 +83,7 @@ export default function ProjectsPage() {
 
         <ul className="mt-10 grid gap-x-6 gap-y-6 sm:mt-12 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3">
           <AnimatePresence mode="popLayout" initial={false}>
-            {visible.map((project) => (
+            {visible.map((project, i) => (
               <m.li
                 key={project.slug}
                 initial={{ opacity: 0, y: 12 }}
@@ -91,7 +91,7 @@ export default function ProjectsPage() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} index={i} />
               </m.li>
             ))}
           </AnimatePresence>

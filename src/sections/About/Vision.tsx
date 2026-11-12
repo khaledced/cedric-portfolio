@@ -23,6 +23,7 @@ export function Vision() {
           </h2>
         </Reveal>
 
+        {vision.principles.length > 0 && (
         <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
           {vision.principles.map((p, i) => (
             <li key={p.title} className="bg-page">
@@ -34,6 +35,7 @@ export function Vision() {
             </li>
           ))}
         </ol>
+        )}
       </div>
     </section>
   )

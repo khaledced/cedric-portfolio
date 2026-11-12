@@ -1,12 +1,20 @@
 import { LogoMark } from '@/components/shared/Logo'
 import { siteConfig } from '@/config/site'
 
+interface Photo {
+  src: string
+  srcSet?: string
+  width: number
+  height: number
+  alt: string
+}
+
 /**
  * Cadre photo du Hero. Ses angles reprennent le carré arrondi du logo.
- * Tant que siteConfig.photo.src est vide, un cadre provisoire clairement identifié est affiché.
+ * Par défaut, la photo du Hero (siteConfig.photo) ; une autre photo peut être passée (ex. page À propos).
+ * Tant que la photo n'a pas de src, un cadre provisoire clairement identifié est affiché.
  */
-export function HeroPortrait() {
-  const { photo } = siteConfig
+export function HeroPortrait({ photo = siteConfig.photo }: { photo?: Photo }) {
   // Largeur plafonnée (format 4:5 conservé) : 320 px sur mobile, 384 px sur tablette, 400 px sur ordinateur
   return (
     <div className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:mr-0 lg:max-w-[400px]">

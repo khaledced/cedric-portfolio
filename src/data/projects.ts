@@ -39,17 +39,21 @@ export interface Project {
   slug: string
   name: string
   category: ProjectCategory
-  year: string
+  /** Année (facultative) */
+  year?: string
   /*
    * Textes courts, pour une lecture rapide : une phrase pour le résumé,
    * une ou deux phrases pour le contexte, le problème et la solution.
+   * Contexte, problème, solution et rôle sont facultatifs : un bloc vide n'est pas affiché
+   * (utile pour un projet qui se suffit à ses vidéos ou images).
    */
   /** Une phrase de présentation (affichée sur la carte) */
   summary: string
-  context: string
-  problem: string
-  solution: string
-  role: string
+  context?: string
+  problem?: string
+  solution?: string
+  role?: string
+  /** Outils ou compétences (liste vide = rubrique masquée) */
   tools: string[]
   /** Résultats mesurés ou constatés — uniquement s'ils sont vérifiables */
   results?: string[]
@@ -140,21 +144,20 @@ export const projects: Project[] = [
     ],
   },
   {
-    // Liens, lieux et événements fournis par Cédric ; WAABO : festival culturel de Ouagadougou créé en 2025 (Wikipédia). À compléter : année, besoin, réalisation, rôle et outils.
-    placeholder: true,
+    // Liens, lieux, événements, rôle et outils fournis par Cédric.
     featured: true,
     slug: 'creations-video',
     name: 'Contenu vidéo et corporate',
     category: 'communication-digitale',
-    year: '[Année]',
+    year: '2026',
     summary:
       'Des vidéos et contenus publicitaires pour entreprises, particuliers et partenaires.',
     context:
-      'Des établissements (Lagon Lodge, Melina Food, l’hôtel Zind Naaba, une parfumerie de Ouagadougou) et des événements : le festival culturel WAABO, le FESPACO 2025 et la Ouckty Party, autour du partage des valeurs musulmanes.',
-    problem: '[Le besoin, en une phrase : faire connaître un lieu, couvrir un événement…]',
-    solution: '[Ce que tu as fait, en une phrase : tournage, montage, diffusion…]',
-    role: '[Ton rôle, en quelques mots]',
-    tools: ['[Logiciel de montage]', '[Autre outil]'],
+      'Entreprises et établissements doivent aujourd’hui bien se positionner en ligne ; des contenus vidéo de qualité les rendent visibles et attractifs.',
+    solution:
+      'J’interviens sur le tournage et le montage, pour des lieux, des entreprises et des événements comme le festival WAABO ou le FESPACO 2025.',
+    role: 'Tournage et montage.',
+    tools: ['CapCut', 'VN Studio', 'Claude AI'],
     // Petit titre seulement (quelques mots) ; featured: true = vidéo à la une
     videos: [
       { featured: true, title: 'Lagon Lodge', url: 'https://www.youtube.com/shorts/geLfGMCugsM' },
@@ -250,6 +253,18 @@ export const projects: Project[] = [
         src: '/images/projects/sanialert/statistiques-1100.webp',
         alt: 'Écran « Rapports et statistiques » de la plateforme SaniAlert',
       },
+    ],
+  },
+  {
+    // Projet volontairement sans description : le résumé et les vidéos suffisent.
+    slug: 'motion-design-ia',
+    name: 'Motion design et IA',
+    category: 'communication-digitale',
+    summary: 'Des animations en motion design pour une marque de cosmétiques et une application de santé.',
+    tools: [],
+    videos: [
+      { featured: true, title: 'Poupecosmétique', url: 'https://www.youtube.com/shorts/VI_42cWlPWI' },
+      { title: 'Prévention du cancer du sein', url: 'https://www.youtube.com/shorts/qJJB5OZoL1I' },
     ],
   },
 ]
