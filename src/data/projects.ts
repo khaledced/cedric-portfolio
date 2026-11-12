@@ -40,6 +40,10 @@ export interface Project {
   name: string
   category: ProjectCategory
   year: string
+  /*
+   * Textes courts, pour une lecture rapide : une phrase pour le résumé,
+   * une ou deux phrases pour le contexte, le problème et la solution.
+   */
   /** Une phrase de présentation (affichée sur la carte) */
   summary: string
   context: string
@@ -69,13 +73,13 @@ export const projects: Project[] = [
     category: 'developpement-web',
     year: '2025',
     summary:
-      'Le site vitrine d’une agence créative burkinabè : présenter ses expertises et ses réalisations, et transformer les visiteurs en demandes de projet.',
+      'Le site vitrine d’une agence créative de Ouagadougou, pensé pour transformer les visiteurs en demandes de projet.',
     context:
-      'Udigit est une agence créative basée à Ouagadougou (Burkina Faso), fondée en 2021. Elle intervient en marketing digital et gestion des réseaux sociaux, en développement web et maintenance informatique, et en branding et communication visuelle. Son site devait porter son positionnement : « des designs ambassadeurs de votre marque ».',
+      'Udigit, agence créative fondée en 2021 à Ouagadougou : marketing digital, développement web et branding.',
     problem:
-      'Présenter clairement une offre large, qui va du design graphique à la maintenance informatique ; montrer des réalisations de natures très différentes (identités visuelles, contenus vidéo, sites web) ; et offrir aux visiteurs un chemin simple vers la prise de contact.',
+      'Rendre lisible une offre large et des réalisations variées, avec un chemin simple vers la prise de contact.',
     solution:
-      'Un site multipage — accueil, services, à propos, projets, blog, contact et pages légales. Les quatre pôles de services sont détaillés avec leurs prestations et un processus en quatre étapes (découverte, conception, développement, lancement). Le portfolio est organisé en trois sections : conceptions graphiques, créations de contenus et sites web. Des appels à l’action « Démarrer votre projet » jalonnent les pages, et les réseaux sociaux de l’agence sont mis en avant.',
+      'Un site multipage : services en quatre pôles, portfolio en trois sections et un appel « Démarrer votre projet » sur chaque page.',
     role: 'Conception et développement du site.',
     tools: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
     cover: {
@@ -93,15 +97,15 @@ export const projects: Project[] = [
     category: 'branding',
     year: '2026',
     summary:
-      'De l’écoute du client à une marque prête pour son lancement : logo, déclinaisons et supports de communication pour Digilab, agence informatique au Burkina Faso.',
+      'Logo, déclinaisons et supports de lancement pour Digilab, agence informatique au Burkina Faso.',
     context:
-      'Digilab est une agence informatique qui préparait son lancement au Burkina Faso. Elle avait besoin d’une identité de marque et de supports de communication pour annoncer son arrivée.',
+      'Une jeune agence informatique qui préparait son lancement, sans identité de marque.',
     problem:
-      'Créer une marque à partir de zéro pour une jeune agence : traduire son ambition d’innovation dans une identité simple, mémorable et facile à décliner, puis la rendre visible dès le lancement.',
+      'Créer une marque simple, mémorable et facile à décliner, qui traduise son ambition d’innovation.',
     solution:
-      'Le projet a commencé par une réunion d’écoute du client, pour comprendre son activité, ses ambitions et ses attentes ; la suite du projet a été proposée sur cette base. Plusieurs pistes de logo ont été explorées avant d’aboutir au symbole final : un « D » traversé d’une flèche montante, accompagné de la signature « Pensé pour innover ». Le logo a été construit sur une grille, puis décliné en versions horizontale et verticale, sur fond clair et sur fond bleu, avec un motif graphique tiré du symbole. Des supports de communication ont ensuite été réalisés pour le lancement de l’agence.',
+      'Après l’écoute du client, un « D » traversé d’une flèche montante, signé « Pensé pour innover », décliné en plusieurs versions et en supports de lancement.',
     role:
-      'Écoute et cadrage du besoin avec le client, conception de l’identité visuelle (logo, déclinaisons, motif) et création des supports de communication du lancement.',
+      'Cadrage du besoin, identité visuelle et supports de lancement.',
     tools: ['Adobe Illustrator', 'Adobe Photoshop', 'Canva'],
     cover: {
       src: '/images/projects/digilab/cover-1600.webp',
@@ -136,37 +140,115 @@ export const projects: Project[] = [
     ],
   },
   {
-    // Liens et lieux fournis par Cédric. À compléter : année, besoin, réalisation, rôle et outils.
+    // Liens, lieux et événements fournis par Cédric ; WAABO : festival culturel de Ouagadougou créé en 2025 (Wikipédia). À compléter : année, besoin, réalisation, rôle et outils.
     placeholder: true,
     featured: true,
     slug: 'creations-video',
-    name: 'Vidéos publicitaires pour l’hôtellerie et la restauration',
+    name: 'Contenu vidéo et corporate',
     category: 'communication-digitale',
     year: '[Année]',
     summary:
-      'Des vidéos courtes au format vertical pour trois établissements de Ouagadougou et de ses environs : un espace détente, un restaurant et un hôtel.',
+      'Des vidéos et contenus publicitaires pour entreprises, particuliers et partenaires.',
     context:
-      'Trois établissements du Burkina Faso : l’espace détente Lagon Lodge à Loumbila, le restaurant Melina Food et l’hôtel Zind Naaba, tous deux à Ouaga 2000. Les vidéos sont publiées au format Shorts sur YouTube.',
-    problem: '[Quel était le besoin de chaque client : faire connaître le lieu, attirer de nouveaux clients, couvrir un événement… ?]',
-    solution: '[Comment as-tu réalisé ces vidéos : préparation, tournage, montage, diffusion ?]',
-    role: '[Ton rôle exact : écriture, tournage, montage…]',
+      'Des établissements (Lagon Lodge, Melina Food, l’hôtel Zind Naaba, une parfumerie de Ouagadougou) et des événements : le festival culturel WAABO, le FESPACO 2025 et la Ouckty Party, autour du partage des valeurs musulmanes.',
+    problem: '[Le besoin, en une phrase : faire connaître un lieu, couvrir un événement…]',
+    solution: '[Ce que tu as fait, en une phrase : tournage, montage, diffusion…]',
+    role: '[Ton rôle, en quelques mots]',
     tools: ['[Logiciel de montage]', '[Autre outil]'],
+    // Petit titre seulement (quelques mots) ; featured: true = vidéo à la une
     videos: [
+      { featured: true, title: 'Lagon Lodge', url: 'https://www.youtube.com/shorts/geLfGMCugsM' },
+      { title: 'Melina Food', url: 'https://www.youtube.com/shorts/3zRoFtHRGP4' },
+      { title: 'Cocktail dînatoire · Zind Naaba', url: 'https://www.youtube.com/shorts/GGuqCGFukpo' },
+      { title: 'Festival WAABO', url: 'https://www.youtube.com/shorts/bksPG9XoU2U' },
+      { title: 'FESPACO 2025', url: 'https://www.youtube.com/shorts/uxHSa6Qbjpo' },
+      { title: 'Ouckty Party', url: 'https://www.youtube.com/shorts/qEptWKYudHo' },
+      { title: 'Parfumerie · Ouagadougou', url: 'https://www.youtube.com/shorts/JEqrfK6hR9w' },
+    ],
+  },
+  {
+    // Rédigé à partir du post LinkedIn de Cédric (janvier 2026). Photos d'inauguration : © DCRP / Primature.
+    featured: true,
+    slug: 'datacenters-cloud-gouvernemental',
+    name: 'Data centers et cloud',
+    category: 'reseaux-systemes',
+    year: '2026',
+    summary:
+      'Phase finale de l’installation de deux datacenters modulaires du Cloud gouvernemental, inaugurés à Ouagadougou.',
+    context:
+      'Le Burkina Faso rapatrie ses données publiques sur son territoire (chantier « zéro donnée à l’extérieur »). Deux datacenters ont été inaugurés le 23 janvier 2026.',
+    problem:
+      'Mettre en service des infrastructures critiques aux standards internationaux pour héberger et sécuriser les données de l’administration.',
+    solution:
+      'Intégré aux équipes techniques sur la phase finale, aux côtés de Cybastion, Altron et General Micro Systems : baies serveurs, alimentation électrique et configuration des équipements.',
+    role: 'Membre des équipes techniques sur la phase finale du projet.',
+    tools: ['Rackage', 'Alimentation électrique', 'Configuration d’équipements'],
+    cover: {
+      src: '/images/projects/datacenter/cover-1400.webp',
+      srcSet: '/images/projects/datacenter/cover-800.webp 800w, /images/projects/datacenter/cover-1400.webp 1400w',
+      alt: 'Cédric Sawadogo en gilet de sécurité sur le site du projet',
+    },
+    gallery: [
       {
-        featured: true,
-        title: 'Lagon Lodge',
-        description: 'Espace détente · Loumbila',
-        url: 'https://www.youtube.com/shorts/geLfGMCugsM',
+        src: '/images/projects/datacenter/baies-1000.webp',
+        alt: 'Cédric Sawadogo dans l’allée des baies serveurs du datacenter',
       },
       {
-        title: 'Melina Food',
-        description: 'Vidéo publicitaire pour le restaurant · Ouaga 2000',
-        url: 'https://www.youtube.com/shorts/3zRoFtHRGP4',
+        src: '/images/projects/datacenter/equipe-1000.webp',
+        alt: 'Trois membres des équipes techniques en gilet de sécurité devant un module du datacenter',
       },
       {
-        title: 'Cocktail dînatoire à l’hôtel Zind Naaba',
-        description: 'Hôtel Zind Naaba · Ouaga 2000',
-        url: 'https://www.youtube.com/shorts/GGuqCGFukpo',
+        src: '/images/projects/datacenter/visite-800.webp',
+        alt: 'Visite officielle devant le bâtiment Burkina Digital, avec présentation sur écran',
+      },
+      {
+        src: '/images/projects/datacenter/inauguration-800.webp',
+        alt: 'Plaque d’inauguration du datacenter modulaire de l’administration publique',
+      },
+      {
+        src: '/images/projects/datacenter/ceremonie-800.webp',
+        alt: 'Cérémonie d’inauguration du 23 janvier 2026 à Ouagadougou',
+      },
+    ],
+  },
+  {
+    // Rédigé à partir du post LinkedIn de Cédric (décembre 2025).
+    featured: true,
+    slug: 'sanialert',
+    name: 'SaniAlert',
+    category: 'digitalisation',
+    year: '2025',
+    summary:
+      'Une plateforme de signalement des problèmes de salubrité urbaine, 3ᵉ prix de la Quinzaine de l’Innovation 2025.',
+    context:
+      'Projet conçu et défendu pendant la Quinzaine de l’Innovation d’Umanis SA, de juillet à décembre 2025, avec un coaching en pitch et en étude financière.',
+    problem:
+      'Les signalements d’insalubrité (dépôts d’ordures, caniveaux obstrués…) étaient dispersés et souvent informels.',
+    solution:
+      'Les citoyens signalent en temps réel ; les alertes, géolocalisées et centralisées, sont transmises aux services compétents, comme la Brigade Laabal.',
+    role: 'Chef d’équipe du projet : coordination des talents et des ressources.',
+    tools: ['Pitch', 'Étude financière', 'Gestion d’équipe'],
+    results: ['3ᵉ prix de la Quinzaine de l’Innovation 2025 (6ᵉ édition, Umanis SA).'],
+    cover: {
+      src: '/images/projects/sanialert/cover-800.webp',
+      alt: 'L’équipe SaniAlert avec le trophée et le chèque du 3ᵉ prix de la Quinzaine de l’Innovation',
+    },
+    gallery: [
+      {
+        src: '/images/projects/sanialert/prix-1000.webp',
+        alt: 'Cédric Sawadogo avec le trophée et le chèque remis à SaniAlert',
+      },
+      {
+        src: '/images/projects/sanialert/trophee-1000.webp',
+        alt: 'Trophée du 3ᵉ prix et attestation de participation au nom de Cédric Sawadogo',
+      },
+      {
+        src: '/images/projects/sanialert/signalement-800.webp',
+        alt: 'Écran « Signaler une alerte » de la plateforme SaniAlert',
+      },
+      {
+        src: '/images/projects/sanialert/statistiques-1100.webp',
+        alt: 'Écran « Rapports et statistiques » de la plateforme SaniAlert',
       },
     ],
   },
