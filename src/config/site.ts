@@ -47,7 +47,9 @@ export const siteConfig = {
   contact: {
     email: 'cedricl.saw@gmail.com',
     /** Localisation affichée (optionnelle), ex. 'Ouagadougou, Burkina Faso' */
-    location: '',
+    location: 'Ouagadougou, Burkina Faso',
+    /** Coordonnées GPS affichées dans le Hero au-dessus de la localisation (N = nord, O = ouest) */
+    coordinates: '12.37° N · 1.52° O',
   },
 
   /**
