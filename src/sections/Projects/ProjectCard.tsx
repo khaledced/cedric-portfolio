@@ -3,32 +3,44 @@ import { Link } from 'react-router'
 import { Visual } from '@/components/shared/Visual'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
 import { getProjectCover, projectCategories, type Project } from '@/data/projects'
+import { cn } from '@/lib/cn'
 
 interface ProjectCardProps {
   project: Project
+  /** Position dans la liste : sert à alterner l'inclinaison des visuels */
+  index?: number
 }
 
 /**
  * Carte projet, volontairement légère.
  * - Mobile : ligne compacte, petite miniature à gauche et texte à droite.
  * - Tablette et ordinateur : visuel au format 3:2 puis texte.
- * Survol : l'image se rapproche à peine et le titre prend la couleur d'accent ; la carte ne bouge pas.
+ * Le visuel est présenté comme une photo imprimée, inclinée un coup à gauche, un coup à droite.
+ * Survol : la photo se redresse et le titre prend la couleur d'accent.
  * Toute la carte est cliquable.
  */
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
     <article className="group relative flex items-start gap-4 sm:flex-col sm:gap-0">
       <Visual
         image={getProjectCover(project)}
+        frame="print"
         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 112px"
-        className="aspect-[4/3] w-28 shrink-0 rounded-xl! transition-colors duration-300 group-hover:border-accent/40 *:transition-transform *:duration-700 *:ease-[cubic-bezier(0.16,1,0.3,1)] sm:aspect-[3/2] sm:w-full motion-safe:group-hover:*:scale-[1.03]"
+        className={cn(
+          'aspect-[4/3] w-28 shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-0 sm:aspect-[3/2] sm:w-full',
+          index % 2 === 0 ? 'rotate-[-1.5deg]' : 'rotate-[1.5deg]',
+        )}
       />
 
-      <div className="min-w-0 flex-1 sm:mt-4 sm:w-full">
+      <div className="min-w-0 flex-1 sm:mt-5 sm:w-full">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 label-mono text-[11px] text-subtle">
           <span className="text-accent">{projectCategories[project.category]}</span>
-          <span aria-hidden="true">·</span>
-          <span>{project.year}</span>
+          {project.year && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{project.year}</span>
+            </>
+          )}
           <PlaceholderBadge show={Boolean(project.placeholder)} />
         </div>
 

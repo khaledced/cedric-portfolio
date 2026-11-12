@@ -58,7 +58,12 @@ export function ProjectIndex({ projects }: ProjectIndexProps) {
                 className="group grid grid-cols-[4.5rem_minmax(0,1fr)_auto] items-center gap-x-4 border-b border-line py-4 transition-colors duration-300 hover:bg-accent/[0.04] focus-visible:bg-accent/[0.06] md:grid-cols-[3rem_minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_4.5rem] md:rounded-xl md:px-3 md:py-5"
               >
                 {/* Mobile : petite miniature ; ordinateur : numéro */}
-                <Visual image={cover} sizes="72px" className="aspect-[4/3] rounded-lg! md:hidden" />
+                <Visual
+                  image={cover}
+                  frame="print"
+                  sizes="72px"
+                  className={`aspect-[4/3] transition-transform duration-500 group-hover:rotate-0 md:hidden ${i % 2 === 0 ? 'rotate-[-2deg]' : 'rotate-[2deg]'}`}
+                />
                 <span className="hidden label-mono text-xs text-subtle md:block">{String(i + 1).padStart(2, '0')}</span>
 
                 <span className="min-w-0">
@@ -91,7 +96,7 @@ export function ProjectIndex({ projects }: ProjectIndexProps) {
         })}
       </ul>
 
-      {/* Petit aperçu qui suit le curseur (ordinateur, souris uniquement) */}
+      {/* Petit aperçu façon photo imprimée, qui suit le curseur (ordinateur, souris uniquement) */}
       <m.div
         aria-hidden="true"
         className="pointer-events-none fixed top-0 left-0 z-30 hidden w-56 md:block"
@@ -101,10 +106,10 @@ export function ProjectIndex({ projects }: ProjectIndexProps) {
           {active !== null && (
             <m.div
               key="preview"
-              className="relative mt-5 ml-5 aspect-[4/3] overflow-hidden rounded-xl border border-line bg-card shadow-[0_16px_40px_-20px_rgb(14_26_51/0.35)]"
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
+              className="relative mt-5 ml-5 aspect-[4/3] rounded-md bg-white shadow-[0_22px_45px_-22px_rgb(14_26_51/0.5),0_2px_6px_-2px_rgb(14_26_51/0.15)] ring-1 ring-black/5 dark:bg-[#1c1f27] dark:ring-white/10"
+              initial={{ opacity: 0, scale: 0.92, rotate: 0 }}
+              animate={{ opacity: 1, scale: 1, rotate: -3 }}
+              exit={{ opacity: 0, scale: 0.92, rotate: 0 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* Toutes les images sont empilées : passer d'un projet à l'autre est instantané */}
@@ -113,7 +118,7 @@ export function ProjectIndex({ projects }: ProjectIndexProps) {
                 return (
                   <div
                     key={project.slug}
-                    className="absolute inset-0 transition-opacity duration-300"
+                    className="absolute inset-2 overflow-hidden rounded-[3px] transition-opacity duration-300"
                     style={{ opacity: i === active ? 1 : 0 }}
                   >
                     {cover ? (

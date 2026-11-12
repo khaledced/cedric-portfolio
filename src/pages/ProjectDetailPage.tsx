@@ -7,6 +7,7 @@ import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
 import { getProject, projectCategories, projects } from '@/data/projects'
 import { VideoGallery } from '@/components/shared/VideoGallery'
 import { Visual } from '@/components/shared/Visual'
+import { Collage } from '@/components/shared/Collage'
 import NotFoundPage from './NotFoundPage'
 
 /** Étude de cas d'un projet : contexte, problème, solution, rôle, outils, visuels. */
@@ -20,6 +21,8 @@ export default function ProjectDetailPage() {
   const next = projects[(index + 1) % projects.length]
 
   const hasVideos = Boolean(project.videos && project.videos.length > 0)
+  // Visuel principal : affiché sauf pour un projet vidéo sans couverture (les vidéos le remplacent)
+  const showCover = !(hasVideos && !project.cover)
   const videoSection = hasVideos && (
     <section aria-labelledby="videos-title">
       <h2 id="videos-title" className="flex items-center gap-2 label-mono text-xs text-accent">
@@ -32,11 +35,13 @@ export default function ProjectDetailPage() {
     </section>
   )
 
+  // Seuls les blocs renseignés sont affichés
   const story = [
     { label: 'Contexte', text: project.context },
     { label: 'Problème', text: project.problem },
     { label: 'Solution', text: project.solution },
-  ]
+  ].filter((block): block is { label: string; text: string } => Boolean(block.text))
+  const hasInfo = Boolean(project.role || project.tools.length > 0 || project.url)
 
   return (
     <>
@@ -52,7 +57,8 @@ export default function ProjectDetailPage() {
             Tous les projets
           </Link>
 
-          <Reveal className="mt-10 max-w-4xl">
+          <div className={showCover ? 'mt-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-16' : 'mt-10'}>
+          <Reveal className={showCover ? 'lg:col-span-7' : 'max-w-4xl'}>
             <p className="flex flex-wrap items-center gap-3 label-mono text-xs text-subtle">
               <Link
                 to={`/projets?categorie=${project.category}`}
@@ -60,8 +66,12 @@ export default function ProjectDetailPage() {
               >
                 {projectCategories[project.category]}
               </Link>
-              <span aria-hidden="true">·</span>
-              <span>{project.year}</span>
+              {project.year && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span>{project.year}</span>
+                </>
+              )}
               <PlaceholderBadge show={Boolean(project.placeholder)} />
             </p>
             <h1 className="mt-5 font-display text-4xl leading-[1.05] font-extrabold tracking-tight text-balance sm:text-5xl lg:text-6xl">
@@ -69,24 +79,29 @@ export default function ProjectDetailPage() {
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{project.summary}</p>
           </Reveal>
+
+          {/* Visuel principal à côté du titre, présenté comme une photo imprimée légèrement inclinée */}
+          {showCover && (
+            <Reveal delay={0.1} className="lg:col-span-5">
+              <Visual
+                image={project.cover}
+                priority
+                frame="print"
+                sizes="(min-width: 1024px) 40vw, 90vw"
+                className="mx-auto aspect-[4/3] w-11/12 rotate-[-1.5deg] transition-transform duration-500 hover:rotate-0 sm:w-4/5 lg:w-full lg:rotate-[2deg] lg:hover:rotate-0"
+              />
+            </Reveal>
+          )}
+          </div>
         </header>
 
         {/* Sans image de couverture, les vidéos du projet prennent la place du visuel principal */}
-        {hasVideos && !project.cover ? (
-          <div className="container-page mt-10 md:mt-12">{videoSection}</div>
-        ) : (
-          <Reveal delay={0.1} className="container-page mt-10 md:mt-12">
-            <Visual
-              image={project.cover}
-              priority
-              sizes="(min-width: 1024px) 768px, 80vw"
-              className="aspect-[16/9] w-4/5 max-w-3xl sm:aspect-[2/1]"
-            />
-          </Reveal>
-        )}
+        {hasVideos && !project.cover && <div className="container-page mt-10 md:mt-12">{videoSection}</div>}
 
+        {(story.length > 0 || hasInfo || (project.results && project.results.length > 0)) && (
         <div className="container-page py-14 md:py-20">
           {/* Récit du projet : trois blocs courts, côte à côte sur grand écran */}
+          {story.length > 0 && (
           <ol className="grid gap-x-10 gap-y-8 border-t border-line pt-8 md:grid-cols-3">
             {story.map((block, i) => (
               <li key={block.label}>
@@ -100,6 +115,7 @@ export default function ProjectDetailPage() {
               </li>
             ))}
           </ol>
+          )}
 
           {project.results && project.results.length > 0 && (
             <Reveal className="mt-10">
@@ -116,11 +132,15 @@ export default function ProjectDetailPage() {
           )}
 
           {/* Fiche du projet : une seule bande d'informations */}
+          {hasInfo && (
           <dl className="mt-12 grid gap-6 rounded-2xl border border-line bg-card/50 p-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_auto] sm:gap-10 md:p-6">
+            {project.role && (
             <div>
               <dt className="label-mono text-[11px] text-subtle">Mon rôle</dt>
               <dd className="mt-1.5 text-sm leading-relaxed text-fg">{project.role}</dd>
             </div>
+            )}
+            {project.tools.length > 0 && (
             <div>
               <dt className="label-mono text-[11px] text-subtle">Outils</dt>
               <dd className="mt-2">
@@ -133,6 +153,7 @@ export default function ProjectDetailPage() {
                 </ul>
               </dd>
             </div>
+            )}
             {project.url && (
               <div>
                 <dt className="label-mono text-[11px] text-subtle">Lien</dt>
@@ -151,17 +172,15 @@ export default function ProjectDetailPage() {
               </div>
             )}
           </dl>
+          )}
         </div>
+        )}
 
         {hasVideos && project.cover && <div className="container-page pb-24">{videoSection}</div>}
 
         {project.gallery && project.gallery.length > 0 && (
-          <section aria-label="Galerie" className="container-page grid grid-cols-2 gap-3 pb-20 sm:gap-4 lg:grid-cols-3">
-            {project.gallery.map((img, i) => (
-              <Reveal key={img.src} delay={(i % 3) * 0.06}>
-                <Visual image={img} className="aspect-[4/3]" />
-              </Reveal>
-            ))}
+          <section aria-label="Galerie" className="container-page pb-24">
+            <Collage images={project.gallery} />
           </section>
         )}
       </article>
