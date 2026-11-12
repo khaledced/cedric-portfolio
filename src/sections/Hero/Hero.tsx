@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { LocateFixed } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
 import { RiseText } from '@/components/ui/RiseText'
@@ -88,6 +89,18 @@ export function Hero() {
               Explorer mes projets
             </ButtonLink>
           </div>
+
+          {siteConfig.contact.location && (
+            <p className="animate-enter mt-10 flex items-start gap-3 label-mono text-xs" style={enter(0.36)}>
+              <LocateFixed aria-hidden="true" className="mt-px size-4 shrink-0 text-accent" strokeWidth={1.75} />
+              <span>
+                {siteConfig.contact.coordinates && (
+                  <span className="block text-fg">{siteConfig.contact.coordinates}</span>
+                )}
+                <span className="mt-1 block text-subtle">{siteConfig.contact.location}</span>
+              </span>
+            </p>
+          )}
         </div>
 
         <div className="animate-enter lg:col-span-5" style={enter(0.3)}>
