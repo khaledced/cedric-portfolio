@@ -49,9 +49,8 @@ export interface KeyFigure {
 /* Présentation et vision                                             */
 /* ------------------------------------------------------------------ */
 
-export const story = {
-  /** Proposition de texte à valider ou réécrire par Cédric */
-  placeholder: true,
+export const story: Placeholderable & { title: string; paragraphs: string[] } = {
+  /** Texte validé par Cédric */
   title: 'Ingénieur de formation, polyvalent par choix.',
   paragraphs: [
     "Je m'appelle Cédric Sawadogo. Mon socle, c'est l'ingénierie informatique : comprendre les systèmes, les réseaux et la manière dont la technologie peut résoudre des problèmes concrets.",
@@ -59,12 +58,14 @@ export const story = {
   ],
 }
 
-export const vision = {
-  placeholder: true,
+export const vision: Placeholderable & {
+  statement: string
+  principles: Array<{ title: string; text: string }>
+} = {
   statement:
     'La technologie n’a de valeur que si elle est comprise, adoptée et utile à ceux qui s’en servent.',
   /** Principes (titre + texte court). Liste vide = bloc masqué. */
-  principles: [] as Array<{ title: string; text: string }>,
+  principles: [],
 }
 
 /* ------------------------------------------------------------------ */
@@ -105,7 +106,13 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: 'Accompagnement',
-    items: ['Digitalisation des organisations', 'Formation et accompagnement'],
+    items: [
+      'Digitalisation des organisations',
+      'Formation et accompagnement',
+      'Pitch de projet',
+      'Prise de parole en public',
+      'Maîtrise de cérémonie',
+    ],
     tools: [],
   },
 ]
