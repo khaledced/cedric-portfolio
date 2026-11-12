@@ -54,8 +54,6 @@ export interface ArticleReference {
 
 export interface Article extends ArticleFrontmatter {
   slug: string
-  /** Calculé automatiquement au build */
-  readingTime: number
   /** true si un PDF existe pour cet article (src/content/articles/pdf/<slug>.pdf) */
   hasPdf: boolean
 }

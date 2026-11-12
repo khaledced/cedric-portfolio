@@ -12,13 +12,36 @@ import NotFoundPage from '@/pages/NotFoundPage'
   Les pages secondaires sont chargées à la demande (« code splitting ») :
   le visiteur ne télécharge que le code de la page qu'il consulte.
 */
-const AboutPage = lazy(() => import('@/pages/AboutPage'))
-const ServicesPage = lazy(() => import('@/pages/ServicesPage'))
-const ProjectsPage = lazy(() => import('@/pages/ProjectsPage'))
-const ProjectDetailPage = lazy(() => import('@/pages/ProjectDetailPage'))
-const InsightsPage = lazy(() => import('@/pages/InsightsPage'))
-const ArticlePage = lazy(() => import('@/pages/ArticlePage'))
-const ContactPage = lazy(() => import('@/pages/ContactPage'))
+const pages = {
+  about: () => import('@/pages/AboutPage'),
+  services: () => import('@/pages/ServicesPage'),
+  projects: () => import('@/pages/ProjectsPage'),
+  project: () => import('@/pages/ProjectDetailPage'),
+  insights: () => import('@/pages/InsightsPage'),
+  article: () => import('@/pages/ArticlePage'),
+  contact: () => import('@/pages/ContactPage'),
+}
+
+const AboutPage = lazy(pages.about)
+const ServicesPage = lazy(pages.services)
+const ProjectsPage = lazy(pages.projects)
+const ProjectDetailPage = lazy(pages.project)
+const InsightsPage = lazy(pages.insights)
+const ArticlePage = lazy(pages.article)
+const ContactPage = lazy(pages.contact)
+
+/**
+ * Précharge le code de toutes les pages, en arrière-plan, une fois la page affichée et le
+ * navigateur au repos : la navigation devient instantanée (aucun écran vide au clic).
+ * Désactivé si le visiteur a activé l'économie de données.
+ */
+export function prefetchPages() {
+  const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+  if (connection?.saveData) return
+  const run = () => Object.values(pages).forEach((load) => void load().catch(() => {}))
+  if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout: 4000 })
+  else setTimeout(run, 2500)
+}
 
 export const routes: RouteObject[] = [
   {

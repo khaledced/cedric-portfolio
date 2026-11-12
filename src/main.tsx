@@ -8,6 +8,7 @@ import '@fontsource-variable/jetbrains-mono'
 import '@/styles/global.css'
 
 import App from '@/App'
+import { prefetchPages } from '@/routes'
 
 const container = document.getElementById('root')!
 const app = (
@@ -36,3 +37,6 @@ if (canHydrate) {
   container.replaceChildren()
   createRoot(container).render(app)
 }
+
+// Une fois la page affichée : préchargement discret des autres pages (navigation instantanée)
+window.addEventListener('load', prefetchPages, { once: true })

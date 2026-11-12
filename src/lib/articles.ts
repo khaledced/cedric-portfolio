@@ -1,27 +1,29 @@
+import { lazy, type LazyExoticComponent } from 'react'
 import type { MDXContent } from 'mdx/types'
 import {
   articleCategories,
   type Article,
   type ArticleCategory,
   type ArticleCategorySlug,
+  type ArticleFrontmatter,
 } from '@/types/content'
 
 /**
  * Chargement automatique des articles.
  * Vite découvre tous les fichiers de src/content/articles/*.mdx au moment du build :
  * publier un article = ajouter un fichier .mdx, sans toucher au reste du code.
- * Le temps de lecture est calculé au build (voir build/remark-reading-time.ts).
  *
- * Ce module n'est importé que par les pages Insights (elles-mêmes chargées à la demande),
- * donc les articles ne pèsent pas sur le chargement de l'accueil.
+ * Pour rester léger, seul l'EN-TÊTE de chaque article est chargé avec les listes
+ * (plugin build/vite-plugin-article-meta.ts) ; le texte complet n'est chargé qu'à la demande
+ * (aperçu « ?source » et génération du PDF avec le gabarit du site).
  */
 
-type MdxModule = {
-  default: MDXContent
-  frontmatter: Omit<Article, 'slug'>
-}
-
-const modules = import.meta.glob<MdxModule>('/src/content/articles/*.mdx', { eager: true })
+const metas = import.meta.glob<ArticleFrontmatter>('/src/content/articles/*.mdx', {
+  eager: true,
+  query: '?meta',
+  import: 'default',
+})
+const contents = import.meta.glob<{ default: MDXContent }>('/src/content/articles/*.mdx')
 
 /*
   Version PDF des articles (générée avec `npm run pdf`, voir scripts/article-pdf.mjs).
@@ -34,17 +36,14 @@ const pdfFiles = import.meta.glob<string>('/src/content/articles/pdf/*.pdf', {
   import: 'default',
 })
 
-type ArticleEntry = Article & { Content: MDXContent; pdfUrl?: string }
+type ArticleEntry = Article & { Content: LazyExoticComponent<MDXContent>; pdfUrl?: string }
 
-const allArticles: ArticleEntry[] = Object.entries(modules)
-  .map(([path, mod]) => ({
-    ...mod.frontmatter,
-    slug: path.split('/').pop()!.replace(/\.mdx$/, ''),
-    Content: mod.default,
-  }))
-  .map((a) => {
-    const pdfUrl = pdfFiles[`/src/content/articles/pdf/${a.slug}.pdf`]
-    return { ...a, pdfUrl, hasPdf: Boolean(pdfUrl) }
+const allArticles: ArticleEntry[] = Object.entries(metas)
+  .map(([path, meta]) => {
+    const slug = path.split('/').pop()!.replace(/\.mdx(\?meta)?$/, '')
+    const pdfUrl = pdfFiles[`/src/content/articles/pdf/${slug}.pdf`]
+    const load = contents[`/src/content/articles/${slug}.mdx`]
+    return { ...meta, slug, pdfUrl, hasPdf: Boolean(pdfUrl), Content: lazy(load) }
   })
   // Les brouillons ne sont visibles qu'en développement, jamais en production
   .filter((a) => !a.draft || import.meta.env.DEV)

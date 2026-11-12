@@ -64,7 +64,12 @@ export function TypeRotator({ phrases, className, startDelay = 2600 }: TypeRotat
 
   return (
     <span className={cn('inline-flex items-baseline', className)} aria-hidden="true">
+      {/*
+        Espace de largeur nulle : la ligne garde toujours un caractère, donc la même hauteur,
+        même quand la phrase est entièrement effacée (sinon le titre rétrécit et la photo bouge).
+      */}
       {text}
+      {'​'}
       <span className="ml-[0.06em] inline-block h-[0.82em] w-[0.06em] translate-y-[0.08em] self-center bg-current [animation:caret-blink_1s_infinite] motion-reduce:hidden" />
     </span>
   )

@@ -1,10 +1,10 @@
-import { useState, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { ArrowUpRight } from 'lucide-react'
-import { AnimatePresence, m, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 import { Link } from 'react-router'
 import { Visual } from '@/components/shared/Visual'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
 import { getProjectCover, projectCategories, type Project } from '@/data/projects'
+import { cn } from '@/lib/cn'
 
 interface ProjectIndexProps {
   projects: Project[]
@@ -17,30 +17,54 @@ interface ProjectIndexProps {
  */
 export function ProjectIndex({ projects }: ProjectIndexProps) {
   const [active, setActive] = useState<number | null>(null)
-  const reduceMotion = useReducedMotion()
+  // L'aperçu (et ses images) n'est créé qu'au premier survol
+  const [hovered, setHovered] = useState(false)
 
-  // Position de l'aperçu : suit le curseur avec un léger retard (ressort), immédiat si animations réduites
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const spring = reduceMotion ? { stiffness: 2000, damping: 100 } : { stiffness: 300, damping: 32, mass: 0.5 }
-  const springX = useSpring(x, spring)
-  const springY = useSpring(y, spring)
+  /*
+    Position de l'aperçu : il suit le curseur avec un léger retard (lissage à chaque image),
+    immédiatement si le visiteur a choisi de réduire les animations. Calcul sans React ni
+    bibliothèque : seule la propriété transform est modifiée, à 60 images par seconde.
+  */
+  const previewRef = useRef<HTMLDivElement>(null)
+  const target = useRef({ x: 0, y: 0 })
+  const current = useRef({ x: 0, y: 0 })
+  const frame = useRef(0)
+
+  const place = () => {
+    const el = previewRef.current
+    if (el) el.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`
+  }
+
+  const animate = () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const c = current.current
+    const t = target.current
+    c.x += reduce ? t.x - c.x : (t.x - c.x) * 0.22
+    c.y += reduce ? t.y - c.y : (t.y - c.y) * 0.22
+    place()
+    frame.current = Math.abs(t.x - c.x) + Math.abs(t.y - c.y) > 0.5 ? requestAnimationFrame(animate) : 0
+  }
+
+  useEffect(() => () => cancelAnimationFrame(frame.current), [])
+
+  function follow(e: PointerEvent) {
+    target.current = { x: e.clientX, y: e.clientY }
+    if (!frame.current) frame.current = requestAnimationFrame(animate)
+  }
 
   function handlePointerMove(e: PointerEvent) {
-    if (e.pointerType !== 'mouse') return
-    x.set(e.clientX)
-    y.set(e.clientY)
+    if (e.pointerType === 'mouse') follow(e)
   }
 
   function handlePointerEnter(e: PointerEvent, index: number) {
     if (e.pointerType !== 'mouse') return
     // Première apparition : l'aperçu part directement de la position du curseur
     if (active === null) {
-      springX.jump(e.clientX)
-      springY.jump(e.clientY)
+      current.current = { x: e.clientX, y: e.clientY }
+      place()
     }
-    x.set(e.clientX)
-    y.set(e.clientY)
+    follow(e)
+    setHovered(true)
     setActive(index)
   }
 
@@ -97,49 +121,45 @@ export function ProjectIndex({ projects }: ProjectIndexProps) {
       </ul>
 
       {/* Petit aperçu façon photo imprimée, qui suit le curseur (ordinateur, souris uniquement) */}
-      <m.div
+      <div
+        ref={previewRef}
         aria-hidden="true"
         className="pointer-events-none fixed top-0 left-0 z-30 hidden w-56 md:block"
-        style={{ x: springX, y: springY }}
       >
-        <AnimatePresence>
-          {active !== null && (
-            <m.div
-              key="preview"
-              className="relative mt-5 ml-5 aspect-[4/3] rounded-md bg-white shadow-[0_22px_45px_-22px_rgb(14_26_51/0.5),0_2px_6px_-2px_rgb(14_26_51/0.15)] ring-1 ring-black/5 dark:bg-[#1c1f27] dark:ring-white/10"
-              initial={{ opacity: 0, scale: 0.92, rotate: 0 }}
-              animate={{ opacity: 1, scale: 1, rotate: -3 }}
-              exit={{ opacity: 0, scale: 0.92, rotate: 0 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {/* Toutes les images sont empilées : passer d'un projet à l'autre est instantané */}
-              {projects.map((project, i) => {
-                const cover = getProjectCover(project)
-                return (
-                  <div
-                    key={project.slug}
-                    className="absolute inset-2 overflow-hidden rounded-[3px] transition-opacity duration-300"
-                    style={{ opacity: i === active ? 1 : 0 }}
-                  >
-                    {cover ? (
-                      <img
-                        src={cover.src}
-                        srcSet={cover.srcSet}
-                        sizes="14rem"
-                        alt=""
-                        decoding="async"
-                        className="size-full object-cover"
-                      />
-                    ) : (
-                      <div className="bg-grid size-full" />
-                    )}
-                  </div>
-                )
-              })}
-            </m.div>
-          )}
-        </AnimatePresence>
-      </m.div>
+        {hovered && (
+          <div
+            className={cn(
+              'relative mt-5 ml-5 aspect-[4/3] rounded-md bg-white shadow-[0_22px_45px_-22px_rgb(14_26_51/0.5),0_2px_6px_-2px_rgb(14_26_51/0.15)] ring-1 ring-black/5 transition-[opacity,scale,rotate] duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] dark:bg-[#1c1f27] dark:ring-white/10',
+              active !== null ? 'scale-100 -rotate-3 opacity-100' : 'scale-[0.92] rotate-0 opacity-0',
+            )}
+          >
+            {/* Toutes les images sont empilées : passer d'un projet à l'autre est instantané */}
+            {projects.map((project, i) => {
+              const cover = getProjectCover(project)
+              return (
+                <div
+                  key={project.slug}
+                  className="absolute inset-2 overflow-hidden rounded-[3px] transition-opacity duration-300"
+                  style={{ opacity: i === active ? 1 : 0 }}
+                >
+                  {cover ? (
+                    <img
+                      src={cover.src}
+                      srcSet={cover.srcSet}
+                      sizes="14rem"
+                      alt=""
+                      decoding="async"
+                      className="size-full object-cover"
+                    />
+                  ) : (
+                    <div className="bg-grid size-full" />
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

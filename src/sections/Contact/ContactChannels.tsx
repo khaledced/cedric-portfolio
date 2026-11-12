@@ -1,5 +1,6 @@
-import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react'
+import { ArrowUpRight, Mail } from 'lucide-react'
 import { PlaceholderBadge } from '@/components/ui/PlaceholderBadge'
+import { SocialIcon } from '@/components/ui/SocialIcon'
 import { siteConfig, type SocialKey } from '@/config/site'
 import { prettyUrl } from '@/lib/url'
 
@@ -20,7 +21,7 @@ export function ContactChannels() {
   const { whatsapp } = siteConfig.socials
   const socials = (Object.keys(socialLabels) as Array<keyof typeof socialLabels>)
     .filter((key) => siteConfig.socials[key])
-    .map((key) => ({ label: socialLabels[key], href: siteConfig.socials[key] }))
+    .map((key) => ({ key, label: socialLabels[key], href: siteConfig.socials[key] }))
 
   const nothingConfigured = !email && !whatsapp && socials.length === 0
 
@@ -60,7 +61,7 @@ export function ContactChannels() {
             <li>
               <a href={whatsapp} target="_blank" rel="noopener noreferrer" className={rowClass}>
                 <span className="flex items-center gap-3">
-                  <MessageCircle aria-hidden="true" className="size-5 text-accent" strokeWidth={1.75} />
+                  <SocialIcon name="whatsapp" className="text-accent" />
                   <span>
                     <span className="block label-mono text-xs text-subtle">WhatsApp</span>
                     <span className="text-fg">Écrire sur WhatsApp</span>
@@ -76,16 +77,27 @@ export function ContactChannels() {
 
       {socials.length > 0 && (
         <div>
-          <h2 className="label-mono text-xs text-subtle">Réseaux</h2>
-          <ul className="mt-3 divide-y divide-line border-y border-line">
+          <h2 className="flex items-center gap-2 label-mono text-xs text-accent">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+            Retrouvez-moi sur les réseaux
+          </h2>
+          {/* Un bouton par réseau : logo + nom, bien visibles et faciles à toucher sur mobile */}
+          <ul className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
             {socials.map((s) => (
-              <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer" className={rowClass}>
-                  <span className="flex flex-wrap items-baseline gap-x-3">
-                    <span className="text-fg">{s.label}</span>
-                    <span className="text-xs text-subtle">{prettyUrl(s.href)}</span>
-                  </span>
-                  <ArrowUpRight aria-hidden="true" className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <li key={s.key}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={prettyUrl(s.href)}
+                  className="group flex h-12 items-center gap-2.5 rounded-xl border border-line bg-card/60 px-3.5 text-sm font-medium text-fg transition-colors hover:border-accent/50 hover:bg-card hover:text-accent-strong"
+                >
+                  <SocialIcon name={s.key} className="size-[18px] shrink-0 text-accent" />
+                  <span className="truncate">{s.label}</span>
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="ml-auto size-3.5 shrink-0 text-subtle transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+                  />
                   <span className="sr-only">(nouvel onglet)</span>
                 </a>
               </li>
