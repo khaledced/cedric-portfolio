@@ -2,11 +2,11 @@ import { Reveal } from '@/components/shared/Reveal'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { projects } from '@/data/projects'
-import { ProjectCard } from './ProjectCard'
+import { ProjectIndex } from './ProjectIndex'
 
-/** Projets mis en avant (featured: true) sur la page d'accueil. */
+/** Projets mis en avant (featured: true) sur la page d'accueil, sous forme de liste numérotée. */
 export function ProjectsPreview() {
-  const featured = projects.filter((p) => p.featured).slice(0, 3)
+  const featured = projects.filter((p) => p.featured).slice(0, 6)
   if (featured.length === 0) return null
 
   return (
@@ -23,15 +23,10 @@ export function ProjectsPreview() {
           </Reveal>
         </div>
 
-        <ul className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((project, i) => (
-            <li key={project.slug}>
-              <Reveal delay={i * 0.08} className="h-full">
-                <ProjectCard project={project} compact />
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+        {/* Pas de <Reveal> ici : sa transformation décalerait l'aperçu flottant (position fixed) */}
+        <div className="mt-12">
+          <ProjectIndex projects={featured} />
+        </div>
       </div>
     </section>
   )

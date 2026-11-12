@@ -81,7 +81,7 @@ export default function ProjectsPage() {
           {visible.length} projet{visible.length > 1 ? 's' : ''} affiché{visible.length > 1 ? 's' : ''}
         </p>
 
-        <ul className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-x-6 gap-y-6 sm:mt-12 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((project) => (
               <m.li

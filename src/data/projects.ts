@@ -138,6 +138,7 @@ export const projects: Project[] = [
   {
     // Liens et lieux fournis par Cédric. À compléter : année, besoin, réalisation, rôle et outils.
     placeholder: true,
+    featured: true,
     slug: 'creations-video',
     name: 'Vidéos publicitaires pour l’hôtellerie et la restauration',
     category: 'communication-digitale',
