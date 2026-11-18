@@ -21,7 +21,7 @@ export const siteConfig = {
     'Technologie, digital et créativité : je conçois des solutions, accompagne les transformations et donne vie aux idées.',
 
   /** URL publique du site, à renseigner après le premier déploiement Vercel (ex. https://xxx.vercel.app) */
-  url: '',
+  url: 'https://cedrics.vercel.app',
 
   /**
    * Photo du Hero et de la page À propos (format 4:5), dans public/images/.
