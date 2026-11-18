@@ -70,6 +70,30 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    // Rédigé à partir du brief produit et du dépôt de l'app (github.com/khaledced/nafa). Captures : mode démo de l'app.
+    featured: true,
+    slug: 'nafa',
+    name: 'Nafa, app de finances personnelles',
+    category: 'developpement-web',
+    year: '2026',
+    summary:
+      'Une app web pour suivre son argent, épargner et investir, pensée pour le Burkina Faso et 100 % hors ligne.',
+    context:
+      '« Nafa » veut dire profit, avantage en dioula. L’app s’adresse aux jeunes actifs et étudiants qui veulent savoir où part leur argent.',
+    problem:
+      'Suivre ses dépenses, son épargne et ses investissements (tontine, commerce…) simplement, en FCFA, sans inscription ni connexion permanente.',
+    solution:
+      'Une app installable sur iPhone et Android, sans serveur : les données restent sur le téléphone. Dépenses, rentrées, objectifs d’épargne, budgets et rapports automatiques.',
+    role: 'Conception et développement de l’application.',
+    tools: ['React', 'Vite', 'PWA', 'IndexedDB (Dexie)', 'Chart.js'],
+    cover: {
+      src: '/images/projects/nafa/cover-1600.webp',
+      srcSet: '/images/projects/nafa/cover-800.webp 800w, /images/projects/nafa/cover-1600.webp 1600w',
+      alt: 'Trois écrans de l’app Nafa : accueil avec le logo cauri, solde disponible de 149 500 FCFA et rapport mensuel',
+    },
+    url: 'https://nafabf.vercel.app/',
+  },
+  {
     // Synthèse rédigée à partir du contenu public du site (udigit.vercel.app) ; rôle et année confirmés par Cédric.
     featured: true,
     slug: 'site-agence-udigit',
