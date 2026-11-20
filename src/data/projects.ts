@@ -70,6 +70,30 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    // Rédigé à partir du dépôt de l'app (github.com/khaledced/remember). Captures : app en ligne, mode exemples.
+    featured: true,
+    slug: 'remember',
+    name: 'Remember, app de productivité',
+    category: 'developpement-web',
+    year: '2026',
+    summary:
+      'Une app pour capturer ses idées et ses tâches en une phrase, choisir ses 3 priorités du jour et ne rien oublier, même hors ligne.',
+    context:
+      '« Re-member » : remettre les morceaux ensemble. L’app réunit en un seul endroit tâches, notes, projets et rappels du quotidien.',
+    problem:
+      'Les idées et les choses à faire se perdent entre carnets, messages et applis. Il faut un outil assez rapide pour tout noter sur le moment, et qui marche sans connexion.',
+    solution:
+      'Une app installable sur iPhone, Android et ordinateur, sans compte ni serveur : les données restent sur l’appareil. On écrit ou on dicte « Appeler Awa demain 18h », l’app comprend la date et l’heure ; un bilan du soir prépare la journée du lendemain.',
+    role: 'Conception et développement de l’application.',
+    tools: ['React', 'TypeScript', 'Vite', 'PWA', 'IndexedDB (Dexie)', 'Reconnaissance vocale'],
+    cover: {
+      src: '/images/projects/remember/cover-1600.webp',
+      srcSet: '/images/projects/remember/cover-800.webp 800w, /images/projects/remember/cover-1600.webp 1600w',
+      alt: 'Trois écrans de l’app Remember : accueil avec le logo, page Aujourd’hui avec les priorités, et capture « Appeler Awa demain 18h » avec la date reconnue',
+    },
+    url: 'https://remember-bf.vercel.app/',
+  },
+  {
     // Rédigé à partir du brief produit et du dépôt de l'app (github.com/khaledced/nafa). Captures : mode démo de l'app.
     featured: true,
     slug: 'nafa',
