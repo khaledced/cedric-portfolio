@@ -4,9 +4,12 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { projects } from '@/data/projects'
 import { ProjectIndex } from './ProjectIndex'
 
-/** Projets mis en avant (featured: true) sur la page d'accueil, sous forme de liste numérotée. */
+/**
+ * Projets mis en avant (featured: true) sur la page d'accueil, sous forme de liste numérotée.
+ * Tous sont affichés, sans limite : pour retirer un projet de l'accueil, enlever son `featured`.
+ */
 export function ProjectsPreview() {
-  const featured = projects.filter((p) => p.featured).slice(0, 6)
+  const featured = projects.filter((p) => p.featured)
   if (featured.length === 0) return null
 
   return (
