@@ -317,6 +317,16 @@ export const projects: Project[] = [
   },
 ]
 
+/**
+ * À LA UNE (page d'accueil) : au plus MAX_FEATURED projets avec `featured: true`.
+ * Tous les projets restent visibles sur la page Projets.
+ * Pour mettre un nouveau projet à la une, retirer d'abord `featured` d'un autre :
+ * au-delà de la limite, le build s'arrête (test src/data/projects.test.ts) et le site en ligne ne change pas.
+ */
+export const MAX_FEATURED = 7
+
+export const featuredProjects = (): Project[] => projects.filter((p) => p.featured).slice(0, MAX_FEATURED)
+
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug)
 }

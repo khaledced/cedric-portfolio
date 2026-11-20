@@ -1,15 +1,15 @@
 import { Reveal } from '@/components/shared/Reveal'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { projects } from '@/data/projects'
+import { featuredProjects } from '@/data/projects'
 import { ProjectIndex } from './ProjectIndex'
 
 /**
- * Projets mis en avant (featured: true) sur la page d'accueil, sous forme de liste numérotée.
- * Tous sont affichés, sans limite : pour retirer un projet de l'accueil, enlever son `featured`.
+ * Projets à la une (featured: true) sur la page d'accueil, sous forme de liste numérotée.
+ * Limite : MAX_FEATURED (src/data/projects.ts), vérifiée au build.
  */
 export function ProjectsPreview() {
-  const featured = projects.filter((p) => p.featured)
+  const featured = featuredProjects()
   if (featured.length === 0) return null
 
   return (
